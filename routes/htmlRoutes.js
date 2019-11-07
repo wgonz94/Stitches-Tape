@@ -1,7 +1,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Load index page
+  // Load Landing Page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.render("index", {
@@ -11,7 +11,34 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
+  // Load Register/Login page
+  app.get("/example/:id", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.render("example", {
+        example: dbExample
+      });
+    });
+  });
+
+  // View list page
+  app.get("/example/:allClients", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.render("example", {
+        example: dbExample
+      });
+    });
+  });
+
+  // View client sizing page
+  app.get("/example/:client", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+      res.render("example", {
+        example: dbExample
+      });
+    });
+  });
+
+  // View create new page
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
       res.render("example", {
