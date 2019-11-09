@@ -2,7 +2,6 @@ module.exports = function(sequelize, DataTypes) {
   var Measurement = sequelize.define(
     "Measurement",
     {
-      id: clientId,
       email: {
         type: DataTypes.STRING,
         allowNull: false,
