@@ -1,5 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("user", {
+  var User = sequelize.define("User", {
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -8,6 +14,15 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    phoneNumber: {
+      type: DataTypes.STRING
+    },
+    colorPreferences: {
+      type: DataTypes.TEXT
+    },
+    project: {
+      type: DataTypes.STRING
     },
     isDesigner: {
       type: DataTypes.BOOLEAN,
