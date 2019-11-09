@@ -197,7 +197,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     notes: {
       type: DataTypes.TEXT
-    },
+    }
   });
 
   return Measurement;
