@@ -18,7 +18,7 @@ module.exports = function(app) {
   //update user info
   app.put("/api/user/:id", (req, res) => {
     db.User.update(req.body,
-      {where: {id: req.body.id}
+      {where: {id: req.params.id}
     }).then(function(dbProj) {
       res.json(dbProj)
     });
@@ -61,7 +61,7 @@ app.get("/api/projects/:id", (req, res) => {
   // update a project by id
   app.put("/api/projects/:id", (req, res) => {
     db.Measurement.update(req.body,
-      {where: {id: req.body.id}
+      {where: {id: req.params.id}
     }).then(function(dbProj) {
       res.json(dbProj)
     });
