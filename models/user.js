@@ -1,35 +1,19 @@
-var Sequelize = require("sequelize");
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("user", {
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    isDesigner: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
+  });
 
-var sequelize = require("../config/connection.js");
-
-var User = sequelize.define("user", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  isDesigner: {
-    type: Sequelize.BOOLEAN,
-    default: false
-  },
-  createdAt: {
-    type: Sequelize.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: Sequelize.DATE,
-    allowNull: false
-  }
-});
-
-User.sync();
-
-module.exports = User;
+  return User;
+};
