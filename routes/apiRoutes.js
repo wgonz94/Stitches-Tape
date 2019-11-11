@@ -1,24 +1,71 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  //user create/register
+  app.post("/api/user/:id", (req, res) => {
+    db.User.create(req.body).then(function(dbProj) {
+      res.json(dbProj);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  //delete user acc
+  app.delete("/api/user/:id", (req, res) => {
+    db.User.destroy({ where: { id: req.params.id } }).then(function(dbProj) {
+      res.json(dbProj);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  //update user info
+  app.put("/api/user/:id", (req, res) => {
+    db.User.update(req.body, { where: { id: req.params.id } }).then(function(
+      dbProj
+    ) {
+      res.json(dbProj);
     });
+  });
+
+  // Create a new client, measurement sheet
+  app.post("/api/NewMeasurement", (req, res) => {
+    db.Measurement.create(req.body).then(function(dbProj) {
+      res.json(dbProj);
+    });
+  });
+
+  //Get route to view list for projects under user
+  app.get("/api/user/:id", (req, res) => {
+    db.Measurement.findAll({
+      where: {
+        foreignKey: req.params.id
+      }
+    }).then(function(dbProj) {
+      res.json(dbProj);
+    });
+  });
+
+  //Get route to view single project
+  app.get("/api/projects/:id", (req, res) => {
+    db.Measurement.findOne({
+      where: { id: req.params.id }
+    }).then(function(dbProj) {
+      res.json(dbProj);
+    });
+  });
+
+  // Delete a project by id
+  app.delete("/api/projects/:id", (req, res) => {
+    db.Measurement.destroy({ where: { id: req.params.id } }).then(function(
+      dbProj
+    ) {
+      res.json(dbProj);
+    });
+  });
+
+  // update a project by id
+  app.put("/api/projects/:id", (req, res) => {
+    db.Measurement.update(req.body, { where: { id: req.params.id } }).then(
+      function(dbProj) {
+        res.json(dbProj);
+      }
+    );
   });
 };
