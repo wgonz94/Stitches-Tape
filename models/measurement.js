@@ -10,6 +10,9 @@ module.exports = function(sequelize, DataTypes) {
       designerId: {
         type: DataTypes.INTEGER
       },
+      project: {
+        type: DataTypes.STRING
+      },
       dressSize: {
         type: DataTypes.STRING
       },
@@ -50,151 +53,151 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING
       },
       headAround: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       headOverTop: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckAround: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckHeightFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckHeightBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bust: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bustFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bustBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bustPointToPoint: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       chest: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       chestFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       shoulderFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       shoulderBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       shoulderSeam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       slope: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       shoulderTipToWaistFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       shoulderTipToWaistBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       armsyceFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       armholeSnug: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       underArmSeam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       waist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       waistToFloor: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       waistToBelowKnee: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckToWaistFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckToWaistBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       neckToFloor: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       hipAtBones: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       hipToWaist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       largeHip: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       inseam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       kneeToAnkle: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       upperThigh: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       upperThighFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       knee: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       kneeFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       calf: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       ankle: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       overallRise: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       riseFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       riseBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       armLength: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       overArm: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       armToElbow: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       elbowToWrist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bicep: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       bicepFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       elbow: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       wrist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       handOrFist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.DECIMAL(6, 2)
       },
       notes: {
         type: DataTypes.TEXT
