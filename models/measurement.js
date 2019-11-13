@@ -13,6 +13,9 @@ module.exports = function(sequelize, DataTypes) {
       project: {
         type: DataTypes.STRING
       },
+      colorPreferences: {
+        type: DataTypes.TEXT
+      },
       dressSize: {
         type: DataTypes.STRING
       },

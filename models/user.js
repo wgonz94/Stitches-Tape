@@ -20,9 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       phoneNumber: {
         type: DataTypes.STRING
       },
-      colorPreferences: {
-        type: DataTypes.TEXT
-      },
       isDesigner: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
