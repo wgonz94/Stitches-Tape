@@ -25,6 +25,11 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+// Endpoint to serve the configuration file for Auth0
+app.get("/auth_config.json", (req, res) => {
+  res.sendFile(join(__dirname, "auth_config.json"));
+});
+
 var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
