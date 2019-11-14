@@ -10,6 +10,12 @@ module.exports = function(sequelize, DataTypes) {
       designerId: {
         type: DataTypes.INTEGER
       },
+      project: {
+        type: DataTypes.STRING
+      },
+      colorPreferences: {
+        type: DataTypes.TEXT
+      },
       dressSize: {
         type: DataTypes.STRING
       },
@@ -50,151 +56,151 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING
       },
       headAround: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       headOverTop: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckAround: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckHeightFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckHeightBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bust: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bustFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bustBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bustPointToPoint: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       chest: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       chestFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       shoulderFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       shoulderBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       shoulderSeam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       slope: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       shoulderTipToWaistFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       shoulderTipToWaistBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       armsyceFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       armholeSnug: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       underArmSeam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       waist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       waistToFloor: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       waistToBelowKnee: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckToWaistFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckToWaistBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       neckToFloor: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       hipAtBones: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       hipToWaist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       largeHip: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       inseam: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       kneeToAnkle: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       upperThigh: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       upperThighFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       knee: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       kneeFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       calf: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       ankle: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       overallRise: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       riseFront: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       riseBack: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       armLength: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       overArm: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       armToElbow: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       elbowToWrist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bicep: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       bicepFlexed: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       elbow: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       wrist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       handOrFist: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       notes: {
         type: DataTypes.TEXT
