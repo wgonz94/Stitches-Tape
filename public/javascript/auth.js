@@ -18,9 +18,7 @@ const configureClient = async () => {
     });
   };
 
-  //initialize app
-
+  //initialize app for Auth0
 window.onload = async () => {
     await configureClient();
   }
-  
