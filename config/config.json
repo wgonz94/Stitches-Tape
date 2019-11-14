@@ -2,7 +2,7 @@
     "development": {
       "username": "root",
       "password": null,
-      "database": "measurements_db",
+      "database": "developmentdb",
       "host": "localhost",
       "dialect": "mysql"
     },
