@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var Measurement = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const Measurement = sequelize.define(
     "Measurement",
     {
       email: {
@@ -208,7 +208,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       classMethods: {
-        associate: function(models) {
+        associate: models => {
           Measurement.belongsTo(models.User, {
             foreignKey: {
               allowNull: false
