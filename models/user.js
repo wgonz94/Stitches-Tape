@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define(
     "User",
     {
       firstName: {
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     {
       classMethods: {
-        associate: function(models) {
+        associate: models => {
           User.hasMany(models.Measurement);
         }
       }
