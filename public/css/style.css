@@ -22,6 +22,21 @@ p {
   font-size: 28px;
   text-align: center;
 }
+
+.printable {
+  display: none;
+}
+
+/* Print Modal */
+@media print {
+  .screen {
+    display: none;
+  }
+  .printable {
+    display: block;
+  }
+}
+
 @media screen and (max-width: 670px){
   header {
     background: none;
@@ -33,3 +48,4 @@ p {
 
 height : 200px;
 }
+
