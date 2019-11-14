@@ -31,6 +31,7 @@ module.exports = function(app) {
     });
   });
 
+  //  Should this be a res.render?  -James
   //Get route to view list for projects under user
   app.get("/api/user/:id", (req, res) => {
     db.Measurement.findAll({
@@ -42,6 +43,7 @@ module.exports = function(app) {
     });
   });
 
+  //  Should this be a res.render?  -James
   //Get route to view single project
   app.get("/api/projects/:id", (req, res) => {
     db.Measurement.findOne({
