@@ -1,22 +1,25 @@
 "use strict";
-
+require("dotenv").config();
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
-var config = require(__dirname + "/../config/config.js")[env];
+var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
   var sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASS, {
+      host: process.env.DB_HOST,
+      dialect: 'mysql'
+    }
   );
+  console.log("THIS IS THE CONFIG FROM INDEX.JS ------  ------ ------   " + config + "  --  " + config.database);
 }
 
 fs.readdirSync(__dirname)
