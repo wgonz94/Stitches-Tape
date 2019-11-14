@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(() => {
   $(".sidenav").sidenav();
   $(".carousel").carousel();
   $(".parallax").parallax();
@@ -6,19 +6,19 @@ $(document).ready(function() {
   $(".modal").modal();
 });
 
-$("#signup").on("click", function(e) {
+$("#signup").on("click", e => {
   e.preventDefault();
   $(".logged-in").show();
   $(".logged-out").hide();
 });
 
-$("#signin").on("click", function(e) {
+$("#signin").on("click", e => {
   e.preventDefault();
   $(".logged-in").show();
   $(".logged-out").hide();
 });
 
-$("#logout").on("click", function(e) {
+$("#logout").on("click", e => {
   e.preventDefault();
   $(".logged-in").hide();
   $(".logged-out").show();

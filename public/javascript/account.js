@@ -2,7 +2,7 @@ let user = "Devyn";
 let email = "ckbrogue@gmail.com";
 let phone = "714-858-8131";
 let table = [];
-$(document).ready(function() {
+$(document).ready(() => {
   $(".user-name").append("<b>Welcome Back " + user + "</b>");
 });
 
@@ -51,7 +51,7 @@ $("#handedness").attr("value", size);
 $("#email-mt").attr("value", email);
 $("#phone-mt").attr("value", phone);
 
-$(".modal-content").on("click", ".print", function() {
+$(".modal-content").on("click", ".print", () => {
   $(".printable").html($("#measurement-table").html());
   window.print();
 });
