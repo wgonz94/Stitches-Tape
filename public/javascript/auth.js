@@ -23,3 +23,4 @@ const configureClient = async () => {
 window.onload = async () => {
     await configureClient();
   }
+  
