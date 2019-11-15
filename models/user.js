@@ -2,13 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      firstName: {
-        type: DataTypes.STRING
-      },
-      lastName: {
-        type: DataTypes.STRING
-      },
-      email: {
+      username: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
@@ -17,22 +11,25 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      phoneNumber: {
-        type: DataTypes.STRING
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        isEmail: true
       },
-      isDesigner: {
+      wantsUpdates: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       }
     },
-    {
-      classMethods: {
-        associate: models => {
-          User.hasMany(models.Measurement);
-        }
-      }
-    }
+    {}
   );
+
+  User.associate = function(models) {
+    User.hasMany(models.Measurement, {
+      onDelete: "cascade"
+    });
+  };
 
   return User;
 };

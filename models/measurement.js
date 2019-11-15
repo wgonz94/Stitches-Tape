@@ -2,16 +2,20 @@ module.exports = (sequelize, DataTypes) => {
   const Measurement = sequelize.define(
     "Measurement",
     {
-      email: {
+      clientName: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
-      designerId: {
-        type: DataTypes.INTEGER
+      clientEmail: {
+        type: DataTypes.STRING,
+        isEmail: true
       },
-      project: {
+      clientPhone: {
         type: DataTypes.STRING
+      },
+      projectName: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       colorPreferences: {
         type: DataTypes.TEXT
@@ -139,7 +143,10 @@ module.exports = (sequelize, DataTypes) => {
       hipToWaist: {
         type: DataTypes.STRING
       },
-      largeHip: {
+      largeHipAcross: {
+        type: DataTypes.STRING
+      },
+      largeHipVertical: {
         type: DataTypes.STRING
       },
       inseam: {
@@ -199,25 +206,38 @@ module.exports = (sequelize, DataTypes) => {
       wrist: {
         type: DataTypes.STRING
       },
-      handOrFist: {
+      handAsFist: {
         type: DataTypes.STRING
+      },
+      customMeasurement1: {
+        type: DataTypes.TEXT
+      },
+      customMeasurement2: {
+        type: DataTypes.TEXT
+      },
+      customMeasurement3: {
+        type: DataTypes.TEXT
+      },
+      customMeasurement4: {
+        type: DataTypes.TEXT
+      },
+      customMeasurement5: {
+        type: DataTypes.TEXT
       },
       notes: {
         type: DataTypes.TEXT
       }
     },
-    {
-      classMethods: {
-        associate: models => {
-          Measurement.belongsTo(models.User, {
-            foreignKey: {
-              allowNull: false
-            }
-          });
-        }
-      }
-    }
+    {}
   );
+
+  Measurement.associate = function(models) {
+    Measurement.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Measurement;
 };
