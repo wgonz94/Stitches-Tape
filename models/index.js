@@ -16,10 +16,9 @@ if (config.use_env_variable) {
     process.env.DB_USER,
     process.env.DB_PASS, {
       host: process.env.DB_HOST,
-      dialect: 'mysql'
+      dialect: "mysql"
     }
   );
-  console.log("THIS IS THE CONFIG FROM INDEX.JS ------  ------ ------   " + config + "  --  " + config.database);
 }
 
 fs.readdirSync(__dirname)

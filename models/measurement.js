@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        isEmail: true
       },
       designerId: {
         type: DataTypes.INTEGER
@@ -206,18 +207,16 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT
       }
     },
-    {
-      classMethods: {
-        associate: function(models) {
-          Measurement.belongsTo(models.User, {
-            foreignKey: {
-              allowNull: false
-            }
-          });
-        }
-      }
-    }
+    {}
   );
+
+  Measurement.associate = function(models) {
+    Measurement.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Measurement;
 };

@@ -11,7 +11,8 @@ module.exports = function(sequelize, DataTypes) {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        isEmail: true
       },
       password: {
         type: DataTypes.STRING,
@@ -25,14 +26,14 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: false
       }
     },
-    {
-      classMethods: {
-        associate: function(models) {
-          User.hasMany(models.Measurement);
-        }
-      }
-    }
+    {}
   );
+
+  User.associate = function(models) {
+    User.hasMany(models.Measurement, {
+      onDelete: "cascade"
+    });
+  };
 
   return User;
 };
