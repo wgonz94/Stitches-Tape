@@ -7,14 +7,12 @@ let data = [];
 
 for (var i = 0; i < 11; i++) {
   let newUser = {
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    email: faker.internet.email(),
+    username: faker.internet.userName(),
     password: faker.internet.password(),
-    phoneNumber: faker.phone.phoneNumber(),
-    isDesigner: faker.random.boolean(),
-    createdAt: new Date(),
-    updatedAt: new Date()
+    email: faker.internet.email(),
+    wantsUpdates: faker.random.boolean(),
+    createdAt: faker.date.between("2014-01-01", "2019-11-01"),
+    updatedAt: faker.date.recent(10)
   };
   data.push(newUser);
 }
