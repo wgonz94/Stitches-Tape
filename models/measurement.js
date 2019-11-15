@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-  var Measurement = sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const Measurement = sequelize.define(
     "Measurement",
     {
       email: {
