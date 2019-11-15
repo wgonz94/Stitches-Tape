@@ -2,18 +2,9 @@
 
 const faker = require("faker");
 
-var db = require("../models");
+// var db = require("../models");
 let measurements = [];
-var clients = [
-  { userId: 1, email: "Maxime.Hamill@gmail.com" },
-  { userId: 3, email: "Clinton.Mueller74@yahoo.com" },
-  { userId: 5, email: "Timmy69@hotmail.com" },
-  { userId: 6, email: "Loyce89@gmail.com" },
-  { userId: 7, email: "Edgar38@yahoo.com" },
-  { userId: 9, email: "Arnold_Boehm98@hotmail.com" },
-  { userId: 10, email: "Samir36@gmail.com" }
-];
-var designersIds = [2, 4, 8, 11];
+
 let shoes = [
   "5",
   "5.5",
@@ -35,20 +26,7 @@ let shoes = [
   "13.5",
   "14"
 ];
-let colors = [
-  "blue, gray",
-  "gray",
-  "blue",
-  "red",
-  "pink, white",
-  "green",
-  "green, yellow",
-  "orange",
-  "white",
-  "black",
-  "black, red",
-  "black, white"
-];
+
 let heights = [
   "6'",
   "6'3",
@@ -75,42 +53,26 @@ let hairColor = [
 ];
 let eyeColor = ["brown", "hazel", "green", "blue", "black"];
 
-db.User.findAll({}).then(results => {
-  console.log(results);
-  let design = [];
-  let testClient = [];
-  for (var i = 0; i < results.length; i++) {
-    if (results[i].isDesigner) {
-      design.push(results[i].id);
-    } else {
-      testClient.push({
-        userId: results[i].id,
-        email: results[i].email
-      });
-    }
-  }
-  console.log(design);
-  console.log(testClient);
-  return results;
-});
+let sizes = ["XS", "S", "M", "L", "XL", "2XL", "2XLT", "3XL", "3XLT"];
 
-for (var m = 0; m < clients.length; m++) {
+for (var m = 0; m < 20; m++) {
   let newMeasure = {
-    email: clients[m].email,
-    designerId: designersIds[Math.floor(Math.random() * designersIds.length)],
-    project: faker.random.words(),
-    colorPreferences: colors[Math.floor(Math.random() * colors.length)],
-    dressSize: null,
-    suitSize: null,
-    shirtSize: null,
-    pantsWaist: null,
+    clientName: faker.name.findName(),
+    clientEmail: faker.internet.email(),
+    clientPhone: faker.phone.phoneNumber(),
+    projectName: faker.company.bsNoun(),
+    colorPreferences: faker.commerce.color(),
+    dressSize: Math.floor((Math.random() * 33) + 1),
+    suitSize: Math.floor((Math.random() * 27) + 23),
+    shirtSize: sizes[Math.floor(Math.random() * sizes.length)],
+    pantsWaist: Math.floor((Math.random() * 27) + 23),
     pantsInseam: null,
     tightsSize: null,
     hatSize: null,
     shoeSize: shoes[Math.floor(Math.random() * shoes.length)],
     handed: null,
     height: heights[Math.floor(Math.random() * heights.length)],
-    weight: Math.floor((Math.random() * 300) + 120),
+    weight: Math.floor((Math.random() * 200) + 120),
     hair: hairColor[Math.floor(Math.random() * hairColor.length)],
     eyes: eyeColor[Math.floor(Math.random() * eyeColor.length)],
     headAround: null,
@@ -118,11 +80,11 @@ for (var m = 0; m < clients.length; m++) {
     neckAround: null,
     neckHeightFront: null,
     neckHeightBack: null,
-    bust: Math.floor((Math.random() * 60) + 28),
+    bust: Math.floor((Math.random() * 32) + 28),
     bustFront: null,
     bustBack: null,
     bustPointToPoint: null,
-    chest: Math.floor((Math.random() * 60) + 28),
+    chest: Math.floor((Math.random() * 32) + 28),
     chestFront: null,
     shoulderFront: null,
     shoulderBack: null,
@@ -133,7 +95,7 @@ for (var m = 0; m < clients.length; m++) {
     armsyceFront: null,
     armholeSnug: null,
     underArmSeam: null,
-    waist: Math.floor((Math.random() * 60) + 28),
+    waist: Math.floor((Math.random() * 32) + 28),
     waistToFloor: null,
     waistToBelowKnee: null,
     neckToWaistFront: null,
@@ -141,31 +103,37 @@ for (var m = 0; m < clients.length; m++) {
     neckToFloor: null,
     hipAtBones: null,
     hipToWaist: null,
-    largeHip: null,
-    inseam: Math.floor(Math.random() * 50 + 23),
+    largeHipAcross: null,
+    largeHipVertical: null,
+    inseam: Math.floor(Math.random() * 27 + 23),
     kneeToAnkle: null,
-    upperThigh: Math.floor((Math.random() * 30) + 10),
+    upperThigh: Math.floor((Math.random() * 20) + 10),
     upperThighFlexed: null,
     knee: null,
     kneeFlexed: null,
-    calf: Math.floor((Math.random() * 10) + 3),
+    calf: Math.floor((Math.random() * 7) + 3),
     ankle: null,
     overallRise: null,
     riseFront: null,
     riseBack: null,
-    armLength: Math.floor((Math.random() * 20) + 10),
+    armLength: Math.floor((Math.random() * 10) + 10),
     overArm: null,
     armToElbow: null,
     elbowToWrist: null,
-    bicep: Math.floor((Math.random() * 20) + 12),
+    bicep: Math.floor((Math.random() * 8) + 12),
     bicepFlexed: null,
     elbow: null,
     wrist: null,
-    handOrFist: null,
-    notes: faker.lorem.sentences(),
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    UserId: clients[m].userId
+    handAsFist: null,
+    customMeasurement1: null,
+    customMeasurement2: null,
+    customMeasurement3: null,
+    customMeasurement4: null,
+    customMeasurement5: null,
+    notes: faker.lorem.paragraph(3),
+    createdAt: faker.date.between("2019-10-28", "2019-11-15"),
+    updatedAt: faker.date.recent(10),
+    UserId: Math.floor((Math.random() * 10) + 1)
   };
   measurements.push(newMeasure);
 }

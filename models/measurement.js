@@ -221,7 +221,7 @@ module.exports = (sequelize, DataTypes) => {
       customMeasurement4: {
         type: DataTypes.TEXT
       },
-      customMeasurement: {
+      customMeasurement5: {
         type: DataTypes.TEXT
       },
       notes: {
