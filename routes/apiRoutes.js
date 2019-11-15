@@ -42,7 +42,7 @@ module.exports = app => {
   app.get("/api/user/:id", (req, res) => {
     db.Measurement.findAll({
       where: {
-        foreignKey: req.params.id
+        UserId: req.params.id
       }
     }).then(dbProj => {
       res.json(dbProj);

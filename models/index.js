@@ -6,12 +6,14 @@ var Sequelize = require("sequelize");
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
-var db = {};
+
+const db = {};
+let sequelize;
 
 if (config.use_env_variable) {
-  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  var sequelize = new Sequelize(
+  sequelize = new Sequelize(
     process.env.DB_DATABASE,
     process.env.DB_USER,
     process.env.DB_PASS, {
@@ -19,6 +21,7 @@ if (config.use_env_variable) {
       dialect: "mysql"
     }
   );
+  // console.log("THIS IS THE CONFIG FROM INDEX.JS ------  ------ ------   " + JSON.stringify(config) + "  --  " + JSON.stringify(config.database));
 }
 
 fs.readdirSync(__dirname)
