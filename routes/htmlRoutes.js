@@ -7,12 +7,12 @@ module.exports = app => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
-  // Load Register/Login page
+  // Load Register page
   app.get("/signup", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/signup.html"));
   });
 
-  // Load Register/Login page
+  // Load Login page
   app.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
   });
