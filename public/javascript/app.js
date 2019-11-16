@@ -5,9 +5,9 @@ $(document).ready(() => {
   $(".parallax").parallax();
   $(".tabs").tabs();
   $(".modal").modal();
+})
 
-
-$("#signup").on("click", e => {
+/* $("#signup").on("click", e => {
   e.preventDefault();
   $(".logged-in").show();
   $(".logged-out").hide();
@@ -20,18 +20,17 @@ $("#signup").on("click", e => {
 });
   function inputUser(username,email,password,updates) {
     var query 
-  }
-$("#signin").on("click", e => {
+  }*/
+
+/*$("#signin").on("click", e => {
   e.preventDefault();
   $(".logged-in").show();
   $(".logged-out").hide();
-});
+}); */
 
-$("#logout").on("click", e => {
+/* $("#logout").on("click", e => {
   e.preventDefault();
   $(".logged-in").hide();
   $(".logged-out").show();
 });
-
-
-});
+*/
