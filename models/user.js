@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  const bcrypt = require("bcrypt");
   const User = sequelize.define(
     "User",
     {
@@ -25,6 +26,16 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
+  User.beforeCreate((user, options) => {
+    const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync(user.password, salt);
+  });
+    
+   
+  User.prototype.validPassword = function(password) {
+          return bcrypt.compareSync(password, this.password);
+        }; 
+        
   User.associate = function(models) {
     User.hasMany(models.Measurement, {
       onDelete: "cascade"

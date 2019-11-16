@@ -8,8 +8,13 @@ module.exports = app => {
   });
 
   // Load Register/Login page
+  app.get("/signup", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  // Load Register/Login page
   app.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/loginRegisterPage.html"));
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   });
 
   //load users measurements page
