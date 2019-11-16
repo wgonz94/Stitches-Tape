@@ -3,7 +3,23 @@ let email = "ckbrogue@gmail.com";
 let phone = "714-858-8131";
 let table = [];
 $(document).ready(() => {
-  $(".user-name").append("<b>Welcome Back " + user + "</b>");
+var currentURL = window.location.origin;
+
+  $.get(currentURL + "/api/user/3", function(data) {
+    console.log(data);
+    $(".user-name").append("<b>Welcome Back " + data[0].User.username + "</b>");
+    for (let i = 0; i < data.length; i++) {
+      let html = `<tr>
+      <td>${data[i].clientName}</td>
+      <td>${data[i].projectName}</td>
+      <td><a data-target="measurement-table" class='z-depth-3 btn modal-trigger'>Measurements</a></td>
+      </tr>`;
+    
+      $(".project-table").append(html);
+    }
+
+    return data;
+  });
 });
 
 const accounts = [
@@ -35,15 +51,15 @@ for (const value of entries) {
   table.push(value);
 }
 
-for (let i = 0; i < table.length; i++) {
-  let html = `<tr>
-  <td>${table[i].clientName}</td>
-  <td>${table[i].projectName}</td>
-  <td><a data-target="measurement-table" class='z-depth-3 btn modal-trigger'>${table[i].measureLink}</a></td>
-  </tr>`;
+// for (let i = 0; i < table.length; i++) {
+//   let html = `<tr>
+//   <td>${table[i].clientName}</td>
+//   <td>${table[i].projectName}</td>
+//   <td><a data-target="measurement-table" class='z-depth-3 btn modal-trigger'>${table[i].measureLink}</a></td>
+//   </tr>`;
 
-  $(".project-table").append(html);
-}
+//   $(".project-table").append(html);
+// }
 
 let size = "32 1/4";
 // Test Code

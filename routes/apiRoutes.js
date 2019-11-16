@@ -41,9 +41,15 @@ module.exports = app => {
   //Get route to view list for projects under user
   app.get("/api/user/:id", (req, res) => {
     db.Measurement.findAll({
-      where: {
-        UserId: req.params.id
-      }
+      include: [{
+        model: db.User,
+        where: {
+          id: req.params.id
+        }
+      }]
+      // where: {
+      //   UserId: req.params.id
+      // }
     }).then(dbProj => {
       res.json(dbProj);
     });
