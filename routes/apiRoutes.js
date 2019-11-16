@@ -39,11 +39,36 @@ module.exports = app => {
 
   //  Should this be a res.render?  -James
   //Get route to view list for projects under user
+  // app.get("/api/user/:id", (req, res) => {
+  //   db.Measurement.findAll({
+  //     where: {
+  //       UserId: req.params.id
+  //     }
+  //   }).then(dbProj => {
+  //     res.json(dbProj);
+  //   });
+  // });
+
+  //Get user profile info by id
   app.get("/api/user/:id", (req, res) => {
-    db.Measurement.findAll({
+    db.User.findOne({
       where: {
-        UserId: req.params.id
+        id: req.params.id
       }
+    }).then(dbProj => {
+      res.json(dbProj);
+    });
+  });
+
+  //Get all client measurements for the user
+  app.get("/api/measurement/:id", (req, res) => {
+    db.User.findAll({
+      include: [{
+        model: db.Measurement,
+        where: {
+          UserId: req.params.id
+        }
+      }]
     }).then(dbProj => {
       res.json(dbProj);
     });

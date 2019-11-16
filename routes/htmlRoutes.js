@@ -12,6 +12,11 @@ module.exports = app => {
     res.sendFile(path.join(__dirname, "../public/loginRegisterPage.html"));
   });
 
+  //load users measurements page
+  app.get("/account", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/account.html"));
+  });
+
   // View create new page
   /* app.get("/create", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/makeNew.html"));
