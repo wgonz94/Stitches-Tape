@@ -1,12 +1,12 @@
 require("dotenv").config();
 const express = require("express");
-const db = require("./models");
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
-var User = require('./models/user');
+var User = require('./models/User');
 const app = express();
 const mongoose = require('mongoose');
+const config = require('config');
 const PORT = process.env.PORT || 3300;
 
 // Middleware
@@ -37,6 +37,21 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// config MongoDB
+const db = config.get('mongoURI');
+
+// set Mongo config options to avoid deprication errors
+const configOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+// connect to MongoDB
+mongoose.connect(db, configOptions)
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
@@ -142,14 +157,12 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(() => {
-  app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+app.listen(PORT, () => {
+  console.log(
+    "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+    PORT,
+    PORT
+  );
 });
 
 module.exports = app;
