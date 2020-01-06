@@ -6,6 +6,7 @@ var session = require('express-session');
 var morgan = require('morgan');
 var User = require('./models/user');
 const app = express();
+const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3300;
 
 // Middleware
