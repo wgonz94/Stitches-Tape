@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 // create schema
 const MeasurementSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  },
   clientName: {
     type: String,
     required: true
@@ -90,13 +94,3 @@ const MeasurementSchema = new Schema({
 });
 
 module.exports = Measurement = mongoose.model('measurement', MeasurementSchema);
-
-
-//   Measurement.associate = function(models) {
-//     Measurement.belongsTo(models.User, {
-//       foreignKey: {
-//         allowNull: false
-//       }
-//     });
-//   };
-
