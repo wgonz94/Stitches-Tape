@@ -64,6 +64,8 @@ if(process.env.NODE_ENV === 'production') {
 
 
 // Routes
+
+// added below for clarity
 const users = require('./routes/api/user');
 app.use('/api/users', users);
 require("./routes/apiRoutes")(app);
