@@ -7,7 +7,7 @@ var morgan = require('morgan');
 var User = require('./models/User');
 const app = express();
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 3300;
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -52,6 +52,14 @@ mongoose.connect(db, configOptions)
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
+// Routes
+
+// added separate routes for users and measurements for clarity
+app.use('/api/users', require('./routes/api/user'));
+app.use('/api/measurements', require('./routes/api/measurement'));
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+
 // Serve static assets if we're in production
 if(process.env.NODE_ENV === 'production') {
     // Set static folder
@@ -62,14 +70,7 @@ if(process.env.NODE_ENV === 'production') {
     });
 }
 
-
-// Routes
-
-// added below for clarity
-const users = require('./routes/api/user');
-app.use('/api/users', users);
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+const PORT = process.env.PORT || 3300;
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
