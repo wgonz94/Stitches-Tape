@@ -27,6 +27,15 @@ router.post('/', (req, res) => {
         .then(user => res.json(user));
 });
 
+// @route PUT api/users
+// update existing user info
+router.put('/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then(user => user.update(req.body)
+        .then(() => res.json({success: true})))
+        .catch(err => res.status(404).json({success: false}));
+});
+
 // @route DELETE /api/users/:id
 // delete a user
 router.delete('/:id', (req, res) => {
