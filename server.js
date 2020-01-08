@@ -1,18 +1,18 @@
 require("dotenv").config();
 const express = require("express");
+const path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
 var User = require('./models/User');
 const app = express();
 const mongoose = require('mongoose');
-const config = require('config');
 const PORT = process.env.PORT || 3300;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+
 // set morgan to log info about requests for development use
 app.use(morgan('dev'));
 
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 // config MongoDB
-const db = config.get('mongoURI');
+const db = require('./config/keys').mongoURI;
 
 // set Mongo config options to avoid deprication errors
 const configOptions = {
@@ -52,7 +52,20 @@ mongoose.connect(db, configOptions)
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err));
 
+// Serve static assets if we're in production
+if(process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
+
 // Routes
+const users = require('./routes/api/user');
+app.use('/api/users', users);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
@@ -147,14 +160,6 @@ app.get('/logout', (req, res) => {
       res.redirect('/login');
   }
 });
-
-const syncOptions = { force: false };
-
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
 
 // Starting the server, syncing our models ------------------------------------/
 app.listen(PORT, () => {
