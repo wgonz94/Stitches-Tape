@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 });
 
 // config MongoDB
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keys_prod').mongoURI;
 
 // set Mongo config options to avoid deprication errors
 const configOptions = {
