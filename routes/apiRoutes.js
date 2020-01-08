@@ -1,34 +1,6 @@
 const db = require("../models");
 
 module.exports = app => {
-  //user create/register
-  app.post("/api/user/:id", (req, res) => {
-    db.User.create(req.body).then(dbProj => {
-      res.json(dbProj);
-    });
-  });
-
-  //delete user acc
-  app.delete("/api/user/:id", (req, res) => {
-    db.User.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbProj => {
-      res.json(dbProj);
-    });
-  });
-
-  //update user info
-  app.put("/api/user/:id", (req, res) => {
-    db.User.update(req.body, {
-      where: {
-        id: req.params.id
-      }
-    }).then(dbProj => {
-      res.json(dbProj);
-    });
-  });
 
   // Create a new client, measurement sheet
   app.post("/api/NewMeasurement", (req, res) => {
