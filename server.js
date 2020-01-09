@@ -1,17 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-const db = require("./models");
+const path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var morgan = require('morgan');
-var User = require('./models/user');
+var User = require('./models/User');
 const app = express();
-const PORT = process.env.PORT || 3300;
+const mongoose = require('mongoose');
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
+
 // set morgan to log info about requests for development use
 app.use(morgan('dev'));
 
@@ -36,9 +37,40 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// config MongoDB
+const db = require('./config/keys_prod').mongoURI;
+
+// set Mongo config options to avoid deprication errors
+const configOptions = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+// connect to MongoDB
+mongoose.connect(db, configOptions)
+    .then(() => console.log('MongoDB Connected...'))
+    .catch(err => console.log(err));
+
 // Routes
+
+// added separate routes for users and measurements for clarity
+app.use('/api/users', require('./routes/api/user'));
+app.use('/api/measurements', require('./routes/api/measurement'));
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+
+// Serve static assets if we're in production
+if(process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
+const PORT = process.env.PORT || 3300;
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
@@ -132,23 +164,13 @@ app.get('/logout', (req, res) => {
   }
 });
 
-const syncOptions = { force: false };
-
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(() => {
-  app.listen(PORT, () => {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+app.listen(PORT, () => {
+  console.log(
+    "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+    PORT,
+    PORT
+  );
 });
 
 module.exports = app;
