@@ -2,8 +2,8 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="container" id="about">
-      <h1 className="center light-green-text accent-4">More info</h1>
+    <div className='container' id='about'>
+      <h1 className='center light-green-text accent-4'>More info</h1>
       <p className='flow-text'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
         culpa deserunt magni, enim consectetur amet id cupiditate explicabo
@@ -20,6 +20,6 @@ const About = () => {
       </p>
     </div>
   );
-}
+};
 
 export default About;

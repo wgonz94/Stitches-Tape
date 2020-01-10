@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
-import Title from './Title'
-import Divider from './Parallax'
-import About from './About'
+import React, { Component } from 'react';
+import Header from './Header';
+import Title from './Title';
+import Divider from './Parallax';
+import About from './About';
 
 export class Home extends Component {
   render() {
     return (
       <div>
+        <Header />
         <Title />
         <Divider />
         <About />
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;
