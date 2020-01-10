@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import './Nav.css';
 
 const Navbar = () => {
@@ -9,28 +9,28 @@ const Navbar = () => {
     {/* Nav bar */}
     <nav className="nav-wrapper">
       <div className="container">
-        <a  className="brand-logo left hide-on-med-and-down flow-text">Stitches &amp; Tape</a>
-        <a  className="brand-logo center hide-on-med-and-up flow-text">Stitches &amp; Tape</a>
-        <a  className="sidenav-trigger" data-target="mobile-menu">
+        <Link to='/' className="brand-logo left hide-on-med-and-down flow-text">Stitches &amp; Tape</Link>
+        <Link to='/' className="brand-logo center hide-on-med-and-up flow-text">Stitches &amp; Tape</Link>
+        <Link to='/' className="sidenav-trigger" data-target="mobile-menu">
           <i className="material-icons">menu</i>
-        </a>
+        </Link>
         <ul className="right hide-on-med-and-down">
-          <li><a >Information Page</a></li>
-          <li><a data-target="clientinfo" className="modal-trigger logged-in">New Measurements</a></li>
-          <li><a  id="signup" className="logged-out">Sign Up</a></li>
-          <li><a  id="signin" className="logged-out">Sign In</a></li>
-          <li><a  id="logout" className="logged-in">Log Out</a></li>
-          <li><a >Contact</a></li>
+          <li><Link to='/'>Information Page</Link></li>
+          <li><Link to='/newmeasure' className="logged-in">New Measurements</Link></li>
+          <li><Link to='/signup' id="signup" className="logged-out">Sign Up</Link></li>
+          <li><Link to='/signin' id="signin" className="logged-out">Sign In</Link></li>
+          <li><Link to='/' id="logout" className="logged-in">Log Out</Link></li>
+          <li><Link to='/'>Contact</Link></li>
         </ul>
         {/* Mobile Nav Bar */}
         <ul className="sidenav grey lighten-2" id="mobile-menu">
-          {/* <li><a href="#" class="logged-in">Account</a></li> */}
-          <li><a  className="logged-in">New Measurements</a></li>
-          <li><a  className="logged-in">View Measurements</a></li>
-          <li><a  className="logged-out">Sign Up</a></li>
-          <li><a  className="logged-out">Sign In</a></li>
-          <li><a  className="logged-in">Log Out</a></li>
-          <li><a >Contact</a></li>
+          {/* <li><a href="#" class="logged-in">Account</Link></li> */}
+          <li><Link to='/measure' className="logged-in">View Measurements</Link></li>
+          <li><Link to='/newmeasure' className="logged-in">New Measurements</Link></li>
+          <li><Link to='/signup' className="logged-out">Sign Up</Link></li>
+          <li><Link to='/signin' className="logged-out">Sign In</Link></li>
+          <li><Link to='/' className="logged-in">Log Out</Link></li>
+          <li><Link to='/'>Contact</Link></li>
         </ul>
       </div>
     </nav>
