@@ -1,100 +1,116 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
 
 const initialState = {
-  username: "",
+  username: '',
   usernameInvalid: '',
-  email: "",
+  email: '',
   emailInvalid: '',
-  password: "",
+  password: '',
   passwordInvalid: '',
-  passCheck: "",
+  passCheck: '',
   passCheckInvalid: '',
   moreInfo: false
 };
 
-
 class SignUp extends Component {
   state = initialState;
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.id]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value
+        e.target.type === 'checkbox' ? e.target.checked : e.target.value
     });
-    console.log(this.state)
+    console.log(this.state);
     // eslint-disable-next-line no-unused-expressions
-    this.state.username.length < 6 ? this.setState({ usernameInvalid: 'Username must be at least 6 characters' }) : this.setState({ usernameInvalid: null })
-    this.state.email.length < 6 ? this.setState({ emailInvalid: 'Email must be at least 6 characters' }) : this.setState({ emailInvalid: null })
-    this.state.password.length < 10 ? this.setState({ passwordInvalid: 'Email must be at least 10 characters' }) : this.setState({ passwordInvalid: null })
-    this.state.password === this.state.passCheck ? this.setState({passCheckInvalid: null }) : this.setState({passCheckInvalid: 'Passwords do not match, please try again'})
-  }
-  
+    this.state.username.length < 6
+      ? this.setState({
+          usernameInvalid: 'Username must be at least 6 characters'
+        })
+      : this.setState({ usernameInvalid: null });
+    this.state.email.length < 6
+      ? this.setState({ emailInvalid: 'Email must be at least 6 characters' })
+      : this.setState({ emailInvalid: null });
+    this.state.password.length < 10
+      ? this.setState({
+          passwordInvalid: 'Email must be at least 10 characters'
+        })
+      : this.setState({ passwordInvalid: null });
+    this.state.password === this.state.passCheck
+      ? this.setState({ passCheckInvalid: null })
+      : this.setState({
+          passCheckInvalid: 'Passwords do not match, please try again'
+        });
+  };
+
   handleSubmit = e => {
-    e.preventDefault()
-    console.log(this.state)
+    e.preventDefault();
+    console.log(this.state);
     this.setState(initialState);
   };
 
   render() {
     return (
-      <div className="container">
+      <div className='container'>
         <form onSubmit={this.handleSubmit}>
-          <ul className="register-form">
+          <ul className='register-form'>
             <h2>New Account:</h2>
             <li>
               <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Username"
+                type='text'
+                id='username'
+                name='username'
+                placeholder='Username'
                 value={this.state.username}
                 onChange={this.handleChange}
                 required
               />
-              <div className="clear red-text strong">{this.state.usernameInvalid}</div>
+              <div className='clear red-text strong'>
+                {this.state.usernameInvalid}
+              </div>
             </li>
             <li>
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="example@email.com"
+                type='email'
+                id='email'
+                name='email'
+                placeholder='example@email.com'
                 value={this.state.email}
                 onChange={this.handleChange}
                 required
               />
-              <div className="clear red-text">{this.state.emailInvalid}</div>
+              <div className='clear red-text'>{this.state.emailInvalid}</div>
             </li>
             <li>
               <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
+                type='password'
+                id='password'
+                name='password'
+                placeholder='Password'
                 value={this.state.password}
                 onChange={this.handleChange}
                 required
               />
-              <div className="clear red-text">{this.state.passwordInvalid}</div>
+              <div className='clear red-text'>{this.state.passwordInvalid}</div>
             </li>
             <li>
               <input
-                type="password"
-                name="passCheck"
-                id="passCheck"
-                placeholder="Password (Again)"
+                type='password'
+                name='passCheck'
+                id='passCheck'
+                placeholder='Password (Again)'
                 value={this.state.passCheck}
                 onChange={this.handleChange}
                 required
               />
-              <div className="clear red-text">{this.state.passCheckInvalid}</div>
+              <div className='clear red-text'>
+                {this.state.passCheckInvalid}
+              </div>
             </li>
             <p>
               <label>
                 <input
-                  type="checkbox"
-                  id="moreInfo"
+                  type='checkbox'
+                  id='moreInfo'
                   value={this.state.moreInfo}
                   checked={this.state.moreInfo}
                   onChange={e => this.handleChange(e, true)}
@@ -105,8 +121,8 @@ class SignUp extends Component {
               </label>
             </p>
             <br />
-            <input type="submit" defaultValue="Create Account" />
-            <div className="clear"> </div>
+            <input type='submit' defaultValue='Create Account' />
+            <div className='clear'> </div>
           </ul>
         </form>
       </div>

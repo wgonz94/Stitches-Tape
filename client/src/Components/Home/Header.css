@@ -1,4 +1,4 @@
-header {
+.image {
   background: url('../../Images/titlebg.jpg');
   background-size: cover;
   background-position: center;
@@ -9,4 +9,3 @@ header {
 .nav-wrapper {
   background-color: #132b52;
 }
-
