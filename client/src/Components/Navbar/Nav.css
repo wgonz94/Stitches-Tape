@@ -1,0 +1,12 @@
+header {
+  background: url('../../Images/titlebg.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  background-color: black;
+}
+
+.nav-wrapper {
+  background-color: #132b52;
+}
+
