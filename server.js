@@ -70,7 +70,7 @@ if(process.env.NODE_ENV === 'production') {
     });
 }
 
-const PORT = process.env.PORT || 3300;
+const PORT = process.env.PORT || 5000;
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
