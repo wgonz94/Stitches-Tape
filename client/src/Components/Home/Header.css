@@ -1,5 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url('../../Images/bodybg.png');
+}
+
+.container {
+  background-color: white;
+}
+
 .image {
-  background: url('../../Images/titlebg.jpg');
+  background: url('../../Images/logobg.jpg');
   background-size: cover;
   background-position: center;
   min-height: 500px;
@@ -8,4 +20,9 @@
 
 .nav-wrapper {
   background-color: #132b52;
+}
+
+img {
+  position: bottom;
+  min-height: 200px;
 }

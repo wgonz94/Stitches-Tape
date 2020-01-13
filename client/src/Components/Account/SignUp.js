@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-const initialState = {
+const initState = {
+  name: '',
+  nameInvalid: '',
   username: '',
   usernameInvalid: '',
   email: '',
@@ -13,7 +15,7 @@ const initialState = {
 };
 
 class SignUp extends Component {
-  state = initialState;
+  state = initState;
 
   handleChange = e => {
     this.setState({
@@ -44,8 +46,10 @@ class SignUp extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log('SUBMIT IS CLICKED', this.state);
+    this.props.signUp(this.state);
     console.log(this.state);
-    this.setState(initialState);
+    this.setState(initState);
   };
 
   render() {
@@ -54,6 +58,16 @@ class SignUp extends Component {
         <form onSubmit={this.handleSubmit}>
           <ul className='register-form'>
             <h2>New Account:</h2>
+            <li>
+              <input
+                type='text'
+                id='name'
+                name='name'
+                placeholder='Name'
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </li>
             <li>
               <input
                 type='text'

@@ -4,7 +4,7 @@ import Title from './Title';
 import Divider from './Parallax';
 import About from './About';
 
-export class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <div>

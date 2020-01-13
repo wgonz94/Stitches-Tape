@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-const initialState = {
+const initState = {
   username: '',
   password: ''
 };
 
 class SignIn extends Component {
-  state = initialState;
+  state = initState;
 
   handleChange = e => {
     this.setState({
@@ -17,7 +17,7 @@ class SignIn extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState(initialState);
+    this.props.signIn(this.state);
     console.log(this.state);
     console.log('Submitted');
   };
