@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css';
 
+let style = { display: 'none' };
+
 const Navbar = ({ handleSubcribe, handleLogin }) => {
   useEffect(() => {
     const M = window.M;
@@ -11,11 +13,24 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
     });
   });
 
-  // console.log(handleSubcribe(), handleLogin());
+  console.log(style);
+
+  window.addEventListener('scroll', () => {
+    style = window.scrollY >= 310 ? { display: 'fixed' } : { display: 'none' };
+    console.log(window.scrollY);
+    console.log(style);
+  });
+
+  // const controlNavbar = () => {
+  //   window.scrollY > 310
+  //     ? (visible = { display: 'none' })
+  //     : (visible = { display: 'inline' });
+  // };
+  // // console.log(handleSubcribe(), handleLogin());
 
   return (
     <header>
-      <div className='navbar-fixed'>
+      <div className='navbar-fixed' style={style}>
         {/* Nav bar */}
         <nav className='nav-wrapper'>
           <div className='container'>
@@ -36,30 +51,34 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
             </Link>
             <ul className='right hide-on-med-and-down'>
               <li>
-                <Link to='/'>About</Link>
+                <Link to='/' className='hoverable'>
+                  About
+                </Link>
               </li>
               <li>
-                <Link to='/newmeasure' className='logged-in'>
+                <Link to='/newmeasure' className='logged-in hoverable'>
                   New Measurements
                 </Link>
               </li>
               <li>
-                <Link to='/signup' id='signup' className='logged-out'>
+                <Link to='/signup' id='signup' className='logged-out hoverable'>
                   Sign Up
                 </Link>
               </li>
               <li>
-                <Link to='/signin' id='signin' className='logged-out'>
+                <Link to='/signin' id='signin' className='logged-out hoverable'>
                   Sign In
                 </Link>
               </li>
               <li>
-                <Link to='/' id='logout' className='logged-in'>
+                <Link to='/' id='logout' className='logged-in hoverable'>
                   Log Out
                 </Link>
               </li>
               <li>
-                <Link to='/contact'>Contact</Link>
+                <Link to='/contact' className='hoverable'>
+                  Contact
+                </Link>
               </li>
             </ul>
 

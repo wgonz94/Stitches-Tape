@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import Navbar from './Components/Navbar/Nav';
 import Home from './Components/Home/Home';
-import Measurements from './Components/Tables/Measurement';
+// import Measurements from './Components/Tables/Measurement';
 import SignUp from './Components/Account/SignUp';
 import SignIn from './Components/Account/SignIn';
 import Contact from './Components/Contact/Contact';
@@ -48,8 +48,6 @@ class App extends Component {
   // };
 
   render() {
-    console.log(this.state);
-
     return (
       <BrowserRouter>
         <div className='App screen'>
@@ -64,7 +62,7 @@ class App extends Component {
             render={() => <SignIn signIn={this.signIn} />}
           />
           <Route path='/newmeasure' component={MeasureWrapper} />
-          <Route path='/measurements' component={Measurements} />
+          {/* <Route path='/measurements' component={Measurements} /> */}
           <Route path='/contact' component={Contact} />
           <Footer />
         </div>
