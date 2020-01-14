@@ -144,7 +144,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.setState({
           [event.target.id]: event.target.value
         });
-      }
 
       handleSubmit = event => {
         event.preventDefault();
@@ -184,21 +183,3 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
                 <label>
                 <input
-                  type='checkbox'
-                  id='moreInfo'
-                  value={this.state.moreInfo}
-                  checked={this.state.moreInfo}
-                  onChange={e => this.handleChange(e, true)}
-                />
-                <span>
-                  Please inform me of upcoming Changes, Promotions, and News
-                </span>
-              </label>
-                <button onClick={this.onSignUp}>Sign Up</button>
-            </div>
-
-          </div>)
-        }
-        
-      }
-    }

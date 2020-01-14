@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Title from './Title';
-import About from './About';
-import Parallax from './Parallax';
+import Header from '../Components/Home/Header';
+import Title from '../Components/Home/Title';
+import About from '../Components/Home/About';
+import Parallax from '../Components/Home/Parallax';
 
 class Home extends Component {
   render() {
