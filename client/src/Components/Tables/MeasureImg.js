@@ -4,7 +4,11 @@ import MeasureImg from '../../Images/MeasureImg.jpg';
 const MeasureImage = () => {
   return (
     <div>
-      <img src={MeasureImg} alt='Measurement Examples' />
+      <img
+        src={MeasureImg}
+        className='models responsive-img'
+        alt='Measurement Examples'
+      />
     </div>
   );
 };

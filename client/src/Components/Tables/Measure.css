@@ -1,4 +1,15 @@
 .scroll {
-  height: 1260px;
-  overflow: scroll;
+  height: 900px;
+  width: 100%;
+  overflow: auto;
+  border: 2px solid #132b52;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #5558aa;
+}
+
+.models {
+  height: 900px;
+  border: 2px solid #132b52;
+  margin-left: 50px;
 }

@@ -55,96 +55,100 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <h2 className='center'>New Account</h2>
-        <form onSubmit={this.handleSubmit} className='border'>
-          <ul className='register-form center'>
-            <li>
-              <input
-                type='text'
-                id='name'
-                name='name'
-                placeholder='Name'
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </li>
-            <li>
-              <input
-                type='text'
-                id='username'
-                name='username'
-                placeholder='Username'
-                value={this.state.username}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text strong'>
-                {this.state.usernameInvalid}
-              </div>
-            </li>
-            <li>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                placeholder='example@email.com'
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>{this.state.emailInvalid}</div>
-            </li>
-            <li>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                placeholder='Password'
-                value={this.state.password}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>{this.state.passwordInvalid}</div>
-            </li>
-            <li>
-              <input
-                type='password'
-                name='passCheck'
-                id='passCheck'
-                placeholder='Password (Again)'
-                value={this.state.passCheck}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>
-                {this.state.passCheckInvalid}
-              </div>
-            </li>
-            <p>
-              <label>
+      <main>
+        <div className='container'>
+          <h2 className='center'>New Account</h2>
+          <form onSubmit={this.handleSubmit} className='border'>
+            <ul className='register-form center'>
+              <li>
                 <input
-                  type='checkbox'
-                  id='moreInfo'
-                  value={this.state.moreInfo}
-                  checked={this.state.moreInfo}
-                  onChange={e => this.handleChange(e, true)}
+                  type='text'
+                  id='name'
+                  name='name'
+                  placeholder='Name'
+                  value={this.state.name}
+                  onChange={this.handleChange}
                 />
-                <span>
-                  Please inform me of upcoming Changes, Promotions, and News
-                </span>
-              </label>
-            </p>
-            <br />
-            <input
-              type='submit'
-              className='btn'
-              defaultValue='Create Account'
-            />
-            <div className='clear'> </div>
-          </ul>
-        </form>
-      </div>
+              </li>
+              <li>
+                <input
+                  type='text'
+                  id='username'
+                  name='username'
+                  placeholder='Username'
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text strong'>
+                  {this.state.usernameInvalid}
+                </div>
+              </li>
+              <li>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  placeholder='example@email.com'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>{this.state.emailInvalid}</div>
+              </li>
+              <li>
+                <input
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='Password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>
+                  {this.state.passwordInvalid}
+                </div>
+              </li>
+              <li>
+                <input
+                  type='password'
+                  name='passCheck'
+                  id='passCheck'
+                  placeholder='Password (Again)'
+                  value={this.state.passCheck}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>
+                  {this.state.passCheckInvalid}
+                </div>
+              </li>
+              <p>
+                <label>
+                  <input
+                    type='checkbox'
+                    id='moreInfo'
+                    value={this.state.moreInfo}
+                    checked={this.state.moreInfo}
+                    onChange={e => this.handleChange(e, true)}
+                  />
+                  <span>
+                    Please inform me of upcoming Changes, Promotions, and News
+                  </span>
+                </label>
+              </p>
+              <br />
+              <input
+                type='submit'
+                className='btn'
+                defaultValue='Create Account'
+              />
+              <div className='clear'> </div>
+            </ul>
+          </form>
+        </div>
+      </main>
     );
   }
 }
