@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Title from './Title';
-import Divider from './Parallax';
 import About from './About';
+import Parallax from './Parallax';
 
 class Home extends Component {
   render() {
@@ -10,7 +10,7 @@ class Home extends Component {
       <div>
         <Header />
         <Title />
-        <Divider />
+        <Parallax />
         <About />
       </div>
     );

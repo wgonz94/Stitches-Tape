@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
-import { Parallax } from 'react-parallax';
+import React, { useEffect } from 'react';
+import M from 'materialize-css';
+import midbg from '../../Images/midbg.jpg';
+import logobg from '../../Images/logobg.jpg';
+import About from './About';
 
-class Divider extends Component {
-  render() {
-    return (
-      <div>
-        <Parallax
-          blur={{ min: -15, max: 15 }}
-          bgImage={require('../../Images/midbg.jpg')}
-          bgImageAlt='Sewing Supplies'
-          strength={-200}
-        >
-          <div style={{ height: '500px' }} />
-        </Parallax>
+const Parallax = () => {
+  useEffect(() => {
+    let elements = document.querySelectorAll('.parallax');
+    M.Parallax.init(elements);
+  }, []);
+
+  return (
+    <section>
+      <div className='parallax-container'>
+        <div className='parallax'>
+          <img src={midbg} />
+        </div>
       </div>
-    );
-  }
-}
+      <About />
+      <div className='parallax-container'>
+        <div className='parallax'>
+          <img src={logobg} />
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default Divider;
+export default Parallax;

@@ -45,7 +45,7 @@ class Contact extends Component {
               />
             </li>
             <li>
-              <input
+              <textarea
                 type='text-area'
                 id='message'
                 onChange={this.handleChange}
