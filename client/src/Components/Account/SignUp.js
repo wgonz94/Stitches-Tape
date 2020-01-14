@@ -1,127 +1,188 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import 'whatwg-fetch'
 
-const initState = {
-  name: '',
-  nameInvalid: '',
-  username: '',
-  usernameInvalid: '',
-  email: '',
-  emailInvalid: '',
-  password: '',
-  passwordInvalid: '',
-  passCheck: '',
-  passCheckInvalid: '',
-  moreInfo: false
-};
+import { getFromStorage, setInStorage } from './../../utils/storage';
 
-class SignUp extends Component {
-  state = initState;
+    export default class SignUp extends Component {
+      constructor(props) {
+        super(props);
 
-  handleChange = e => {
-    this.setState({
-      [e.target.id]:
-        e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    });
-    console.log(this.state);
-    // eslint-disable-next-line no-unused-expressions
-    this.state.username.length < 6
-      ? this.setState({
-          usernameInvalid: 'Username must be at least 6 characters'
+        this.state = {
+          isLoading: true,
+          signUpError: '', 
+          signUpFirstName: "",
+          signUpLastName: "",
+          signUpUsername: "",
+          signUpEmail: "",
+          signUpPassword: "",
+          signUpUpdatesBox: false,
+        };
+
+        this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
+        this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this)
+        this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
+        this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
+        this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
+
+        this.onLogin = this.onLogin.bind(this);
+        this.onSignUp = this.onSignUp.bind(this);
+      }
+
+      componentDidMount() {
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token){
+          const { token } = obj
+          //verify token
+          fetch('/api/account/verify?token' + token)
+          .then(res => res.json())
+          .then(json => {
+            if(json.success) {
+              this.setState({
+              token,
+              isLoading: false
+            });
+            } else {
+              this.setState({
+                isLoading: false,
+              });
+            }
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+          })
+        }
+      }
+
+      onChangeSignUpEmail(event) {
+        this.setState({
+          signUpEmail: event.target.value,
         })
-      : this.setState({ usernameInvalid: null });
-    this.state.email.length < 6
-      ? this.setState({ emailInvalid: 'Email must be at least 6 characters' })
-      : this.setState({ emailInvalid: null });
-    this.state.password.length < 10
-      ? this.setState({
-          passwordInvalid: 'Email must be at least 10 characters'
+      }
+      onChangeSignUpPassword(event) {
+        this.setState({
+          signUpPassword: event.target.value,
         })
-      : this.setState({ passwordInvalid: null });
-    this.state.password === this.state.passCheck
-      ? this.setState({ passCheckInvalid: null })
-      : this.setState({
-          passCheckInvalid: 'Passwords do not match, please try again'
+      }
+      onChangeSignUpUsername(event) {
+        this.setState({
+          signUpUsername: event.target.value,
+        })
+      }
+      onChangeSignUpFirstName(event) {
+        this.setState({
+          signUpFirstName: event.target.value,
+        })
+      }
+      onChangeSignUpLastName(event) {
+        this.setState({
+          signUpLastName: event.target.value,
+        })
+      }
+
+      onSignUp(){
+        //Grab State
+        const {
+          signUpFirstName,
+          signUpLastName,
+          signUpEmail,
+          signUpPassword,
+          signUpUsername
+        }= this.state;
+
+        this.setState({
+          isLoading: true,
+        })
+        console.log(signUpFirstName)
+        console.log(signUpLastName)
+        console.log(signUpUsername)
+        console.log(signUpEmail)
+        console.log(signUpPassword)
+       
+
+        //Post request to backend
+        fetch("/api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            firstName: signUpFirstName,
+            lastName: signUpLastName,
+            email: signUpEmail,
+            password: signUpPassword,
+          }
+          ),
+        }).then(res => res.json())
+          .then(json => {
+            console.log("json", json)
+            if(json.success){
+              this.setState({
+                isLoading: false,
+                signUpEmail: "",
+                signUpPassword: "",
+                signUpFirstName: "",
+                signUpLastName: "",
+              });
+            }else {
+              this.setState({
+                signUpError: json.message,
+                isLoading: false,
+              });
+            }
+          }
+          ).catch(error => {
+            throw(error);
         });
-  };
+      }
+      validateForm() {
+        return this.state.email.length > 0 && this.state.password.length > 0;
+      }
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log('SUBMIT IS CLICKED', this.state);
-    this.props.signUp(this.state);
-    console.log(this.state);
-    this.setState(initState);
-  };
+      handleChange = event => {
+        this.setState({
+          [event.target.id]: event.target.value
+        });
+      }
 
-  render() {
-    return (
-      <div className='container'>
-        <form onSubmit={this.handleSubmit}>
-          <ul className='register-form'>
-            <h2>New Account:</h2>
-            <li>
-              <input
-                type='text'
-                id='name'
-                name='name'
-                placeholder='Name'
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </li>
-            <li>
-              <input
-                type='text'
-                id='username'
-                name='username'
-                placeholder='Username'
-                value={this.state.username}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text strong'>
-                {this.state.usernameInvalid}
-              </div>
-            </li>
-            <li>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                placeholder='example@email.com'
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>{this.state.emailInvalid}</div>
-            </li>
-            <li>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                placeholder='Password'
-                value={this.state.password}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>{this.state.passwordInvalid}</div>
-            </li>
-            <li>
-              <input
-                type='password'
-                name='passCheck'
-                id='passCheck'
-                placeholder='Password (Again)'
-                value={this.state.passCheck}
-                onChange={this.handleChange}
-                required
-              />
-              <div className='clear red-text'>
-                {this.state.passCheckInvalid}
-              </div>
-            </li>
-            <p>
-              <label>
+      handleSubmit = event => {
+        event.preventDefault();
+      }
+      
+      
+      render() {
+        const {
+          isLoading,
+          token,
+          signUpFirstName,
+          signUpLastName,
+          signUpEmail,
+          signUpPassword,
+          signUpError
+        } = this.state;
+
+        if(isLoading) {
+          return (<div><p>Loading...</p></div>);
+        }
+
+        if(!token) {
+          return (
+          <div>
+            <div>
+
+            {
+                (signUpError) ? (
+                  <p>{signUpError}</p>
+                ) : (null)
+              }
+                <p>Sign Up</p>
+                <input type="text" placeholder="First Name" value={this.signUpFirstName} onChange={this.onChangeSignUpFirstName}/>
+                <input type="text" placeholder="Last Name" value={this.signUpLastName} onChange={this.onChangeSignUpLastName}/>
+                <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
+                <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
+                <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
+                <label>
                 <input
                   type='checkbox'
                   id='moreInfo'
@@ -133,15 +194,11 @@ class SignUp extends Component {
                   Please inform me of upcoming Changes, Promotions, and News
                 </span>
               </label>
-            </p>
-            <br />
-            <input type='submit' defaultValue='Create Account' />
-            <div className='clear'> </div>
-          </ul>
-        </form>
-      </div>
-    );
-  }
-}
+                <button onClick={this.onSignUp}>Sign Up</button>
+            </div>
 
-export default SignUp;
+          </div>)
+        }
+        
+      }
+    }
