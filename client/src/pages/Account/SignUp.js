@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Forms.css';
 
 const initState = {
   name: '',
@@ -55,9 +56,9 @@ class SignUp extends Component {
   render() {
     return (
       <div className='container'>
-        <form onSubmit={this.handleSubmit}>
-          <ul className='register-form'>
-            <h2>New Account:</h2>
+        <h2 className='center'>New Account</h2>
+        <form onSubmit={this.handleSubmit} className='border'>
+          <ul className='register-form center'>
             <li>
               <input
                 type='text'
@@ -135,7 +136,11 @@ class SignUp extends Component {
               </label>
             </p>
             <br />
-            <input type='submit' defaultValue='Create Account' />
+            <input
+              type='submit'
+              className='btn'
+              defaultValue='Create Account'
+            />
             <div className='clear'> </div>
           </ul>
         </form>
