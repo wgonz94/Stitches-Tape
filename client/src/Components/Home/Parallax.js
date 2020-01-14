@@ -14,13 +14,13 @@ const Parallax = () => {
     <section>
       <div className='parallax-container'>
         <div className='parallax'>
-          <img src={midbg} />
+          <img className='responsive-img' src={midbg} alt='thread' />
         </div>
       </div>
       <About />
       <div className='parallax-container'>
         <div className='parallax'>
-          <img src={logobg} />
+          <img className='responsive-img' src={logobg} alt='stitchandbatton' />
         </div>
       </div>
     </section>

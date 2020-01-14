@@ -24,7 +24,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
 
-        this.onLogin = this.onLogin.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
       }
 
@@ -188,7 +187,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   id='moreInfo'
                   value={this.state.moreInfo}
                   checked={this.state.moreInfo}
-                  onChange={e => this.handleChange(e, true)}
+                  onChange={this.signUpUpdatesBox}
                 />
                 <span>
                   Please inform me of upcoming Changes, Promotions, and News
