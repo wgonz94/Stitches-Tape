@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // pull in user model
-const User = require('../../models/User');
+// const User = require('../../models/user');
 
 // use postman to test api routes
 
@@ -36,6 +36,18 @@ router.post('/', (req, res) => {
     newUser.save()
         .then(user => res.json(user));
 });
+// router.post('/api/signup', (req, res) => {
+//     const newUser = new User({
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
+//         password: req.body.generateHash(password),
+//         email: req.body.email,
+//         wantsUpdates: req.body.wantsUpdates
+//     });
+
+//     newUser.save()
+//         .then(user => res.json(user));
+// });
 
 // @route PUT api/users
 // update existing user info

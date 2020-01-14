@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import LeftWindow from './LeftWindow';
-import RightWindow from './RightWindow';
+import LeftWindow from '../Components/Tables/LeftWindow';
+import RightWindow from '../Components/Tables/RightWindow';
 
 class MeasureWrapper extends Component {
   render() {

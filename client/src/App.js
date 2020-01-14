@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import Navbar from './Components/Navbar/Nav';
-import Home from './Components/Home/Home';
+import Home from './pages/Home';
 // import Measurements from './Components/Tables/Measurement';
-import SignUp from './Components/Account/SignUp';
-import SignIn from './Components/Account/SignIn';
+import SignUp from './pages/Account/SignUp';
+import SignIn from './pages/Account/SignIn';
 import Contact from './Components/Contact/Contact';
-import MeasureWrapper from './Components/Tables/MeasureWrapper';
+import MeasureWrapper from './pages/MeasureWrapper';
 import Footer from './Components/Footer/Footer';
 
 const initUser = {
