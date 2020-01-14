@@ -1,63 +1,150 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import 'whatwg-fetch'
 
-const initState = {
-  username: '',
-  password: ''
-};
+import { getFromStorage, setInStorage } from './../../utils/storage';
 
-class SignIn extends Component {
-  state = initState;
+    export default class SignIn extends Component {
+      constructor(props) {
+        super(props);
 
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-    console.log(this.state);
-  };
+        this.state = {
+          isLoading: true,
+          isLoggedIn: '',
+          signInError: '',
+          signInEmail: "",
+          signInPassword: "",
+        };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.signIn(this.state);
-    console.log(this.state);
-    console.log('Submitted');
-  };
+        this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this)
+        this.onChangeSignInPassword = this.onChangeSigninPassword.bind(this)
 
-  render() {
-    return (
-      <div className='container'>
-        <h2 className='center'>Login</h2>
-        <form onClick={this.handleSubmit} className='border'>
-          <ul className='login-form center'>
+        this.onSignIn = this.onSignIn.bind(this);
+      }
+
+      componentDidMount() {
+        const obj = getFromStorage('the_main_app');
+        if (obj && obj.token){
+          const { token } = obj
+          //verify token
+          fetch('/api/account/verify?token' + token)
+          .then(res => res.json())
+          .then(json => {
+            if(json.success) {
+              this.setState({
+              token,
+              isLoading: false
+            });
+            } else {
+              this.setState({
+                isLoading: false,
+              });
+            }
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+          })
+        }
+      }
+
+      onChangeSignInUsername(event) {
+        this.setState({
+          signInUsername: event.target.value,
+        })
+      }
+      onChangeSignInPassword(event) {
+        this.setState({
+          signInPassword: event.target.value,
+        })
+      }
+     
+      onLogin() {
+        //Grab State
+        const {
+          signInUsername,
+          signInPassword,
+        }= this.state;
+
+        this.setState({
+          isLoading: true,
+        })
+        //Post request to backend
+        fetch('/api/account/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            username: signInUsername,
+            password: signInPassword,
+          }),
+        }).then(res => res.json())
+          .then(json => {
+            if(json.success){
+              setInStorage('the_main_app', { token: json.token });
+              this.setState({
+                signInError: json.message,
+                isLoading: false,
+                signInUsername: '',
+                signInPassword: '',
+                token: json.token,
+              });
+            }else {
+              this.setState({
+                signInError: json.message,
+                isLoading: false,
+              });
+            }
+          });
+      }
+     
+      validateForm() {
+        return this.state.email.length > 0 && this.state.password.length > 0;
+      }
+
+      handleChange = event => {
+        this.setState({
+          [event.target.id]: event.target.value
+        });
+      }
+
+      handleSubmit = event => {
+        event.preventDefault();
+      }
+      
+      
+      render() {
+        const {
+          isLoading,
+          token,
+          signInError,
+          signInUsername,
+          signInPassword,
+        } = this.state;
+
+        if(isLoading) {
+          return (<div><p>Loading...</p></div>);
+        }
+
+        if(!token) {
+          return (
+          <div>
             <div>
-              <li>
-                <input
-                  type='text'
-                  id='username'
-                  placeholder='Username'
-                  value={this.state.username}
-                  required
-                  onChange={this.handleChange}
-                />
-              </li>
-              <li>
-                <input
-                  type='password'
-                  id='password'
-                  placeholder='Password'
-                  value={this.state.password}
-                  required
-                  onChange={this.handleChange}
-                />
-              </li>
-              <br />
-              {/* <h4>I forgot my Password!</h4> */}
-              <input className='btn' type='submit' defaultValue='Login' />
-            </div>
-          </ul>
-        </form>
-      </div>
-    );
-  }
-}
 
-export default SignIn;
+              {
+                (signInError) ? (
+                  <p>{signInError}</p>
+                ) : (null)
+              }
+                <p>Log In</p>
+                <input type="email" placeholder="Email" value={signInUsername} onChange={this.onChangeSignInUsername}/>
+                <input type="password" placeholder="Password" value={signInPassword} onChange={this.onChangeSignInPassword}/>
+                <button onClick={this.onLogin}>Log In</button>
+            </div>
+           
+
+          </div>)
+        }
+      }
+    }
