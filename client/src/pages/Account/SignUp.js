@@ -182,4 +182,3 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
                 <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
                 <label>
-                <input
