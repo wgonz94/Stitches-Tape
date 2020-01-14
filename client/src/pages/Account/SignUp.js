@@ -23,7 +23,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
-
+        this.onLogin = this.onLogin.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
       }
 
@@ -200,4 +200,4 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         }
         
       }
-    }
+}
