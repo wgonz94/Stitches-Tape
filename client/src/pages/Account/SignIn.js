@@ -25,9 +25,9 @@ class SignIn extends Component {
   render() {
     return (
       <div className='container'>
-        <form onClick={this.handleSubmit}>
-          <ul className='login-form'>
-            <h1 className='center'>Login</h1>
+        <h2 className='center'>Login</h2>
+        <form onClick={this.handleSubmit} className='border'>
+          <ul className='login-form center'>
             <div>
               <li>
                 <input
@@ -49,8 +49,9 @@ class SignIn extends Component {
                   onChange={this.handleChange}
                 />
               </li>
+              <br />
               {/* <h4>I forgot my Password!</h4> */}
-              <input type='submit' defaultValue='Login' />
+              <input className='btn' type='submit' defaultValue='Login' />
             </div>
           </ul>
         </form>
