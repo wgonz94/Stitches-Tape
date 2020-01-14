@@ -2,28 +2,17 @@ const db = require("../models");
 
 module.exports = app => {
 
-  // Create a new client, measurement sheet
-  app.post("/api/NewMeasurement", (req, res) => {
-    db.Measurement.create(req.body).then(dbProj => {
-      res.json(dbProj);
-    });
-  });
+  // // Create a new client, measurement sheet
+  // app.post("/api/NewMeasurement", (req, res) => {
+  //   db.Measurement.create(req.body).then(dbProj => {
+  //     res.json(dbProj);
+  //   });
+  // });
 
   //  Should this be a res.render?  -James
   //get the measurements for 1 client
   app.get("/api/measurement/:id", (req, res) => {
     db.Measurement.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbProj => {
-      res.json(dbProj);
-    });
-  });
-
-  //Get user profile info by id
-  app.get("/api/user/:id", (req, res) => {
-    db.User.findOne({
       where: {
         id: req.params.id
       }
