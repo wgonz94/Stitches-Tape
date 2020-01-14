@@ -23,7 +23,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
-
         this.onLogin = this.onLogin.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
       }
@@ -144,6 +143,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.setState({
           [event.target.id]: event.target.value
         });
+      }
 
       handleSubmit = event => {
         event.preventDefault();
@@ -182,3 +182,22 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
                 <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
                 <label>
+                <input
+                  type='checkbox'
+                  id='moreInfo'
+                  value={this.state.moreInfo}
+                  checked={this.state.moreInfo}
+                  onChange={this.signUpUpdatesBox}
+                />
+                <span>
+                  Please inform me of upcoming Changes, Promotions, and News
+                </span>
+              </label>
+                <button onClick={this.onSignUp}>Sign Up</button>
+            </div>
+
+          </div>)
+        }
+        
+      }
+}
