@@ -3,27 +3,24 @@ import 'whatwg-fetch'
 
 import { getFromStorage, setInStorage } from './../../utils/storage';
 
-    export default class Login extends Component {
+    export default class SignUp extends Component {
       constructor(props) {
         super(props);
 
         this.state = {
           isLoading: true,
-          isLoggedIn: '',
           signUpError: '', 
-          signInError: '',
-          logInEmail: "",
-          logInPassword: "",
           signUpFirstName: "",
           signUpLastName: "",
+          signUpUsername: "",
           signUpEmail: "",
-          signUpPassword: ""
+          signUpPassword: "",
+          signUpUpdatesBox: false,
         };
 
-        this.onChangeLogInEmail = this.onChangeLogInEmail.bind(this)
-        this.onChangeLogInPassword = this.onChangeLogInPassword.bind(this)
         this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
         this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this)
+        this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
 
@@ -57,16 +54,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         }
       }
 
-      onChangeLogInEmail(event) {
-        this.setState({
-          logInEmail: event.target.value,
-        })
-      }
-      onChangeLogInPassword(event) {
-        this.setState({
-          logInPassword: event.target.value,
-        })
-      }
       onChangeSignUpEmail(event) {
         this.setState({
           signUpEmail: event.target.value,
@@ -75,6 +62,11 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
       onChangeSignUpPassword(event) {
         this.setState({
           signUpPassword: event.target.value,
+        })
+      }
+      onChangeSignUpUsername(event) {
+        this.setState({
+          signUpUsername: event.target.value,
         })
       }
       onChangeSignUpFirstName(event) {
@@ -88,53 +80,14 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         })
       }
 
-      onLogin() {
-        //Grab State
-        const {
-          logInEmail,
-          logInPassword,
-        }= this.state;
-
-        this.setState({
-          isLoading: true,
-        })
-        //Post request to backend
-        fetch('/api/account/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            email: logInEmail,
-            password: logInPassword,
-          }),
-        }).then(res => res.json())
-          .then(json => {
-            if(json.success){
-              setInStorage('the_main_app', { token: json.token });
-              this.setState({
-                signInError: json.message,
-                isLoading: false,
-                logInEmail: '',
-                logInPassword: '',
-                token: json.token,
-              });
-            }else {
-              this.setState({
-                signInError: json.message,
-                isLoading: false,
-              });
-            }
-          });
-      }
       onSignUp(){
         //Grab State
         const {
           signUpFirstName,
           signUpLastName,
           signUpEmail,
-          signUpPassword
+          signUpPassword,
+          signUpUsername
         }= this.state;
 
         this.setState({
@@ -142,6 +95,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         })
         console.log(signUpFirstName)
         console.log(signUpLastName)
+        console.log(signUpUsername)
         console.log(signUpEmail)
         console.log(signUpPassword)
        
@@ -201,9 +155,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         const {
           isLoading,
           token,
-          signInError,
-          logInEmail,
-          logInPassword,
           signUpFirstName,
           signUpLastName,
           signUpEmail,
@@ -220,19 +171,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           <div>
             <div>
 
-              {
-                (signInError) ? (
-                  <p>{signInError}</p>
-                ) : (null)
-              }
-                <p>Log In</p>
-                <input type="email" placeholder="Email" value={logInEmail} onChange={this.onChangeLogInEmail}/>
-                <input type="password" placeholder="Password" value={logInPassword} onChange={this.onChangeLogInPassword}/>
-                <button onClick={this.onLogin}>Log In</button>
-            </div>
-            <br />            
-            <br />
-            <div>
             {
                 (signUpError) ? (
                   <p>{signUpError}</p>
@@ -241,29 +179,26 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 <p>Sign Up</p>
                 <input type="text" placeholder="First Name" value={this.signUpFirstName} onChange={this.onChangeSignUpFirstName}/>
                 <input type="text" placeholder="Last Name" value={this.signUpLastName} onChange={this.onChangeSignUpLastName}/>
+                <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
                 <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
                 <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
+                <label>
+                <input
+                  type='checkbox'
+                  id='moreInfo'
+                  value={this.state.moreInfo}
+                  checked={this.state.moreInfo}
+                  onChange={e => this.handleChange(e, true)}
+                />
+                <span>
+                  Please inform me of upcoming Changes, Promotions, and News
+                </span>
+              </label>
                 <button onClick={this.onSignUp}>Sign Up</button>
             </div>
 
           </div>)
         }
-        return (
-          <div>
-      <p>Account: {logInEmail} </p>
-          {/* <TextInput
-          email
-          error="Wrong Email sir"
-          label="Email"
-          success="Great"
-          validate
-        />
-        <TextInput
-          label="Password"
-          password
-        /> */}
         
-        </div>
-        );
       }
     }
