@@ -811,7 +811,7 @@ class NewMeasurement extends Component {
             <div className='input-field col s4'>
               <input
                 type='text'
-                placeholder='Custom Measurement'
+                placeholder='Custom Measurement2'
                 id='custom3'
               />
               <label htmlFor='custom3' className='active'>

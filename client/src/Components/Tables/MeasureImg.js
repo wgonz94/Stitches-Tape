@@ -7,7 +7,7 @@ const MeasureImage = () => {
     <div>
       <img
         src={MeasureImg}
-        className='models responsive-img'
+        className='models responsive-img center'
         alt='Measurement Examples 1'
       />
     </div>

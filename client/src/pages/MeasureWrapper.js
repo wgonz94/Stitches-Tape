@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MeasureImg from '../Components/Tables/MeasureImg';
+
 import NewMeasurement from '../Components/Tables/NewMeasurement';
 import '../Components/Tables/Measure.css';
 
