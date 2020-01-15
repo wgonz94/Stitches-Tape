@@ -3,7 +3,7 @@ import NewMeasurement from './NewMeasurement';
 
 const RightWindow = () => {
   return (
-    <div>
+    <div className='container rw'>
       <NewMeasurement />
     </div>
   );
