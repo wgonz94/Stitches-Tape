@@ -15,7 +15,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpUsername: "",
           signUpEmail: "",
           signUpPassword: "",
-          signUpUpdatesBox: false,
+          signUpUpdates: false,
         };
 
         this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
@@ -23,7 +23,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
-        this.onLogin = this.onLogin.bind(this);
+        this.onChangeSignUpUpdates = this.onChangeSignUpUpdates.bind(this)
+
         this.onSignUp = this.onSignUp.bind(this);
       }
 
@@ -78,6 +79,11 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpLastName: event.target.value,
         })
       }
+      onChangeSignUpUpdates(event) {
+        this.setState({
+          signUpUpdates: event.target.value,
+        })
+      }
 
       onSignUp(){
         //Grab State
@@ -97,10 +103,11 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         console.log(signUpUsername)
         console.log(signUpEmail)
         console.log(signUpPassword)
+        console.log(signUpUpdates)
        
 
         //Post request to backend
-        fetch("/api/signup", {
+        fetch("/api/account/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -109,6 +116,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           body: JSON.stringify({
             firstName: signUpFirstName,
             lastName: signUpLastName,
+            username: signUpUsername,
             email: signUpEmail,
             password: signUpPassword,
           }
@@ -156,8 +164,10 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           token,
           signUpFirstName,
           signUpLastName,
+          signUpUsername,
           signUpEmail,
           signUpPassword,
+          signUpUpdates,
           signUpError
         } = this.state;
 
@@ -175,11 +185,21 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
               <li>
                 <input
                   type='text'
-                  id='name'
-                  name='name'
-                  placeholder='Name'
-                  value={this.state.name}
-                  onChange={this.handleChange}
+                  id='firstName'
+                  name='firstName'
+                  placeholder='First Name'
+                  value={this.signUpFirstName}
+                  onChange={this.onChangeSignUpFirstName}
+                />
+              </li>
+              <li>
+                <input
+                  type='text'
+                  id='lastName'
+                  name='lastName'
+                  placeholder='Last Name'
+                  value={this.signUpLastName}
+                  onChange={this.onChangeSignUpLastName}
                 />
               </li>
               <li>
@@ -188,8 +208,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   id='username'
                   name='username'
                   placeholder='Username'
-                  value={this.state.username}
-                  onChange={this.handleChange}
+                  value={this.signUpUsername}
+                  onChange={this.onChangeSignUpUsername}
                   required
                 />
                 <div className='clear red-text strong'>
@@ -202,8 +222,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   id='email'
                   name='email'
                   placeholder='example@email.com'
-                  value={this.state.email}
-                  onChange={this.handleChange}
+                  value={this.signUpEmail}
+                  onChange={this.onChangeSignUpEmail}
                   required
                 />
                 <div className='clear red-text'>{this.state.emailInvalid}</div>
@@ -214,8 +234,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   id='password'
                   name='password'
                   placeholder='Password'
-                  value={this.state.password}
-                  onChange={this.handleChange}
+                  value={this.signUpPassword}
+                  onChange={this.onChangeSignUpPassword}
                   required
                 />
                 <div className='clear red-text'>
@@ -241,8 +261,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   <input
                     type='checkbox'
                     id='moreInfo'
-                    value={this.state.moreInfo}
-                    checked={this.state.moreInfo}
+                    value={this.signUpUpdates}
+                    checked={this.onChangeSignUpUpdates}
                     onChange={e => this.handleChange(e, true)}
                   />
                   <span>
@@ -255,6 +275,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 type='submit'
                 className='btn'
                 defaultValue='Create Account'
+                onClick={this.onSignUp}
               />
               <div className='clear'> </div>
             </ul>
