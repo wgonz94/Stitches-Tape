@@ -167,36 +167,101 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
 
         if(!token) {
           return (
-          <div>
-            <div>
-
-            {
-                (signUpError) ? (
-                  <p>{signUpError}</p>
-                ) : (null)
-              }
-                <p>Sign Up</p>
-                <input type="text" placeholder="First Name" value={this.signUpFirstName} onChange={this.onChangeSignUpFirstName}/>
-                <input type="text" placeholder="Last Name" value={this.signUpLastName} onChange={this.onChangeSignUpLastName}/>
-                <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
-                <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
-                <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
-                <label>
+          <main>
+        <div className='container'>
+          <h2 className='center'>New Account</h2>
+          <form onSubmit={this.handleSubmit} className='border'>
+            <ul className='register-form center'>
+              <li>
                 <input
-                  type='checkbox'
-                  id='moreInfo'
-                  value={this.state.moreInfo}
-                  checked={this.state.moreInfo}
-                  onChange={this.signUpUpdatesBox}
+                  type='text'
+                  id='name'
+                  name='name'
+                  placeholder='Name'
+                  value={this.state.name}
+                  onChange={this.handleChange}
                 />
-                <span>
-                  Please inform me of upcoming Changes, Promotions, and News
-                </span>
-              </label>
-                <button onClick={this.onSignUp}>Sign Up</button>
-            </div>
-
-          </div>)
+              </li>
+              <li>
+                <input
+                  type='text'
+                  id='username'
+                  name='username'
+                  placeholder='Username'
+                  value={this.state.username}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text strong'>
+                  {this.state.usernameInvalid}
+                </div>
+              </li>
+              <li>
+                <input
+                  type='email'
+                  id='email'
+                  name='email'
+                  placeholder='example@email.com'
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>{this.state.emailInvalid}</div>
+              </li>
+              <li>
+                <input
+                  type='password'
+                  id='password'
+                  name='password'
+                  placeholder='Password'
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>
+                  {this.state.passwordInvalid}
+                </div>
+              </li>
+              <li>
+                <input
+                  type='password'
+                  name='passCheck'
+                  id='passCheck'
+                  placeholder='Password (Again)'
+                  value={this.state.passCheck}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className='clear red-text'>
+                  {this.state.passCheckInvalid}
+                </div>
+              </li>
+              <p>
+                <label>
+                  <input
+                    type='checkbox'
+                    id='moreInfo'
+                    value={this.state.moreInfo}
+                    checked={this.state.moreInfo}
+                    onChange={e => this.handleChange(e, true)}
+                  />
+                  <span>
+                    Please inform me of upcoming Changes, Promotions, and News
+                  </span>
+                </label>
+              </p>
+              <br />
+              <input
+                type='submit'
+                className='btn'
+                defaultValue='Create Account'
+              />
+              <div className='clear'> </div>
+            </ul>
+          </form>
+        </div>
+      </main>
+  )
         }
         
       }
