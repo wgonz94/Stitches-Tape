@@ -22,7 +22,7 @@
   max-height: 900px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 950px) {
   .scroll {
     max-height: 100%;
   }

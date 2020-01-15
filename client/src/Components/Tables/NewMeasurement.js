@@ -782,6 +782,66 @@ class NewMeasurement extends Component {
             </div>
           </div>
         </div>
+        <div>
+          <h3 className='center-align'>Custom Measurements</h3>
+          <h5 className='center-align'>
+            Please Enter Name of Measurement and Value
+          </h5>
+          <div className='row'>
+            <div className='input-field col s4'>
+              <input
+                type='text'
+                placeholder='Custom Measurement'
+                id='custom1'
+              />
+              <label htmlFor='custom1' className='active'>
+                Custom Measurement #1
+              </label>
+            </div>
+            <div className='input-field col s4'>
+              <input
+                type='text'
+                placeholder='Custom Measurement'
+                id='custom2'
+              />
+              <label htmlFor='custom2' className='active'>
+                Custom Measurement #2
+              </label>
+            </div>
+            <div className='input-field col s4'>
+              <input
+                type='text'
+                placeholder='Custom Measurement'
+                id='custom3'
+              />
+              <label htmlFor='custom3' className='active'>
+                Custom Measurement #3
+              </label>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='input-field col s5'>
+              <input
+                type='text'
+                placeholder='Custom Measurement'
+                id='custom4'
+              />
+              <label htmlFor='custom4' className='active'>
+                Custom Measurement #4
+              </label>
+            </div>
+            <div className='input-field col s5'>
+              <input
+                type='text'
+                placeholder='Custom Measurement'
+                id='custom5'
+              />
+              <label htmlFor='custom5' className='active'>
+                Custom Measurement #5
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
