@@ -3,7 +3,7 @@ import MeasureImage from './MeasureImg';
 
 const LeftWindow = () => {
   return (
-    <div>
+    <div className='container'>
       <MeasureImage />
     </div>
   );

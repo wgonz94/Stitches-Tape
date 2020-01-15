@@ -1,5 +1,6 @@
 import React from 'react';
 import MeasureImg from '../../Images/MeasureImg.jpg';
+import './Measure.css';
 
 const MeasureImage = () => {
   return (
