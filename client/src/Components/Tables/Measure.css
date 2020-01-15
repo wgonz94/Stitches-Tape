@@ -1,4 +1,29 @@
 .scroll {
-  height: 1260px;
-  overflow: scroll;
+  height: 900px;
+  width: 90%;
+  overflow: hidden;
+  border: 2px solid #132b52;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #5558aa;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.scroll:hover,
+.scroll:focus {
+  overflow-y: scroll;
+}
+
+.models {
+  height: 100vh;
+  border: 2px solid #132b52;
+  margin-left: 100px;
+  max-height: 900px;
+}
+
+@media screen and (max-width: 1000px) {
+  .scroll {
+    max-height: 100%;
+  }
 }

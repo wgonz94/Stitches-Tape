@@ -13,8 +13,29 @@ router.get('/', (req, res) => {
         .then(users => res.json(users))
 });
 
+// @route PUT api/users
+// get single user info
+router.get('/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json('User Not Found'));
+});
+
 // @route POST /api/users
 // create new user
+router.post('/', (req, res) => {
+    const newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        isDeleted: req.body.isDeleted,
+        wantsUpdates: req.body.wantsUpdates
+    });
+
+    newUser.save()
+        .then(user => res.json(user));
+});
 // router.post('/api/signup', (req, res) => {
 //     const newUser = new User({
 //         firstName: req.body.firstName,

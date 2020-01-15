@@ -13,9 +13,16 @@ router.get('/', (req, res) => {
         .then(measurements => res.json(measurements))
 });
 
+// @route GET api/measurements
+// get all measuerments associated with specific user
+router.get('/:id', (req, res) => {
+    Measurement.find({ user: req.params.id })
+        .then(measurements => res.json(measurements));
+});
+
 // @route POST /api/measurements
 // create new measurement
-router.post('/:id', (req, res) => {
+router.post('/new', (req, res) => {
     const newMeasurement = new Measurement({
         clientName: req.body.clientName,
         clientEmail: req.body.clientEmail,
@@ -91,7 +98,7 @@ router.post('/:id', (req, res) => {
         customMeasurement4: req.body.customMeasurement4,
         customMeasurement5: req.body.customMeasurement5,
         notes: req.body.notes,
-        UserId: req.params.id
+        user: req.body.user
     });
 
     newMeasurement.save()

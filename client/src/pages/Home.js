@@ -9,9 +9,11 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <Title />
-        <Parallax />
-        <About />
+        <main>
+          <Title />
+          <Parallax />
+          <About />
+        </main>
       </div>
     );
   }
