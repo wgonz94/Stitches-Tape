@@ -124,4 +124,8 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(404).json({success: false}));
 });
 
+// POSSIBLE FUTURE ROUTES
+// update a project
+// find all measurements associated with a project
+
 module.exports = router;
