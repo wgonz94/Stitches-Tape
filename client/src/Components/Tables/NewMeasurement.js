@@ -1,85 +1,85 @@
 import React, { Component } from 'react';
 import './Measure.css';
 
+const initState = [
+  { clientName: '', id: 'clientName' },
+  { projectName: '', id: 'projectName' },
+  { email: '', id: 'email' },
+  { phone: null, id: 'phone' },
+  { suitSize: '', id: 'suitSize' },
+  { dressSize: '', id: 'dressSize' },
+  { shirtSize: '', id: 'shirtSize' },
+  { pantWaist: '', id: 'pantWaist' },
+  { pantInseam: '', id: 'pantInseam' },
+  { hatSize: '', id: 'hatSize' },
+  { shoeSize: '', id: 'shoeSize' },
+  { height: '', id: 'height' },
+  { weight: '', id: 'weight' },
+  { hairColor: '', id: 'hairColor' },
+  { eyeColor: '', id: 'eyeColor' },
+  { handedness: '', id: 'handedness' },
+  { colorPref: '', id: 'colorPref' },
+  { checked: 'unchecked', id: 'units' },
+  { headDiam: '', id: 'headDiam' },
+  { headOver: '', id: 'headOver' },
+  { neck: '', id: 'neck' },
+  { neckFront: '', id: 'neckFront' },
+  { neckBack: '', id: 'neckBack' },
+  { bust: '', id: 'bust' },
+  { chest: '', id: 'chest' },
+  { bustFront: '', id: 'bustFront' },
+  { bustBack: '', id: 'bustBack' },
+  { bustPtp: '', id: 'bustPtp' },
+  { chestFront: '', id: 'chestFront' },
+  { shoulderFront: '', id: 'shoulderFront' },
+  { shoulderBack: '', id: 'shoulderBack' },
+  { shoulderSeam: '', id: 'shoulderSeam' },
+  { slope: '', id: 'slope' },
+  { shoulderCtrFront: '', id: 'shoulderCtrFront' },
+  { shoulderCtrBack: '', id: 'shoulderCtrBack' },
+  { armscyeFront: '', id: 'armscyeFront' },
+  { armholeSnug: '', id: 'armholeSnug' },
+  { underarmSeam: '', id: 'underarmSeam' },
+  { waist: '', id: 'waist' },
+  { neckToWaistFront: '', id: 'neckToWaistFront' },
+  { neckToWaistBack: '', id: 'neckToWaistBack' },
+  { hipAtHipbone: '', id: 'hipAtHipbone' },
+  { hipWaist: '', id: 'hipWaist' },
+  { lgHipAcross: '', id: 'lgHipAcross' },
+  { lgHipVert: '', id: 'lgHipVert' },
+  { neckToFloor: '', id: 'neckToFloor' },
+  { waistToFloor: '', id: 'waistToFloor' },
+  { waistToBelowKnee: '', id: 'waistToBelowKnee' },
+  { inseam: '', id: 'inseam' },
+  { kneeToAnkle: '', id: 'kneeToAnkle' },
+  { upperThigh: '', id: 'upperThigh' },
+  { upperThighFlexed: '', id: 'upperThighFlexed' },
+  { knee: '', id: 'knee' },
+  { kneeFlexed: '', id: 'kneeFlexed' },
+  { calf: '', id: 'calf' },
+  { ankle: '', id: 'ankle' },
+  { overallRise: '', id: 'overallRise' },
+  { riseFront: '', id: 'riseFront' },
+  { riseBack: '', id: 'riseBack' },
+  { armLength: '', id: 'armLength' },
+  { overarm: '', id: 'overarm' },
+  { armToElbow: '', id: 'armToElbow' },
+  { elbowToWrist: '', id: 'elbowToWrist' },
+  { bicep: '', id: 'bicep' },
+  { bicepFlexed: '', id: 'bicepFlexed' },
+  { elbow: '', id: 'elbow' },
+  { wrist: '', id: 'wrist' },
+  { hand: '', id: 'hand' },
+  { custom1: '', id: 'custom1' },
+  { custom2: '', id: 'custom2' },
+  { custom3: '', id: 'custom3' },
+  { custom4: '', id: 'custom4' },
+  { custom5: '', id: 'custom5' },
+  { notes: '', id: 'notes' }
+];
+
 class NewMeasurement extends Component {
-  state = {
-    measurements: [
-      { clientName: '', id: 'clientName' },
-      { projectName: '', id: 'projectName' },
-      { email: '', id: 'email' },
-      { phone: null, id: 'phone' },
-      { suitSize: '', id: 'suitSize' },
-      { dressSize: '', id: 'dressSize' },
-      { shirtSize: '', id: 'shirtSize' },
-      { pantWaist: '', id: 'pantWaist' },
-      { pantInseam: '', id: 'pantInseam' },
-      { hatSize: '', id: 'hatSize' },
-      { shoeSize: '', id: 'shoeSize' },
-      { height: '', id: 'height' },
-      { weight: '', id: 'weight' },
-      { hairColor: '', id: 'hairColor' },
-      { eyeColor: '', id: 'eyeColor' },
-      { handedness: '', id: 'handedness' },
-      { colorPref: '', id: 'colorPref' },
-      { checked: 'unchecked', id: 'units' },
-      { headDiam: '', id: 'headDiam' },
-      { headOver: '', id: 'headOver' },
-      { neck: '', id: 'neck' },
-      { neckFront: '', id: 'neckFront' },
-      { neckBack: '', id: 'neckBack' },
-      { bust: '', id: 'bust' },
-      { chest: '', id: 'chest' },
-      { bustFront: '', id: 'bustFront' },
-      { bustBack: '', id: 'bustBack' },
-      { bustPtp: '', id: 'bustPtp' },
-      { chestFront: '', id: 'chestFront' },
-      { shoulderFront: '', id: 'shoulderFront' },
-      { shoulderBack: '', id: 'shoulderBack' },
-      { shoulderSeam: '', id: 'shoulderSeam' },
-      { slope: '', id: 'slope' },
-      { shoulderCtrFront: '', id: 'shoulderCtrFront' },
-      { shoulderCtrBack: '', id: 'shoulderCtrBack' },
-      { armscyeFront: '', id: 'armscyeFront' },
-      { armholeSnug: '', id: 'armholeSnug' },
-      { underarmSeam: '', id: 'underarmSeam' },
-      { waist: '', id: 'waist' },
-      { neckToWaistFront: '', id: 'neckToWaistFront' },
-      { neckToWaistBack: '', id: 'neckToWaistBack' },
-      { hipAtHipbone: '', id: 'hipAtHipbone' },
-      { hipWaist: '', id: 'hipWaist' },
-      { lgHipAcross: '', id: 'lgHipAcross' },
-      { lgHipVert: '', id: 'lgHipVert' },
-      { neckToFloor: '', id: 'neckToFloor' },
-      { waistToFloor: '', id: 'waistToFloor' },
-      { waistToBelowKnee: '', id: 'waistToBelowKnee' },
-      { inseam: '', id: 'inseam' },
-      { kneeToAnkle: '', id: 'kneeToAnkle' },
-      { upperThigh: '', id: 'upperThigh' },
-      { upperThighFlexed: '', id: 'upperThighFlexed' },
-      { knee: '', id: 'knee' },
-      { kneeFlexed: '', id: 'kneeFlexed' },
-      { calf: '', id: 'calf' },
-      { ankle: '', id: 'ankle' },
-      { overallRise: '', id: 'overallRise' },
-      { riseFront: '', id: 'riseFront' },
-      { riseBack: '', id: 'riseBack' },
-      { armLength: '', id: 'armLength' },
-      { overarm: '', id: 'overarm' },
-      { armToElbow: '', id: 'armToElbow' },
-      { elbowToWrist: '', id: 'elbowToWrist' },
-      { bicep: '', id: 'bicep' },
-      { bicepFlexed: '', id: 'bicepFlexed' },
-      { elbow: '', id: 'elbow' },
-      { wrist: '', id: 'wrist' },
-      { hand: '', id: 'hand' },
-      { custom1: '', id: 'custom1' },
-      { custom2: '', id: 'custom2' },
-      { custom3: '', id: 'custom3' },
-      { custom4: '', id: 'custom4' },
-      { custom5: '', id: 'custom5' },
-      { notes: '', id: 'notes' }
-    ]
-  };
+  state = { initState };
 
   handleChange = e => {
     this.setState({
@@ -94,12 +94,14 @@ class NewMeasurement extends Component {
 
     console.log('Submitted');
     console.log(this.state);
+    document.getElementById('NMForm').reset();
+    this.setState({ initState });
   };
 
   render() {
     return (
       <div className='scroll'>
-        <form onSubmit={this.handleSubmit}>
+        <form id='NMForm' onSubmit={this.handleSubmit}>
           <h3 className='center-align'>Client Info</h3>
           <div className='row'>
             <div className='input-field col s6'>
@@ -109,6 +111,7 @@ class NewMeasurement extends Component {
                 onChange={this.handleChange}
                 placeholder='John Smith'
                 id='clientName'
+                value={this.state.clientName}
               />
               <label htmlFor='clientName' className='active'>
                 Client Name (Required)
@@ -1104,6 +1107,7 @@ class NewMeasurement extends Component {
                       cols={30}
                       rows={10}
                       defaultValue={''}
+                      onChange={this.handleChange}
                     />
                     <label htmlFor='notes'>Enter Any Notes Here</label>
                   </div>
