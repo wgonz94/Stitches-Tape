@@ -1,11 +1,11 @@
 //this handles all of the login/sign-up/logout calls
 const User = require("../../models/User")
 const UserSession = require("../../models/UserSession")
+const router = require("express").Router();
 
-module.exports = (app) => {
 
     // Sign up
-    app.post('/api/account/signup', (req, res, next) => {
+    router.post('/api/account/signup', (req, res, next) => {
         const { body } = req;
         let {
             firstName,
@@ -93,7 +93,7 @@ module.exports = (app) => {
     });
 
     //login 
-    app.post('/api/account/login', (req, res, next) => {
+    router.post('/api/account/login', (req, res, next) => {
         const { body } = req;
         const {
             password
@@ -153,13 +153,13 @@ module.exports = (app) => {
                 }
                 return res.send({
                     success: true,
-                    message: 'Valid sign in',
+                    message: 'Valid sign in!',
                     token: doc._id
                 })
             });
         });
     });
-    app.post('/api/account/verify', (req, res, next) =>{
+    router.get('/api/account/verify', (req, res, next) =>{
         //Grab token
         const { query } = req;
         const { token } = query;
@@ -183,13 +183,13 @@ module.exports = (app) => {
                 })
             } else {
                 return res.send({
-                    success: false,
+                    success: true,
                     message: 'Good'
                 });
             }
         })
     })
-    app.post('/api/account/logout', (req, res, next) => {
+    router.post('/api/account/logout', (req, res, next) => {
         const { query } = req;
         const { token } = query;
 
@@ -213,4 +213,4 @@ module.exports = (app) => {
             
         })
     })
-}
+    module.exports = router

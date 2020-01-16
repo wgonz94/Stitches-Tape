@@ -15,7 +15,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpUsername: "",
           signUpEmail: "",
           signUpPassword: "",
-          signUpUpdates: false,
+          signUpUpdates: "",
         };
 
         this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
@@ -180,7 +180,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           <main>
         <div className='container'>
           <h2 className='center'>New Account</h2>
-          <form onSubmit={this.handleSubmit} className='border'>
+          <form  className='border'>
             <ul className='register-form center'>
               <li>
                 <input
@@ -262,8 +262,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                     type='checkbox'
                     id='moreInfo'
                     value={this.signUpUpdates}
-                    checked={this.onChangeSignUpUpdates}
-                    onChange={e => this.handleChange(e, true)}
+                    checked={this.signUpUpdates}
+                    onChange={this.onChangeSignUpUpdates}
                   />
                   <span>
                     Please inform me of upcoming Changes, Promotions, and News
