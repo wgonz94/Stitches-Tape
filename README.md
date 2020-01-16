@@ -5,7 +5,7 @@
 * [Description](#description)
 * [Our Team](#our-team)
     * [Devyn Barron](#devyn-barron)
-    * [William Gonzalez](#william-gonzalez)
+    * [William Gonzales](#william-gonzales)
     * [Alicia Scott](#alicia-scott)
     * [James Stacy](#james-stacy)
 * [Tech and Languages](#tech-and-languages)
@@ -21,7 +21,7 @@ Create customized Templates for items you make often to further reduce the scope
 > Front-End/Views
 > * [Github](https://github.com/barrd001)
 
-> ### William Gonzalez
+> ### William Gonzales
 > Back-End/Controller
 > * [Github](https://github.com/wgonz94)
 
@@ -34,5 +34,15 @@ Create customized Templates for items you make often to further reduce the scope
 > * [Github](https://github.com/SirHexxus)
 
 ## Tech and Languages
+> ### Front-End:
+> * React.js
+> * Materialize
+> * CSS3
+
+> ### Back-End:
+> * Node.js
+> * Express.js
+> * MongoDB (Using the Atlas Online Utility)
+
 
 ## What's Next?
