@@ -1,5 +1,5 @@
 //this handles all of the login/sign-up/logout calls
-const User = require("../../models/user")
+const User = require("../../models/User")
 const UserSession = require("../../models/UserSession")
 
 module.exports = (app) => {

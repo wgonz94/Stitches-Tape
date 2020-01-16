@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // pull in user model
-// const User = require('../../models/user');
+const User = require('../../models/User');
 
 // use postman to test api routes
 
