@@ -92,7 +92,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpLastName,
           signUpEmail,
           signUpPassword,
-          signUpUsername
+          signUpUsername,
+          signUpUpdates
         }= this.state;
 
         this.setState({
