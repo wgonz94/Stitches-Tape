@@ -4,7 +4,7 @@ const path = require('path');
 var morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose');
-
+const loginRoutes = require('./routes/api/login')
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -31,7 +31,7 @@ mongoose.connect(db, configOptions)
 // added separate routes for users, measurements, and login for clarity
 app.use('/api/users', require('./routes/api/user'));
 app.use('/api/measurements', require('./routes/api/measurement'));
-app.use('/api/login', require('./routes/api/login'));
+app.use(loginRoutes);
 
 // Serve static assets if we're in production
 if(process.env.NODE_ENV === 'production') {
