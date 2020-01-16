@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require("express");
 const path = require('path');
 var morgan = require('morgan');
@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 
 // Middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // set morgan to log info about requests for development use
@@ -28,8 +28,7 @@ mongoose.connect(db, configOptions)
     .catch(err => console.log(err));
 
 // Routes
-
-// added separate routes for users and measurements for clarity
+// added separate routes for users, measurements, and login for clarity
 app.use('/api/users', require('./routes/api/user'));
 app.use('/api/measurements', require('./routes/api/measurement'));
 app.use('/api/login', require('./routes/api/login'));
