@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // pull in measurement model
+// another comment
 const Measurement = require('../../models/Measurement');
 
 // use postman to test api routes
@@ -20,7 +21,7 @@ router.get('/:id', (req, res) => {
         .then(measurements => res.json(measurements));
 });
 
-// @route POST /api/measurements
+// @route POST /api/measurements 
 // create new measurement
 router.post('/new', (req, res) => {
     const newMeasurement = new Measurement({
