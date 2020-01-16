@@ -32,7 +32,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
               this.setState({
               token,
               isLoading: false
-            });
+            })
             } else {
               this.setState({
                 isLoading: false,
@@ -67,6 +67,9 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.setState({
           isLoading: true,
         })
+        console.log(signInUsername)
+        console.log(signInPassword)
+
         //Post request to backend
         fetch('/api/account/login', {
           method: 'POST',
@@ -81,6 +84,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         }).then(res => res.json())
           .then(json => {
             if(json.success){
+              console.log('Grabbing a token')
               setInStorage('the_main_app', { token: json.token });
               this.setState({
                 signInError: json.message,
@@ -97,9 +101,9 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
             }
           });
       }
-     
+      
       validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        return this.state.signInUsername.length > 0 && this.state.signInPassword.length > 0;
       }
 
       handleChange = event => {
@@ -155,5 +159,10 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           </div>
           )
         }
+        return (
+          <div>
+      <p>Signed In!</p>
+          </div>
+        )
       }
     }

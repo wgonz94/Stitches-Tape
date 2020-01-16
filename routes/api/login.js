@@ -159,7 +159,7 @@ const router = require("express").Router();
             });
         });
     });
-    router.post('/api/account/verify', (req, res, next) =>{
+    router.get('/api/account/verify', (req, res, next) =>{
         //Grab token
         const { query } = req;
         const { token } = query;
@@ -183,7 +183,7 @@ const router = require("express").Router();
                 })
             } else {
                 return res.send({
-                    success: false,
+                    success: true,
                     message: 'Good'
                 });
             }
