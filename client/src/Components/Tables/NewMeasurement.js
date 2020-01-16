@@ -2,7 +2,84 @@ import React, { Component } from 'react';
 import './Measure.css';
 
 class NewMeasurement extends Component {
-  state = {};
+  state = {
+    measurements: [
+      { clientName: '', id: 'clientName' },
+      { projectName: '', id: 'projectName' },
+      { email: '', id: 'email' },
+      { phone: null, id: 'phone' },
+      { suitSize: '', id: 'suitSize' },
+      { dressSize: '', id: 'dressSize' },
+      { shirtSize: '', id: 'shirtSize' },
+      { pantWaist: '', id: 'pantWaist' },
+      { pantInseam: '', id: 'pantInseam' },
+      { hatSize: '', id: 'hatSize' },
+      { shoeSize: '', id: 'shoeSize' },
+      { height: '', id: 'height' },
+      { weight: '', id: 'weight' },
+      { hairColor: '', id: 'hairColor' },
+      { eyeColor: '', id: 'eyeColor' },
+      { handedness: '', id: 'handedness' },
+      { colorPref: '', id: 'colorPref' },
+      { checked: 'unchecked', id: 'units' },
+      { headDiam: '', id: 'headDiam' },
+      { headOver: '', id: 'headOver' },
+      { neck: '', id: 'neck' },
+      { neckFront: '', id: 'neckFront' },
+      { neckBack: '', id: 'neckBack' },
+      { bust: '', id: 'bust' },
+      { chest: '', id: 'chest' },
+      { bustFront: '', id: 'bustFront' },
+      { bustBack: '', id: 'bustBack' },
+      { bustPtp: '', id: 'bustPtp' },
+      { chestFront: '', id: 'chestFront' },
+      { shoulderFront: '', id: 'shoulderFront' },
+      { shoulderBack: '', id: 'shoulderBack' },
+      { shoulderSeam: '', id: 'shoulderSeam' },
+      { slope: '', id: 'slope' },
+      { shoulderCtrFront: '', id: 'shoulderCtrFront' },
+      { shoulderCtrBack: '', id: 'shoulderCtrBack' },
+      { armscyeFront: '', id: 'armscyeFront' },
+      { armholeSnug: '', id: 'armholeSnug' },
+      { underarmSeam: '', id: 'underarmSeam' },
+      { waist: '', id: 'waist' },
+      { neckToWaistFront: '', id: 'neckToWaistFront' },
+      { neckToWaistBack: '', id: 'neckToWaistBack' },
+      { hipAtHipbone: '', id: 'hipAtHipbone' },
+      { hipWaist: '', id: 'hipWaist' },
+      { lgHipAcross: '', id: 'lgHipAcross' },
+      { lgHipVert: '', id: 'lgHipVert' },
+      { neckToFloor: '', id: 'neckToFloor' },
+      { waistToFloor: '', id: 'waistToFloor' },
+      { waistToBelowKnee: '', id: 'waistToBelowKnee' },
+      { inseam: '', id: 'inseam' },
+      { kneeToAnkle: '', id: 'kneeToAnkle' },
+      { upperThigh: '', id: 'upperThigh' },
+      { upperThighFlexed: '', id: 'upperThighFlexed' },
+      { knee: '', id: 'knee' },
+      { kneeFlexed: '', id: 'kneeFlexed' },
+      { calf: '', id: 'calf' },
+      { ankle: '', id: 'ankle' },
+      { overallRise: '', id: 'overallRise' },
+      { riseFront: '', id: 'riseFront' },
+      { riseBack: '', id: 'riseBack' },
+      { armLength: '', id: 'armLength' },
+      { overarm: '', id: 'overarm' },
+      { armToElbow: '', id: 'armToElbow' },
+      { elbowToWrist: '', id: 'elbowToWrist' },
+      { bicep: '', id: 'bicep' },
+      { bicepFlexed: '', id: 'bicepFlexed' },
+      { elbow: '', id: 'elbow' },
+      { wrist: '', id: 'wrist' },
+      { hand: '', id: 'hand' },
+      { custom1: '', id: 'custom1' },
+      { custom2: '', id: 'custom2' },
+      { custom3: '', id: 'custom3' },
+      { custom4: '', id: 'custom4' },
+      { custom5: '', id: 'custom5' },
+      { notes: '', id: 'notes' }
+    ]
+  };
 
   handleChange = e => {
     this.setState({
@@ -14,6 +91,7 @@ class NewMeasurement extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     console.log('Submitted');
     console.log(this.state);
   };
@@ -28,11 +106,11 @@ class NewMeasurement extends Component {
               <i className='material-icons prefix'>account_circle</i>
               <input
                 type='text'
-                placeholder='John Smith'
-                id='client-name'
                 onChange={this.handleChange}
+                placeholder='John Smith'
+                id='clientName'
               />
-              <label htmlFor='client-name' className='active'>
+              <label htmlFor='clientName' className='active'>
                 Client Name (Required)
               </label>
             </div>
@@ -40,11 +118,11 @@ class NewMeasurement extends Component {
               <i className='material-icons prefix'>assignment</i>
               <input
                 type='text'
-                placeholder='Project Name'
-                id='project-name'
                 onChange={this.handleChange}
+                placeholder='Project Name'
+                id='projectName'
               />
-              <label htmlFor='project-name' className='active'>
+              <label htmlFor='projectName' className='active'>
                 Project Name (Required)
               </label>
             </div>
@@ -55,9 +133,9 @@ class NewMeasurement extends Component {
               <input
                 id='email'
                 type='email'
+                onChange={this.handleChange}
                 placeholder='youremail@mail.com'
                 className='validate'
-                onChange={this.handleChange}
               />
               <label htmlFor='email' className='active'>
                 Email
@@ -67,10 +145,10 @@ class NewMeasurement extends Component {
               <i className='material-icons prefix'>phone</i>
               <input
                 id='phone'
+                onChange={this.handleChange}
                 placeholder='(555) 555-5555'
                 type='tel'
                 className='validate'
-                onChange={this.handleChange}
               />
               <label htmlFor='phone' className='active'>
                 Telephone
@@ -78,14 +156,19 @@ class NewMeasurement extends Component {
             </div>
           </div>
           <div id='geninfo'>
-            <div className='modal-content'>
+            <div className='center'>
               <h3 className='center-align'>General Sizing Information</h3>
               <div className='row'>
                 {/* Suit or Dress Size */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>wc</i>
-                  <input type='text' placeholder='Enter Size' id='suit-sz' />
-                  <label htmlFor='suit-sz' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Enter Size'
+                    id='suitSize'
+                  />
+                  <label htmlFor='suitSize' className='active'>
                     Suit Size
                   </label>
                   {/* Select Suit or Dress */}
@@ -103,24 +186,39 @@ class NewMeasurement extends Component {
                 {/* Dress Size */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>wc</i>
-                  <input type='text' placeholder='Enter Size' id='dress-sz' />
-                  <label htmlFor='dress-sz' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Enter Size'
+                    id='dressSize'
+                  />
+                  <label htmlFor='dressSize' className='active'>
                     Dress Size
                   </label>
                 </div>
                 {/* Shirt Size */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>perm_identity</i>
-                  <input type='text' placeholder='Enter Size' id='shirt-sz' />
-                  <label htmlFor='shirt-sz' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Enter Size'
+                    id='shirtSize'
+                  />
+                  <label htmlFor='shirtSize' className='active'>
                     Shirt Size
                   </label>
                 </div>
                 {/* Pant Waist */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>accessibility</i>
-                  <input type='text' placeholder='Enter Size' id='pant-waist' />
-                  <label htmlFor='pant-waist' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Enter Size'
+                    id='pantWaist'
+                  />
+                  <label htmlFor='pantWaist' className='active'>
                     Pant Waist
                   </label>
                 </div>
@@ -129,26 +227,37 @@ class NewMeasurement extends Component {
                   <i className='material-icons prefix'>accessibility</i>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='Enter Size'
-                    id='pant-inseam'
+                    id='pantInseam'
                   />
-                  <label htmlFor='pant-inseam' className='active'>
+                  <label htmlFor='pantInseam' className='active'>
                     Pant Inseam
                   </label>
                 </div>
                 {/* Hat Size */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>insert_emoticon</i>
-                  <input type='text' placeholder='Enter Size' id='hat-sz' />
-                  <label htmlFor='hat-sz' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Enter Size'
+                    id='hatSize'
+                  />
+                  <label htmlFor='hatSize' className='active'>
                     Hat Size
                   </label>
                 </div>
                 {/* Shoe Size */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>directions_walk</i>
-                  <input type='text' placeholder='Shoe Size' id='shoe-sz' />
-                  <label htmlFor='shoe-sz' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Shoe Size'
+                    id='shoeSize'
+                  />
+                  <label htmlFor='shoeSize' className='active'>
                     Shoe Size
                   </label>
                 </div>
@@ -157,6 +266,7 @@ class NewMeasurement extends Component {
                   <i className='material-icons prefix'>nature_people</i>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='Height in Inches'
                     id='height'
                   />
@@ -167,7 +277,12 @@ class NewMeasurement extends Component {
                 {/* Weight */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>money</i>
-                  <input type='text' placeholder='Weight in lbs' id='weight' />
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Weight in lbs'
+                    id='weight'
+                  />
                   <label htmlFor='weight' className='active'>
                     Weight
                   </label>
@@ -175,49 +290,86 @@ class NewMeasurement extends Component {
                 {/* Hair Color */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>face</i>
-                  <input type='text' placeholder='Brunette' id='hair-color' />
-                  <label htmlFor='hair-color' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Brunette'
+                    id='hairColor'
+                  />
+                  <label htmlFor='hairColor' className='active'>
                     Hair Color
                   </label>
                 </div>
                 {/* Eye Color */}
                 <div className='input-field col s4'>
                   <i className='material-icons prefix'>visibility</i>
-                  <input type='text' placeholder='Hazel' id='eye-color' />
-                  <label htmlFor='eye-color' className='active'>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder='Hazel'
+                    id='eyeColor'
+                  />
+                  <label htmlFor='eyeColor' className='active'>
                     Eye Color
                   </label>
                 </div>
                 {/* Handedness */}
-                <p>
-                  <i className='material-icons prefix'>pan_tool</i> Handedness:
-                  <label>
-                    <input name='handedness' type='radio' />
+                {/* <p> */}
+                <div className='input-field col s4'>
+                  <i className='material-icons prefix'>pan_tool</i>
+                  <input
+                    type='text'
+                    id='handedness'
+                    placeholder='Left, Right, Amb'
+                    className='center'
+                  />
+                  <label htmlFor='handedness' className='active center'>
+                    Handedness
+                  </label>
+                </div>
+                {/* <label>
+                    <input
+                      id='rightHanded'
+                      name='handedness'
+                      type='radio'
+                      onChange={this.handleChange}
+                    />
                     <span>Right-Handed</span>
                   </label>
                   <label>
-                    <input name='handedness' type='radio' />
+                    <input
+                      id='leftHanded'
+                      name='handedness'
+                      type='radio'
+                      onChange={this.handleChange}
+                    />
                     <span>Left-Handed</span>
                   </label>
                   <label>
-                    <input name='handedness' type='radio' />
+                    <input
+                      id='ambidextrous'
+                      name='handedness'
+                      type='radio'
+                      onChange={this.handleChange}
+                    />
                     <span>Ambidextrous</span>
                   </label>
-                </p>
+                </p> */}
                 <div className='row'>
                   <div className='col s12'>
                     <div className='row'>
                       <div className='input-field col s12 center'>
                         <i className='material-icons prefix'>color_lens</i>
                         <textarea
-                          name='color-pref'
+                          name='colorPref'
                           className='materialize-textarea'
-                          id='color-pref'
+                          onChange={this.handleChange}
+                          id='colorPref'
                           cols={30}
                           rows={10}
                           defaultValue={''}
                         />
-                        <label htmlFor='color-pref'>Color Preferences</label>
+                        <label htmlFor='colorPref'>Color Preferences</label>
                       </div>
                     </div>
                   </div>
@@ -232,7 +384,12 @@ class NewMeasurement extends Component {
                 <div className='switch'>
                   <label>
                     Inches
-                    <input type='checkbox' />
+                    <input
+                      type='checkbox'
+                      onChange={this.handleChange}
+                      id='units'
+                      checked={this.state.checked}
+                    />
                     <span className='lever' />
                     Centimeters
                   </label>
@@ -242,28 +399,31 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='1'
-                    id='head-diam'
+                    id='headDiam'
                     className='center'
                   />
-                  <label htmlFor='head-diam' className='active'>
+                  <label htmlFor='headDiam' className='active'>
                     Head Around
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='2'
-                    id='head-over'
+                    id='headOver'
                     className='center'
                   />
-                  <label htmlFor='head-over' className='active'>
+                  <label htmlFor='headOver' className='active'>
                     Head Over Top
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='3'
                     id='neck'
                     className='center'
@@ -275,11 +435,12 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='4'
-                    id='neck-fr'
+                    id='neckFront'
                     className='center'
                   />
-                  <label htmlFor='neck-fr' className='active center'>
+                  <label htmlFor='neckFront' className='active center'>
                     Neck Height, Front
                   </label>
                 </div>
@@ -288,17 +449,19 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='5'
                     className='center'
-                    id='neck-bk'
+                    id='neckBack'
                   />
-                  <label htmlFor='neck-bk' className='active'>
+                  <label htmlFor='neckBack' className='active'>
                     Neck Height, Back
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='6'
                     id='bust'
                     className='center'
@@ -310,6 +473,7 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='7'
                     id='chest'
                     className='center'
@@ -321,11 +485,12 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='8'
-                    id='bust-fr'
+                    id='bustFront'
                     className='center'
                   />
-                  <label htmlFor='bust-fr' className='active'>
+                  <label htmlFor='bustFront' className='active'>
                     Bust, Front
                   </label>
                 </div>
@@ -334,44 +499,48 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='9'
-                    id='bust-bk'
+                    id='bustBack'
                     className='center'
                   />
-                  <label htmlFor='bust-bk' className='active'>
+                  <label htmlFor='bustBack' className='active'>
                     Bust, Back
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='10'
-                    id='bust-ptp'
+                    id='bustPtp'
                     className='center'
                   />
-                  <label htmlFor='bust-ptp' className='active'>
+                  <label htmlFor='bustPtp' className='active'>
                     Bust, Point-to-Point
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='11'
-                    id='chest-fr'
+                    id='chestFront'
                     className='center'
                   />
-                  <label htmlFor='chest-fr' className='active'>
+                  <label htmlFor='chestFront' className='active'>
                     Chest, Front
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='12'
-                    id='shoulder-fr'
+                    id='shoulderFront'
                     className='center'
                   />
-                  <label htmlFor='shoulder-fr' className='active'>
+                  <label htmlFor='shoulderFront' className='active'>
                     Shoulder, Front
                   </label>
                 </div>
@@ -380,28 +549,31 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='13'
-                    id='shoulder-bk'
+                    id='shoulderBack'
                     className='center'
                   />
-                  <label htmlFor='shoulder-bk' className='active'>
+                  <label htmlFor='shoulderBack' className='active'>
                     Shoulder, Back
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='14'
-                    id='shoulder-sm'
+                    id='shoulderSeam'
                     className='center'
                   />
-                  <label htmlFor='shoulder-sm' className='active'>
+                  <label htmlFor='shoulderSeam' className='active'>
                     Shoulder, Seam
                   </label>
                 </div>
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='15'
                     id='slope'
                     className='center'
@@ -413,11 +585,12 @@ class NewMeasurement extends Component {
                 <div className='input-field col s3'>
                   <input
                     type='text'
+                    onChange={this.handleChange}
                     placeholder='16'
-                    id='shoulder-ctr-fr'
+                    id='shoulderCtrFront'
                     className='center'
                   />
-                  <label htmlFor='shoulder-ctr-fr' className='active'>
+                  <label htmlFor='shoulderCtrFront' className='active'>
                     Shoulder Tip to Center Waist, Front
                   </label>
                 </div>
@@ -429,44 +602,48 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='17'
-                  id='shoulder-ctr-bk'
+                  id='shoulderCtrBack'
                   className='center'
                 />
-                <label htmlFor='shoulder-ctr-bk' className='active'>
+                <label htmlFor='shoulderCtrBack' className='active'>
                   Shoulder Tip to Center Waist, Back
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='18'
-                  id='armscye-fr'
+                  id='armscyeFront'
                   className='center'
                 />
-                <label htmlFor='armscye-fr' className='active'>
+                <label htmlFor='armscyeFront' className='active'>
                   Armscye, Front
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='19'
-                  id='armhole-snug'
+                  id='armholeSnug'
                   className='center'
                 />
-                <label htmlFor='armhole-snug' className='active'>
+                <label htmlFor='armholeSnug' className='active'>
                   Armhole, Snug
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='20'
-                  id='underarm-sm'
+                  id='underarmSeam'
                   className='center'
                 />
-                <label htmlFor='underarm-sm' className='active'>
+                <label htmlFor='underarmSeam' className='active'>
                   Underarm Seam
                 </label>
               </div>
@@ -475,6 +652,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='21'
                   id='waist'
                   className='center'
@@ -486,33 +664,36 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='22'
-                  id='neck-to-waist-fr'
+                  id='neckToWaistFront'
                   className='center'
                 />
-                <label htmlFor='neck-to-waist-fr' className='active'>
+                <label htmlFor='neckToWaistFront' className='active'>
                   Neck to Waist, Front
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='23'
-                  id='neck-to-waist-bk'
+                  id='neckToWaistBack'
                   className='center'
                 />
-                <label htmlFor='neck-to-waist-bk' className='active'>
+                <label htmlFor='neckToWaistBack' className='active'>
                   Neck to Waist, Back
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='24'
-                  id='hip-hipbone'
+                  id='hipAtHipbone'
                   className='center'
                 />
-                <label htmlFor='hip-hipbone' className='active'>
+                <label htmlFor='hipAtHipbone' className='active'>
                   Hip at the Hipbones
                 </label>
               </div>
@@ -521,19 +702,21 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='25'
-                  id='hip-waist'
+                  id='hipWaist'
                   className='center'
                 />
-                <label htmlFor='hip-waist' className='active'>
+                <label htmlFor='hipWaist' className='active'>
                   Hip to Waist
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='26'
-                  id='lg-hip-across'
+                  id='lgHipAcross'
                   className='center'
                 />
                 <label htmlFor='lg-hip-across' className='active'>
@@ -543,22 +726,24 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='27'
-                  id='lg-hip-vert'
+                  id='lgHipVert'
                   className='center'
                 />
-                <label htmlFor='lg-hip-vert' className='active'>
+                <label htmlFor='lgHipVert' className='active'>
                   Large Hip, Vertical
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='28'
-                  id='neck-flr'
+                  id='neckToFloor'
                   className='center'
                 />
-                <label htmlFor='neck-flr' className='active'>
+                <label htmlFor='neckToFloor' className='active'>
                   Neck to Floor
                 </label>
               </div>
@@ -567,28 +752,31 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='29'
-                  id='waist-flr'
+                  id='waistToFloor'
                   className='center'
                 />
-                <label htmlFor='waist-flr' className='active'>
+                <label htmlFor='waistToFloor' className='active'>
                   Waist to Floor
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='30'
-                  id='waist-to-below-knee'
+                  id='waistToBelowKnee'
                   className='center'
                 />
-                <label htmlFor='waist-to-below-knee' className='active'>
+                <label htmlFor='waistToBelowKnee' className='active'>
                   Waist to Just Below Knee
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='31'
                   id='inseam'
                   className='center'
@@ -600,11 +788,12 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='32'
-                  id='knee-ankle'
+                  id='kneeToAnkle'
                   className='center'
                 />
-                <label htmlFor='knee-ankle' className='active'>
+                <label htmlFor='kneeToAnkle' className='active'>
                   Knee to Ankle
                 </label>
               </div>
@@ -616,28 +805,31 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='33'
-                  id='upper-th'
+                  id='upperThigh'
                   className='center'
                 />
-                <label htmlFor='upper-th' className='active'>
+                <label htmlFor='upperThigh' className='active'>
                   Upper Thigh
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='34'
-                  id='upper-th-flx'
+                  id='upperThighFlexed'
                   className='center'
                 />
-                <label htmlFor='upper-th-flx' className='active'>
+                <label htmlFor='upperThighFlexed' className='active'>
                   Upper Thigh, Flexed
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='35'
                   id='knee'
                   className='center'
@@ -649,17 +841,19 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='36'
-                  id='knee-flexed'
+                  id='kneeFlexed'
                   className='center'
                 />
-                <label htmlFor='knee-flexed' className='active'>
+                <label htmlFor='kneeFlexed' className='active'>
                   Knee, Flexed
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='37'
                   id='calf'
                   className='center'
@@ -671,6 +865,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='38'
                   id='ankle'
                   className='center'
@@ -684,44 +879,48 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='39'
-                  id='overall-rise'
+                  id='overallRise'
                   className='center'
                 />
-                <label htmlFor='overall-rise' className='active'>
+                <label htmlFor='overallRise' className='active'>
                   Overall Rise
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='40'
-                  id='rise-fr'
+                  id='riseFront'
                   className='center'
                 />
-                <label htmlFor='rise-fr' className='active'>
+                <label htmlFor='riseFront' className='active'>
                   Rise, Front
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='41'
-                  id='rise-bk'
+                  id='riseBack'
                   className='center'
                 />
-                <label htmlFor='rise-bk' className='active'>
+                <label htmlFor='riseBack' className='active'>
                   Rise, Back
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='42'
-                  id='arm-length'
+                  id='armLength'
                   className='center'
                 />
-                <label htmlFor='arm-length' className='active'>
+                <label htmlFor='armLength' className='active'>
                   Arm Length
                 </label>
               </div>
@@ -730,6 +929,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='43'
                   id='overarm'
                   className='center'
@@ -741,28 +941,31 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='44'
-                  id='arm-to-elbow'
+                  id='armToElbow'
                   className='center'
                 />
-                <label htmlFor='arm-to-elbow' className='active'>
+                <label htmlFor='armToElbow' className='active'>
                   Arm to Elbow
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='45'
-                  id='elbow-to-wrist'
+                  id='elbowToWrist'
                   className='center'
                 />
-                <label htmlFor='elbow-to-wrist' className='active'>
+                <label htmlFor='elbowToWrist' className='active'>
                   Elbow to Wrist
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='46'
                   id='bicep'
                   className='center'
@@ -776,17 +979,19 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='47'
-                  id='bicep-flx'
+                  id='bicepFlexed'
                   className='center'
                 />
-                <label htmlFor='bicep-flx' className='active'>
+                <label htmlFor='bicepFlexed' className='active'>
                   Bicep, Flexed
                 </label>
               </div>
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='48'
                   id='elbow'
                   className='center'
@@ -796,7 +1001,12 @@ class NewMeasurement extends Component {
                 </label>
               </div>
               <div className='input-field col s3'>
-                <input type='text' placeholder='49' className='center' />
+                <input
+                  type='text'
+                  onChange={this.handleChange}
+                  placeholder='49'
+                  className='center'
+                />
                 <label htmlFor='wrist' className='active'>
                   Wrist
                 </label>
@@ -804,6 +1014,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s3'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='50'
                   id='hand'
                   className='center'
@@ -823,6 +1034,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s4'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='Custom Measurement'
                   id='custom1'
                 />
@@ -833,6 +1045,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s4'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='Custom Measurement'
                   id='custom2'
                 />
@@ -843,6 +1056,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s4'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='Custom Measurement2'
                   id='custom3'
                 />
@@ -855,6 +1069,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s5'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='Custom Measurement'
                   id='custom4'
                 />
@@ -865,6 +1080,7 @@ class NewMeasurement extends Component {
               <div className='input-field col s5'>
                 <input
                   type='text'
+                  onChange={this.handleChange}
                   placeholder='Custom Measurement'
                   id='custom5'
                 />
@@ -882,7 +1098,7 @@ class NewMeasurement extends Component {
                   <div className='input-field col s12'>
                     <i className='material-icons prefix'>edit</i>
                     <textarea
-                      name='color-pref'
+                      name='notes'
                       className='materialize-textarea'
                       id='notes'
                       cols={30}
