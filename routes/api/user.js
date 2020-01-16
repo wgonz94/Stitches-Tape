@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
     const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         isDeleted: req.body.isDeleted,
@@ -36,18 +37,6 @@ router.post('/', (req, res) => {
     newUser.save()
         .then(user => res.json(user));
 });
-// router.post('/api/signup', (req, res) => {
-//     const newUser = new User({
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         password: req.body.generateHash(password),
-//         email: req.body.email,
-//         wantsUpdates: req.body.wantsUpdates
-//     });
-
-//     newUser.save()
-//         .then(user => res.json(user));
-// });
 
 // @route PUT api/users
 // update existing user info
