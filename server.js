@@ -31,7 +31,7 @@ mongoose.connect(db, configOptions)
 // added separate routes for users, measurements, and login for clarity
 app.use('/api/users', require('./routes/api/user'));
 app.use('/api/measurements', require('./routes/api/measurement'));
-app.use('/api/login', require('./routes/login'));
+app.use('/api/login', require('./routes/api/login'));
 
 // Serve static assets if we're in production
 if(process.env.NODE_ENV === 'production') {

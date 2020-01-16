@@ -1,38 +1,38 @@
-# Project Starter
+# Stitches & Tape
+### A project by **BBQ Lasagna**
 
-In this activity we will add the provided boilerplate to group project repos.
+## **Links**
+* [Description](#description)
+* [Our Team](#our-team)
+    * [Devyn Barron](#devyn-barron)
+    * [William Gonzalez](#william-gonzalez)
+    * [Alicia Scott](#alicia-scott)
+    * [James Stacy](#james-stacy)
+* [Tech and Languages](#tech-and-languages)
+* [What's Next?](#whats-next)
 
-## Instructions
+## **Description**
+The Stitches and Tape measurement tracker allows you, the Tailor, to store and track all the measurements you might need to create custom items for your clientele. Shirt, pants, or perhaps a medieval costume, you'll have the needed measurements at the click of a button instead of wading through folders of measurement sheets.
 
-* Only one member of each group should complete this activity while the others watch.
+Create customized Templates for items you make often to further reduce the scope of your measurements and only view the ones you need for your current project.
 
-* Copy the entire folder to another location on your computers &mdash; wherever you would like your local copy of the group project to be.
+## **Our Team**
+> ### Devyn Barron
+> Front-End/Views
+> * [Github](https://github.com/barrd001)
 
-* Rename the copied "Unsolved" folder to the name of your project.
+> ### William Gonzalez
+> Back-End/Controller
+> * [Github](https://github.com/wgonz94)
 
-* Open the copied project folder's `package.json` file and change its `name` property to the name of your project.
+> ### Alicia Scott
+> Back-End/Models
+> * [Github](https://github.com/avscott562)
 
-* CD to the root of the copied project folder with your terminal and run the following commands:
+> ### James Stacy
+> Project Manager
+> * [Github](https://github.com/SirHexxus)
 
-  ```
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
+## Tech and Languages
 
-* Then copy the GitHub repo's remote SSH URL (the same URL you'd use to clone the repo).
-
-* Run the following commands in your terminal, replacing <remote-url> with your GitHub repo's remote SSH URL.
-
-  ```
-  git remote add origin <remote-url>
-  git push origin master
-  ```
-
-* If completed successfully you should see all of the files uploaded to GitHub.
-
-* All other group members should now clone the repo.
-
-* Discuss as a group:
-
-  * How would you now add changes to this project?
+## What's Next?
