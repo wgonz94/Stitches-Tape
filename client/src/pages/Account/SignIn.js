@@ -11,14 +11,13 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           isLoading: true,
           isLoggedIn: '',
           signInError: '',
-          signInEmail: "",
-          signInPassword: "",
-        };
-
+          signInUsername: '',
+          signInPassword: '',
+        }
         this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this)
-        this.onChangeSignInPassword = this.onChangeSigninPassword.bind(this)
+        this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this)
 
-        this.onSignIn = this.onSignIn.bind(this);
+        this.onSignIn = this.onSignIn.bind(this)
       }
 
       componentDidMount() {
@@ -58,7 +57,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         })
       }
      
-      onLogin() {
+      onSignIn() {
         //Grab State
         const {
           signInUsername,
@@ -131,20 +130,30 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           return (
           <div>
             <div>
-
               {
                 (signInError) ? (
                   <p>{signInError}</p>
                 ) : (null)
               }
-                <p>Log In</p>
-                <input type="email" placeholder="Email" value={signInUsername} onChange={this.onChangeSignInUsername}/>
-                <input type="password" placeholder="Password" value={signInPassword} onChange={this.onChangeSignInPassword}/>
-                <button onClick={this.onLogin}>Log In</button>
+                <h2>Log In</h2>
+                <input 
+                  type="email"
+                  placeholder="Username" 
+                  value={this.signInUsername} 
+                  onChange={this.onChangeSignInUsername}
+                  />
+                <input 
+                  type="password" 
+                  placeholder="Password" 
+                  value={this.signInPassword} 
+                  onChange={this.onChangeSignInPassword}
+                  />
+                <button onClick={this.onSignIn}>Log In</button>
             </div>
            
 
-          </div>)
+          </div>
+          )
         }
       }
     }

@@ -15,7 +15,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpUsername: "",
           signUpEmail: "",
           signUpPassword: "",
-          signUpUpdates: false,
+          signUpUpdatesBox: false,
         };
 
         this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
@@ -23,8 +23,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
-        this.onChangeSignUpUpdates = this.onChangeSignUpUpdates.bind(this)
 
+        this.onLogin = this.onLogin.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
       }
 
@@ -79,11 +79,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpLastName: event.target.value,
         })
       }
-      onChangeSignUpUpdates(event) {
-        this.setState({
-          signUpUpdates: event.target.value,
-        })
-      }
 
       onSignUp(){
         //Grab State
@@ -92,8 +87,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           signUpLastName,
           signUpEmail,
           signUpPassword,
-          signUpUsername,
-          signUpUpdates
+          signUpUsername
         }= this.state;
 
         this.setState({
@@ -107,7 +101,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
        
 
         //Post request to backend
-        fetch("/api/account/signup", {
+        fetch("/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +110,6 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           body: JSON.stringify({
             firstName: signUpFirstName,
             lastName: signUpLastName,
-            username: signUpUsername,
             email: signUpEmail,
             password: signUpPassword,
           }
@@ -164,10 +157,8 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           token,
           signUpFirstName,
           signUpLastName,
-          signUpUsername,
           signUpEmail,
           signUpPassword,
-          signUpUpdates,
           signUpError
         } = this.state;
 
@@ -177,113 +168,37 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
 
         if(!token) {
           return (
-          <main>
-        <div className='container'>
-          <h2 className='center'>New Account</h2>
-          <form onSubmit={this.handleSubmit} className='border'>
-            <ul className='register-form center'>
-              <li>
-                <input
-                  type='text'
-                  id='firstName'
-                  name='firstName'
-                  placeholder='First Name'
-                  value={this.signUpFirstName}
-                  onChange={this.onChangeSignUpFirstName}
-                />
-              </li>
-              <li>
-                <input
-                  type='text'
-                  id='lastName'
-                  name='lastName'
-                  placeholder='Last Name'
-                  value={this.signUpLastName}
-                  onChange={this.onChangeSignUpLastName}
-                />
-              </li>
-              <li>
-                <input
-                  type='text'
-                  id='username'
-                  name='username'
-                  placeholder='Username'
-                  value={this.signUpUsername}
-                  onChange={this.onChangeSignUpUsername}
-                  required
-                />
-                <div className='clear red-text strong'>
-                  {this.state.usernameInvalid}
-                </div>
-              </li>
-              <li>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  placeholder='example@email.com'
-                  value={this.signUpEmail}
-                  onChange={this.onChangeSignUpEmail}
-                  required
-                />
-                <div className='clear red-text'>{this.state.emailInvalid}</div>
-              </li>
-              <li>
-                <input
-                  type='password'
-                  id='password'
-                  name='password'
-                  placeholder='Password'
-                  value={this.signUpPassword}
-                  onChange={this.onChangeSignUpPassword}
-                  required
-                />
-                <div className='clear red-text'>
-                  {this.state.passwordInvalid}
-                </div>
-              </li>
-              <li>
-                <input
-                  type='password'
-                  name='passCheck'
-                  id='passCheck'
-                  placeholder='Password (Again)'
-                  value={this.state.passCheck}
-                  onChange={this.handleChange}
-                  required
-                />
-                <div className='clear red-text'>
-                  {this.state.passCheckInvalid}
-                </div>
-              </li>
-              <p>
+          <div>
+            <div>
+
+            {
+                (signUpError) ? (
+                  <p>{signUpError}</p>
+                ) : (null)
+              }
+                <p>Sign Up</p>
+                <input type="text" placeholder="First Name" value={this.signUpFirstName} onChange={this.onChangeSignUpFirstName}/>
+                <input type="text" placeholder="Last Name" value={this.signUpLastName} onChange={this.onChangeSignUpLastName}/>
+                <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
+                <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
+                <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
                 <label>
-                  <input
-                    type='checkbox'
-                    id='moreInfo'
-                    value={this.signUpUpdates}
-                    checked={this.onChangeSignUpUpdates}
-                    onChange={e => this.handleChange(e, true)}
-                  />
-                  <span>
-                    Please inform me of upcoming Changes, Promotions, and News
-                  </span>
-                </label>
-              </p>
-              <br />
-              <input
-                type='submit'
-                className='btn'
-                defaultValue='Create Account'
-                onClick={this.onSignUp}
-              />
-              <div className='clear'> </div>
-            </ul>
-          </form>
-        </div>
-      </main>
-  )
+                <input
+                  type='checkbox'
+                  id='moreInfo'
+                  value={this.state.moreInfo}
+                  checked={this.state.moreInfo}
+                  onChange={e => this.handleChange(e, true)}
+                />
+                <span>
+                  Please inform me of upcoming Changes, Promotions, and News
+                </span>
+              </label>
+                <button onClick={this.onSignUp}>Sign Up</button>
+            </div>
+
+          </div>)
         }
         
       }
-}
+    }
