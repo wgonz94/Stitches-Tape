@@ -153,7 +153,7 @@ const router = require("express").Router();
                 }
                 return res.send({
                     success: true,
-                    message: 'Valid sign in',
+                    message: 'Valid sign in!',
                     token: doc._id
                 })
             });
