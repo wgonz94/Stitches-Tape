@@ -7,9 +7,10 @@ module.exports = (app) => {
     // Sign up
     app.post('/api/account/signup', (req, res, next) => {
         const { body } = req;
-        const {
+        let {
             firstName,
             lastName,
+            username,
             password
         } = body;
         let {
@@ -22,6 +23,12 @@ module.exports = (app) => {
             });
         }
         if (!lastName) {
+            return res.send({
+              success: false,
+              message: 'Error: Last name cannot be blank.'    
+            });
+        }
+        if (!username) {
             return res.send({
               success: false,
               message: 'Error: Last name cannot be blank.'    
@@ -46,7 +53,7 @@ module.exports = (app) => {
         //Save it
 
         User.find({
-            email: email
+            username: username
         }, (err, pastUser) => {
             if(err){
                 return res.send({
@@ -66,6 +73,7 @@ module.exports = (app) => {
             newUser.email = email;
             newUser.firstName = firstName;
             newUser.lastName = lastName;
+            newUser.username = username;
             newUser.password = newUser.generateHash(password);
             newUser.save (( err, user) => {
                 if(err){
