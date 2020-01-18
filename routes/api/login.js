@@ -12,7 +12,8 @@ const router = require("express").Router();
             lastName,
             username,
             password,
-            email
+            email,
+            wantsUpdates
         } = body;
         
         if (!firstName) {
@@ -45,6 +46,7 @@ const router = require("express").Router();
               message: 'Error: Password cannot be blank.'    
             });
         }
+        
 
         
 
@@ -73,6 +75,7 @@ const router = require("express").Router();
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.username = username;
+            newUser.wantsUpdates = wantsUpdates;
             newUser.password = newUser.generateHash(password);
             newUser.save (( err, user) => {
                 if(err){
