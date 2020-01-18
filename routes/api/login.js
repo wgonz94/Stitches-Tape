@@ -7,15 +7,14 @@ const router = require("express").Router();
     // Sign up
     router.post('/api/account/signup', (req, res, next) => {
         const { body } = req;
-        let {
+        const {
             firstName,
             lastName,
             username,
-            password
-        } = body;
-        let {
+            password,
             email
         } = body;
+        
         if (!firstName) {
            return res.send({
               success: false,
@@ -47,7 +46,7 @@ const router = require("express").Router();
             });
         }
 
-        email = email.toLowerCase();
+        
 
         //Verify if email exists 
         //Save it
@@ -115,7 +114,7 @@ const router = require("express").Router();
             });
         }
 
-        username = username.toLowerCase();
+        
 
         User.find({
             username: username
