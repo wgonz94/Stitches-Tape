@@ -24,6 +24,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
         this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
 
+        this.onLogin = this.onLogin.bind(this);
         this.onSignUp = this.onSignUp.bind(this);
       }
 
@@ -169,6 +170,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           return (
           <div>
             <div>
+
             {
                 (signUpError) ? (
                   <p>{signUpError}</p>
@@ -180,8 +182,21 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                 <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
                 <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
                 <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
+                <label>
+                <input
+                  type='checkbox'
+                  id='moreInfo'
+                  value={this.state.moreInfo}
+                  checked={this.state.moreInfo}
+                  onChange={e => this.handleChange(e, true)}
+                />
+                <span>
+                  Please inform me of upcoming Changes, Promotions, and News
+                </span>
+              </label>
                 <button onClick={this.onSignUp}>Sign Up</button>
             </div>
+
           </div>)
         }
         

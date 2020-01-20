@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // pull in user model
-// const User = require('../../models/user');
+const User = require('../../models/User');
 
 // use postman to test api routes
 
@@ -13,20 +13,30 @@ router.get('/', (req, res) => {
         .then(users => res.json(users))
 });
 
+// @route PUT api/users
+// get single user info
+router.get('/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then(user => res.json(user))
+        .catch(err => res.status(404).json('User Not Found'));
+});
+
 // @route POST /api/users
 // create new user
-// router.post('/api/signup', (req, res) => {
-//     const newUser = new User({
-//         firstName: req.body.firstName,
-//         lastName: req.body.lastName,
-//         password: req.body.generateHash(password),
-//         email: req.body.email,
-//         wantsUpdates: req.body.wantsUpdates
-//     });
+router.post('/', (req, res) => {
+    const newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        isDeleted: req.body.isDeleted,
+        wantsUpdates: req.body.wantsUpdates
+    });
 
-//     newUser.save()
-//         .then(user => res.json(user));
-// });
+    newUser.save()
+        .then(user => res.json(user));
+});
 
 // @route PUT api/users
 // update existing user info

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // pull in measurement model
+// another comment
 const Measurement = require('../../models/Measurement');
 
 // use postman to test api routes
@@ -13,9 +14,16 @@ router.get('/', (req, res) => {
         .then(measurements => res.json(measurements))
 });
 
-// @route POST /api/measurements
+// @route GET api/measurements
+// get all measuerments associated with specific user
+router.get('/:id', (req, res) => {
+    Measurement.find({ user: req.params.id })
+        .then(measurements => res.json(measurements));
+});
+
+// @route POST /api/measurements 
 // create new measurement
-router.post('/:id', (req, res) => {
+router.post('/new', (req, res) => {
     const newMeasurement = new Measurement({
         clientName: req.body.clientName,
         clientEmail: req.body.clientEmail,
@@ -91,7 +99,7 @@ router.post('/:id', (req, res) => {
         customMeasurement4: req.body.customMeasurement4,
         customMeasurement5: req.body.customMeasurement5,
         notes: req.body.notes,
-        UserId: req.params.id
+        user: req.body.user
     });
 
     newMeasurement.save()
@@ -115,5 +123,9 @@ router.delete('/:id', (req, res) => {
         .then(() => res.json({success: true})))
         .catch(err => res.status(404).json({success: false}));
 });
+
+// POSSIBLE FUTURE ROUTES
+// update a project
+// find all measurements associated with a project
 
 module.exports = router;
