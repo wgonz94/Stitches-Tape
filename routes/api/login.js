@@ -7,15 +7,15 @@ const router = require("express").Router();
     // Sign up
     router.post('/api/account/signup', (req, res, next) => {
         const { body } = req;
-        let {
+        const {
             firstName,
             lastName,
             username,
-            password
+            password,
+            email,
+            wantsUpdates
         } = body;
-        let {
-            email
-        } = body;
+        
         if (!firstName) {
            return res.send({
               success: false,
@@ -46,8 +46,9 @@ const router = require("express").Router();
               message: 'Error: Password cannot be blank.'    
             });
         }
+        
 
-        email = email.toLowerCase();
+        
 
         //Verify if email exists 
         //Save it
@@ -74,6 +75,7 @@ const router = require("express").Router();
             newUser.firstName = firstName;
             newUser.lastName = lastName;
             newUser.username = username;
+            newUser.wantsUpdates = wantsUpdates;
             newUser.password = newUser.generateHash(password);
             newUser.save (( err, user) => {
                 if(err){
@@ -115,7 +117,7 @@ const router = require("express").Router();
             });
         }
 
-        username = username.toLowerCase();
+        
 
         User.find({
             username: username
