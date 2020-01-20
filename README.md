@@ -10,6 +10,7 @@
     * [James Stacy](#james-stacy)
 * [Tech and Languages](#tech-and-languages)
 * [What's Next?](#whats-next)
+* [Contact Us](#contact-us)
 
 ## **Description**
 The Stitches and Tape measurement tracker allows you, the Tailor, to store and track all the measurements you might need to create custom items for your clientele. Shirt, pants, or perhaps a medieval costume, you'll have the needed measurements at the click of a button instead of wading through folders of measurement sheets.
@@ -43,6 +44,18 @@ Create customized Templates for items you make often to further reduce the scope
 > * Node.js
 > * Express.js
 > * MongoDB (Using the Atlas Online Utility)
+> * Mongoose
+> * BCrypt.js
 
+> ### Deployment, Hosting, and Repository
+> * Repo Hosted on Github
+> * App Deployed on Heroku
+> * MongoDB Server Hosted with Atlas
 
 ## What's Next?
+
+
+## Contact Us
+You can reach our team at bbqlasagna@gmail.com .
+
+Or you can reach us individually via the Contact Info above.

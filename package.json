@@ -1,7 +1,7 @@
 {
-  "name": "node-handlebars-boilerplate",
+  "name": "stitches-and-tape-server",
   "version": "1.0.0",
-  "description": "Project 3",
+  "description": "Back-end server for a measurement tracker for clothiers to store and track all the measurements needed to create custom items for their clientele.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
