@@ -51,7 +51,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='App screen'>
+          <header>
           <Navbar />
+          </header>
+          <main>
           <Route exact path='/' component={Home} />
           <Route
             path='/signup'
@@ -64,6 +67,7 @@ class App extends Component {
           <Route path='/newmeasure' component={MeasureWrapper} />
           {/* <Route path='/measurements' component={Measurements} /> */}
           <Route path='/contact' component={Contact} />
+          </main>
           <Footer />
         </div>
       </BrowserRouter>

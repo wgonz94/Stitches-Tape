@@ -24,7 +24,6 @@ class SignIn extends Component {
 
   render() {
     return (
-      <main>
         <div className='container'>
           <h2 className='center'>Login</h2>
           <form onClick={this.handleSubmit} className='border'>
@@ -57,7 +56,6 @@ class SignIn extends Component {
             </ul>
           </form>
         </div>
-      </main>
     );
   }
 }

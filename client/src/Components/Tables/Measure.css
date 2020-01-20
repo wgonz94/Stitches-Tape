@@ -1,7 +1,7 @@
 .scroll {
   height: 900px;
   width: 90%;
-  overflow: hidden;
+  overflow: scroll;
   border: 2px solid #132b52;
   padding-left: 50px;
   padding-right: 50px;
@@ -10,10 +10,10 @@
   background-color: white;
 }
 
-.scroll:hover,
+/* .scroll:hover,
 .scroll:focus {
   overflow-y: scroll;
-}
+} */
 
 .models {
   height: 100vh;
@@ -22,8 +22,18 @@
   max-height: 900px;
 }
 
-@media screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
   .scroll {
-    max-height: 100%;
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;  
   }
+
+  .models {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+
 }

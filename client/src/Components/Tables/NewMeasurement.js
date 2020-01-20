@@ -100,6 +100,7 @@ class NewMeasurement extends Component {
 
   render() {
     return (
+      <main>
       <div className='scroll'>
         <form id='NMForm' onSubmit={this.handleSubmit}>
           <h3 className='center-align'>Client Info</h3>
@@ -163,7 +164,7 @@ class NewMeasurement extends Component {
               <h3 className='center-align'>General Sizing Information</h3>
               <div className='row'>
                 {/* Suit or Dress Size */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>wc</i>
                   <input
                     type='text'
@@ -187,7 +188,7 @@ class NewMeasurement extends Component {
                 </p> */}
                 </div>
                 {/* Dress Size */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>wc</i>
                   <input
                     type='text'
@@ -200,7 +201,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Shirt Size */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>perm_identity</i>
                   <input
                     type='text'
@@ -213,7 +214,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Pant Waist */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>accessibility</i>
                   <input
                     type='text'
@@ -226,7 +227,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Pant Inseam */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>accessibility</i>
                   <input
                     type='text'
@@ -239,7 +240,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Hat Size */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>insert_emoticon</i>
                   <input
                     type='text'
@@ -252,7 +253,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Shoe Size */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>directions_walk</i>
                   <input
                     type='text'
@@ -265,7 +266,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Height */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>nature_people</i>
                   <input
                     type='text'
@@ -278,7 +279,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Weight */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>money</i>
                   <input
                     type='text'
@@ -291,7 +292,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Hair Color */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>face</i>
                   <input
                     type='text'
@@ -304,7 +305,7 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 {/* Eye Color */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>visibility</i>
                   <input
                     type='text'
@@ -318,7 +319,7 @@ class NewMeasurement extends Component {
                 </div>
                 {/* Handedness */}
                 {/* <p> */}
-                <div className='input-field col s4'>
+                <div className='input-field col s12 m6 l3'>
                   <i className='material-icons prefix'>pan_tool</i>
                   <input
                     type='text'
@@ -399,7 +400,7 @@ class NewMeasurement extends Component {
                 </div>
               </div>
               <div className='row'>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -411,7 +412,7 @@ class NewMeasurement extends Component {
                     Head Around
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -423,7 +424,7 @@ class NewMeasurement extends Component {
                     Head Over Top
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -435,7 +436,7 @@ class NewMeasurement extends Component {
                     Neck
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -449,7 +450,7 @@ class NewMeasurement extends Component {
                 </div>
               </div>
               <div className='row'>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -461,7 +462,7 @@ class NewMeasurement extends Component {
                     Neck Height, Back
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -473,7 +474,7 @@ class NewMeasurement extends Component {
                     Bust
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -485,7 +486,7 @@ class NewMeasurement extends Component {
                     Chest
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -499,7 +500,7 @@ class NewMeasurement extends Component {
                 </div>
               </div>
               <div className='row'>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -511,7 +512,7 @@ class NewMeasurement extends Component {
                     Bust, Back
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -523,7 +524,7 @@ class NewMeasurement extends Component {
                     Bust, Point-to-Point
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -535,7 +536,7 @@ class NewMeasurement extends Component {
                     Chest, Front
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -549,7 +550,7 @@ class NewMeasurement extends Component {
                 </div>
               </div>
               <div className='row'>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -561,7 +562,7 @@ class NewMeasurement extends Component {
                     Shoulder, Back
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -573,7 +574,7 @@ class NewMeasurement extends Component {
                     Shoulder, Seam
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -585,7 +586,7 @@ class NewMeasurement extends Component {
                     Slope
                   </label>
                 </div>
-                <div className='input-field col s3'>
+                <div className='input-field col s12 m6 l3'>
                   <input
                     type='text'
                     onChange={this.handleChange}
@@ -602,7 +603,7 @@ class NewMeasurement extends Component {
           </div>
           <div id='measurements2'>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -614,7 +615,7 @@ class NewMeasurement extends Component {
                   Shoulder Tip to Center Waist, Back
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -626,7 +627,7 @@ class NewMeasurement extends Component {
                   Armscye, Front
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -638,7 +639,7 @@ class NewMeasurement extends Component {
                   Armhole, Snug
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -652,7 +653,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -664,7 +665,7 @@ class NewMeasurement extends Component {
                   Waist
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -676,7 +677,7 @@ class NewMeasurement extends Component {
                   Neck to Waist, Front
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -688,7 +689,7 @@ class NewMeasurement extends Component {
                   Neck to Waist, Back
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -702,7 +703,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -714,7 +715,7 @@ class NewMeasurement extends Component {
                   Hip to Waist
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -726,7 +727,7 @@ class NewMeasurement extends Component {
                   Large Hip, Across
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -738,7 +739,7 @@ class NewMeasurement extends Component {
                   Large Hip, Vertical
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -752,7 +753,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -764,7 +765,7 @@ class NewMeasurement extends Component {
                   Waist to Floor
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -776,7 +777,7 @@ class NewMeasurement extends Component {
                   Waist to Just Below Knee
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -788,7 +789,7 @@ class NewMeasurement extends Component {
                   Inseam
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -803,9 +804,9 @@ class NewMeasurement extends Component {
             </div>
           </div>
 
-          <div id='measurements3'>
+          <div id='measurements12 m6 l3'>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -817,7 +818,7 @@ class NewMeasurement extends Component {
                   Upper Thigh
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -829,7 +830,7 @@ class NewMeasurement extends Component {
                   Upper Thigh, Flexed
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -841,7 +842,7 @@ class NewMeasurement extends Component {
                   Knee
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -853,7 +854,7 @@ class NewMeasurement extends Component {
                   Knee, Flexed
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -865,7 +866,7 @@ class NewMeasurement extends Component {
                   Calf
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -879,7 +880,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -891,7 +892,7 @@ class NewMeasurement extends Component {
                   Overall Rise
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -903,7 +904,7 @@ class NewMeasurement extends Component {
                   Rise, Front
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -915,7 +916,7 @@ class NewMeasurement extends Component {
                   Rise, Back
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -929,7 +930,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -941,7 +942,7 @@ class NewMeasurement extends Component {
                   Overarm
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -953,7 +954,7 @@ class NewMeasurement extends Component {
                   Arm to Elbow
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -965,7 +966,7 @@ class NewMeasurement extends Component {
                   Elbow to Wrist
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -979,7 +980,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -991,7 +992,7 @@ class NewMeasurement extends Component {
                   Bicep, Flexed
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1003,7 +1004,7 @@ class NewMeasurement extends Component {
                   Elbow
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1014,7 +1015,7 @@ class NewMeasurement extends Component {
                   Wrist
                 </label>
               </div>
-              <div className='input-field col s3'>
+              <div className='input-field col s12 m6 l3'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1034,7 +1035,7 @@ class NewMeasurement extends Component {
               Please Enter Name of Measurement and Value
             </h5>
             <div className='row'>
-              <div className='input-field col s4'>
+              <div className='input-field col s6 m4'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1045,7 +1046,7 @@ class NewMeasurement extends Component {
                   Custom Measurement #1
                 </label>
               </div>
-              <div className='input-field col s4'>
+              <div className='input-field col s6 m4'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1056,7 +1057,7 @@ class NewMeasurement extends Component {
                   Custom Measurement #2
                 </label>
               </div>
-              <div className='input-field col s4'>
+              <div className='input-field col s6 m4'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1069,7 +1070,7 @@ class NewMeasurement extends Component {
               </div>
             </div>
             <div className='row'>
-              <div className='input-field col s5'>
+              <div className='input-field col s6'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1080,7 +1081,7 @@ class NewMeasurement extends Component {
                   Custom Measurement #4
                 </label>
               </div>
-              <div className='input-field col s5'>
+              <div className='input-field col s6'>
                 <input
                   type='text'
                   onChange={this.handleChange}
@@ -1125,6 +1126,7 @@ class NewMeasurement extends Component {
           </div>
         </form>
       </div>
+      </main>
     );
   }
 }
