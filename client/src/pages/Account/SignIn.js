@@ -132,19 +132,25 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
 
         if(!token) {
           return (
-          <div>
+          <div className='container'>
             <div>
               {
                 (signInError) ? (
                   <p>{signInError}</p>
                 ) : (null)
               }
-                <h2>Log In</h2>
-                <input 
-                  type="email"
-                  placeholder="Username" 
-                  value={this.signInUsername} 
-                  onChange={this.onChangeSignInUsername}
+                <h2 className='center'>Login</h2>
+                <form onClick={this.handleSubmit} className='border'>
+            <ul className='login-form center'>
+              <div>
+                <li>
+                  <input
+                    type='text'
+                    id='username'
+                    placeholder='Username'
+                    value={this.signInUsername} 
+                    required
+                    onChange={this.onChangeSignInUsername}
                   />
                 <input 
                   type="password" 
@@ -152,9 +158,17 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
                   value={this.signInPassword} 
                   onChange={this.onChangeSignInPassword}
                   />
-                <button onClick={this.onSignIn}>Log In</button>
-            </div>
-           
+                </li>
+                <br />
+                {/* <h4>I forgot my Password!</h4> */}
+                <input className='btn' type='submit' onClick={this.onSignIn} defaultValue='Login' />
+              </div>
+            </ul>
+          </form>
+        </div>
+    );
+  }
+
 
           </div>
           )

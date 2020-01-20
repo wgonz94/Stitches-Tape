@@ -1,5 +1,8 @@
-.footer {
+footer {
   background-color: #5558aa;
   color: white;
-  margin-bottom: 10px;
+  position: fixed;
+  top: 95%;
+  width: 100%;
 }
+

@@ -7,6 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: url('./Images/bodybg.png');
   background-color: white;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 * {
@@ -17,3 +20,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+main {
+  flex: 1 0 auto;
+}
+
