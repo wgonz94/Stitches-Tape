@@ -101,7 +101,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
             }
           });
       }
-      
+
       validateForm() {
         return this.state.signInUsername.length > 0 && this.state.signInPassword.length > 0;
       }
@@ -166,3 +166,4 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         )
       }
     }
+  

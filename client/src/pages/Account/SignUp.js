@@ -3,29 +3,21 @@ import 'whatwg-fetch'
 
 import { getFromStorage, setInStorage } from './../../utils/storage';
 
-    export default class SignUp extends Component {
+    export default class SignIn extends Component {
       constructor(props) {
         super(props);
 
         this.state = {
           isLoading: true,
-          signUpError: '', 
-          signUpFirstName: "",
-          signUpLastName: "",
-          signUpUsername: "",
-          signUpEmail: "",
-          signUpPassword: "",
-          signUpUpdates: "",
-        };
+          isLoggedIn: '',
+          signInError: '',
+          signInUsername: '',
+          signInPassword: '',
+        }
+        this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this)
+        this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this)
 
-        this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
-        this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this)
-        this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
-        this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
-        this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
-        this.onChangeSignUpUpdates = this.onChangeSignUpUpdates.bind(this)
-
-        this.onSignUp = this.onSignUp.bind(this);
+        this.onSignIn = this.onSignIn.bind(this)
       }
 
       componentDidMount() {
@@ -40,7 +32,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
               this.setState({
               token,
               isLoading: false
-            });
+            })
             } else {
               this.setState({
                 isLoading: false,
@@ -54,97 +46,64 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         }
       }
 
-      onChangeSignUpEmail(event) {
+      onChangeSignInUsername(event) {
         this.setState({
-          signUpEmail: event.target.value,
+          signInUsername: event.target.value,
         })
       }
-      onChangeSignUpPassword(event) {
+      onChangeSignInPassword(event) {
         this.setState({
-          signUpPassword: event.target.value,
+          signInPassword: event.target.value,
         })
       }
-      onChangeSignUpUsername(event) {
-        this.setState({
-          signUpUsername: event.target.value,
-        })
-      }
-      onChangeSignUpFirstName(event) {
-        this.setState({
-          signUpFirstName: event.target.value,
-        })
-      }
-      onChangeSignUpLastName(event) {
-        this.setState({
-          signUpLastName: event.target.value,
-        })
-      }
-      onChangeSignUpUpdates(event) {
-        this.setState({
-          signUpUpdates: event.target.value,
-        })
-      }
-
-      onSignUp(){
+     
+      onSignIn() {
         //Grab State
         const {
-          signUpFirstName,
-          signUpLastName,
-          signUpEmail,
-          signUpPassword,
-          signUpUsername,
-          signUpUpdates
+          signInUsername,
+          signInPassword,
         }= this.state;
 
         this.setState({
           isLoading: true,
         })
-        console.log(signUpFirstName)
-        console.log(signUpLastName)
-        console.log(signUpUsername)
-        console.log(signUpEmail)
-        console.log(signUpPassword)
-       
+        console.log(signInUsername)
+        console.log(signInPassword)
 
         //Post request to backend
-        fetch("/api/account/signup", {
-          method: "POST",
+        fetch('/api/account/login', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
           body: JSON.stringify({
-            firstName: signUpFirstName,
-            lastName: signUpLastName,
-            username: signUpUsername,
-            email: signUpEmail,
-            password: signUpPassword,
-          }
-          ),
+            username: signInUsername,
+            password: signInPassword,
+          }),
         }).then(res => res.json())
           .then(json => {
-            console.log("json", json)
             if(json.success){
+              console.log('Grabbing a token')
+              setInStorage('the_main_app', { token: json.token });
               this.setState({
+                signInError: json.message,
                 isLoading: false,
-                signUpEmail: "",
-                signUpPassword: "",
-                signUpFirstName: "",
-                signUpLastName: "",
+                signInUsername: '',
+                signInPassword: '',
+                token: json.token,
               });
             }else {
               this.setState({
-                signUpError: json.message,
+                signInError: json.message,
                 isLoading: false,
               });
             }
-          }
-          ).catch(error => {
-            throw(error);
-        });
+          });
       }
+
       validateForm() {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        return this.state.signInUsername.length > 0 && this.state.signInPassword.length > 0;
       }
 
       handleChange = event => {
@@ -162,13 +121,9 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         const {
           isLoading,
           token,
-          signUpFirstName,
-          signUpLastName,
-          signUpUsername,
-          signUpEmail,
-          signUpPassword,
-          signUpUpdates,
-          signUpError
+          signInError,
+          signInUsername,
+          signInPassword,
         } = this.state;
 
         if(isLoading) {
@@ -177,113 +132,37 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
 
         if(!token) {
           return (
-          <main>
-        <div className='container'>
-          <h2 className='center'>New Account</h2>
-          <form  className='border'>
-            <ul className='register-form center'>
-              <li>
-                <input
-                  type='text'
-                  id='firstName'
-                  name='firstName'
-                  placeholder='First Name'
-                  value={this.signUpFirstName}
-                  onChange={this.onChangeSignUpFirstName}
-                />
-              </li>
-              <li>
-                <input
-                  type='text'
-                  id='lastName'
-                  name='lastName'
-                  placeholder='Last Name'
-                  value={this.signUpLastName}
-                  onChange={this.onChangeSignUpLastName}
-                />
-              </li>
-              <li>
-                <input
-                  type='text'
-                  id='username'
-                  name='username'
-                  placeholder='Username'
-                  value={this.signUpUsername}
-                  onChange={this.onChangeSignUpUsername}
-                  required
-                />
-                <div className='clear red-text strong'>
-                  {this.state.usernameInvalid}
-                </div>
-              </li>
-              <li>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  placeholder='example@email.com'
-                  value={this.signUpEmail}
-                  onChange={this.onChangeSignUpEmail}
-                  required
-                />
-                <div className='clear red-text'>{this.state.emailInvalid}</div>
-              </li>
-              <li>
-                <input
-                  type='password'
-                  id='password'
-                  name='password'
-                  placeholder='Password'
-                  value={this.signUpPassword}
-                  onChange={this.onChangeSignUpPassword}
-                  required
-                />
-                <div className='clear red-text'>
-                  {this.state.passwordInvalid}
-                </div>
-              </li>
-              <li>
-                <input
-                  type='password'
-                  name='passCheck'
-                  id='passCheck'
-                  placeholder='Password (Again)'
-                  value={this.state.passCheck}
-                  onChange={this.handleChange}
-                  required
-                />
-                <div className='clear red-text'>
-                  {this.state.passCheckInvalid}
-                </div>
-              </li>
-              <p>
-                <label>
-                  <input
-                    type='checkbox'
-                    id='moreInfo'
-                    value={this.signUpUpdates}
-                    checked={this.signUpUpdates}
-                    onChange={this.onChangeSignUpUpdates}
+          <div>
+            <div>
+              {
+                (signInError) ? (
+                  <p>{signInError}</p>
+                ) : (null)
+              }
+                <h2>Log In</h2>
+                <input 
+                  type="email"
+                  placeholder="Username" 
+                  value={this.signInUsername} 
+                  onChange={this.onChangeSignInUsername}
                   />
-                  <span>
-                    Please inform me of upcoming Changes, Promotions, and News
-                  </span>
-                </label>
-              </p>
-              <br />
-              <input
-                type='submit'
-                className='btn'
-                defaultValue='Create Account'
-                onClick={this.onSignUp}
-              />
-              <div className='clear'> </div>
-            </ul>
-          </form>
-        </div>
-      </main>
-  )
+                <input 
+                  type="password" 
+                  placeholder="Password" 
+                  value={this.signInPassword} 
+                  onChange={this.onChangeSignInPassword}
+                  />
+                <button onClick={this.onSignIn}>Log In</button>
+            </div>
+           
+
+          </div>
+          )
         }
-        
+        return (
+          <div>
+      <p>Signed In!</p>
+          </div>
+        )
       }
-}
+    }
