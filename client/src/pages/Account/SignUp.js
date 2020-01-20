@@ -3,21 +3,28 @@ import 'whatwg-fetch'
 
 import { getFromStorage, setInStorage } from './../../utils/storage';
 
-    export default class SignIn extends Component {
+    export default class SignUp extends Component {
       constructor(props) {
         super(props);
 
         this.state = {
           isLoading: true,
-          isLoggedIn: '',
-          signInError: '',
-          signInUsername: '',
-          signInPassword: '',
-        }
-        this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this)
-        this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this)
+          signUpError: '', 
+          signUpFirstName: "",
+          signUpLastName: "",
+          signUpUsername: "",
+          signUpEmail: "",
+          signUpPassword: "",
+          signUpUpdatesBox: false,
+        };
 
-        this.onSignIn = this.onSignIn.bind(this)
+        this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this)
+        this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this)
+        this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this)
+        this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this)
+        this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this)
+
+        this.onSignUp = this.onSignUp.bind(this);
       }
 
       componentDidMount() {
@@ -32,7 +39,7 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
               this.setState({
               token,
               isLoading: false
-            })
+            });
             } else {
               this.setState({
                 isLoading: false,
@@ -46,64 +53,90 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         }
       }
 
-      onChangeSignInUsername(event) {
+      onChangeSignUpEmail(event) {
         this.setState({
-          signInUsername: event.target.value,
+          signUpEmail: event.target.value,
         })
       }
-      onChangeSignInPassword(event) {
+      onChangeSignUpPassword(event) {
         this.setState({
-          signInPassword: event.target.value,
+          signUpPassword: event.target.value,
         })
       }
-     
-      onSignIn() {
+      onChangeSignUpUsername(event) {
+        this.setState({
+          signUpUsername: event.target.value,
+        })
+      }
+      onChangeSignUpFirstName(event) {
+        this.setState({
+          signUpFirstName: event.target.value,
+        })
+      }
+      onChangeSignUpLastName(event) {
+        this.setState({
+          signUpLastName: event.target.value,
+        })
+      }
+
+      onSignUp(){
         //Grab State
         const {
-          signInUsername,
-          signInPassword,
+          signUpFirstName,
+          signUpLastName,
+          signUpEmail,
+          signUpPassword,
+          signUpUsername
         }= this.state;
 
         this.setState({
           isLoading: true,
         })
-        console.log(signInUsername)
-        console.log(signInPassword)
+        console.log(signUpFirstName)
+        console.log(signUpLastName)
+        console.log(signUpUsername)
+        console.log(signUpEmail)
+        console.log(signUpPassword)
+       
 
         //Post request to backend
-        fetch('/api/account/login', {
-          method: 'POST',
+        fetch("/api/signup", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            "Content-Type": "application/json",
+            "Accept": "application/json"
           },
           body: JSON.stringify({
-            username: signInUsername,
-            password: signInPassword,
-          }),
+            firstName: signUpFirstName,
+            lastName: signUpLastName,
+            email: signUpEmail,
+            password: signUpPassword,
+          }
+          ),
         }).then(res => res.json())
           .then(json => {
+            console.log("json", json)
             if(json.success){
-              console.log('Grabbing a token')
-              setInStorage('the_main_app', { token: json.token });
               this.setState({
-                signInError: json.message,
                 isLoading: false,
-                signInUsername: '',
-                signInPassword: '',
-                token: json.token,
+                signUpEmail: "",
+                signUpPassword: "",
+                signUpFirstName: "",
+                signUpLastName: "",
               });
             }else {
               this.setState({
-                signInError: json.message,
+                signUpError: json.message,
                 isLoading: false,
               });
             }
-          });
+          }
+          ).catch(error => {
+            throw(error);
+        });
       }
-
       validateForm() {
-        return this.state.signInUsername.length > 0 && this.state.signInPassword.length > 0;
+        return this.state.email.length > 0 && this.state.password.length > 0;
       }
 
       handleChange = event => {
@@ -121,9 +154,11 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
         const {
           isLoading,
           token,
-          signInError,
-          signInUsername,
-          signInPassword,
+          signUpFirstName,
+          signUpLastName,
+          signUpEmail,
+          signUpPassword,
+          signUpError
         } = this.state;
 
         if(isLoading) {
@@ -134,35 +169,21 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
           return (
           <div>
             <div>
-              {
-                (signInError) ? (
-                  <p>{signInError}</p>
+            {
+                (signUpError) ? (
+                  <p>{signUpError}</p>
                 ) : (null)
               }
-                <h2>Log In</h2>
-                <input 
-                  type="email"
-                  placeholder="Username" 
-                  value={this.signInUsername} 
-                  onChange={this.onChangeSignInUsername}
-                  />
-                <input 
-                  type="password" 
-                  placeholder="Password" 
-                  value={this.signInPassword} 
-                  onChange={this.onChangeSignInPassword}
-                  />
-                <button onClick={this.onSignIn}>Log In</button>
+                <p>Sign Up</p>
+                <input type="text" placeholder="First Name" value={this.signUpFirstName} onChange={this.onChangeSignUpFirstName}/>
+                <input type="text" placeholder="Last Name" value={this.signUpLastName} onChange={this.onChangeSignUpLastName}/>
+                <input type="text" placeholder="Username" value={this.signUpUsername} onChange={this.onChangeSignUpUsername}/>
+                <input type="email" placeholder="Email" value={this.signUpEmail} onChange={this.onChangeSignUpEmail}/>
+                <input type="password" placeholder="Password" value={this.signUpPassword} onChange={this.onChangeSignUpPassword}/>
+                <button onClick={this.onSignUp}>Sign Up</button>
             </div>
-           
-
-          </div>
-          )
+          </div>)
         }
-        return (
-          <div>
-      <p>Signed In!</p>
-          </div>
-        )
+        
       }
     }
