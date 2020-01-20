@@ -44,9 +44,16 @@ Create customized Templates for items you make often to further reduce the scope
 > * Node.js
 > * Express.js
 > * MongoDB (Using the Atlas Online Utility)
+> * Mongoose
+> * BCrypt.js
 
+> ### Deployment, Hosting, and Repository
+> * Repo Hosted on Github
+> * App Deployed on Heroku
+> * MongoDB Server Hosted with Atlas
 
 ## What's Next?
+
 
 ## Contact Us
 You can reach our team at bbqlasagna@gmail.com .
