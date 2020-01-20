@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import 'materialize-css/dist/css/materialize.min.css';
+// import 'materialize-css/dist/css/materialize.min.css';
 import Navbar from './Components/Navbar/Nav';
 import Home from './pages/Home';
 // import Measurements from './Components/Tables/Measurement';
