@@ -5,7 +5,7 @@ const router = require("express").Router();
 
 
     // Sign up
-    router.post('/api/account/signup', (req, res, next) => {
+    router.post('/api/signup', (req, res, next) => {
         const { body } = req;
         const {
             firstName,
@@ -95,7 +95,7 @@ const router = require("express").Router();
     });
 
     //login 
-    router.post('/api/account/login', (req, res, next) => {
+    router.post('/api/login', (req, res, next) => {
         const { body } = req;
         const {
             password
