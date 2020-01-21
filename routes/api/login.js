@@ -95,7 +95,7 @@ const router = require("express").Router();
     });
 
     //login 
-    router.post('/api/login', (req, res, next) => {
+    router.post('/api/account/login', (req, res, next) => {
         const { body } = req;
         const {
             password
@@ -191,7 +191,7 @@ const router = require("express").Router();
             }
         })
     })
-    router.post('/api/account/logout', (req, res, next) => {
+    router.get('/api/account/logout', (req, res, next) => {
         const { query } = req;
         const { token } = query;
 
