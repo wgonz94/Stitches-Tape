@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import M from 'materialize-css';
 import midbg from '../../Images/midbg.jpg';
 import logobg from '../../Images/logobg.jpg';
-import About from './About';
+import UserStory from './UserStory';
 
 const Parallax = () => {
   useEffect(() => {
@@ -17,7 +17,7 @@ const Parallax = () => {
           <img className='responsive-img' src={midbg} alt='thread' />
         </div>
       </div>
-      <About />
+      <UserStory />
       <div className='parallax-container'>
         <div className='parallax'>
           <img className='responsive-img' src={logobg} alt='stitchandbatton' />
