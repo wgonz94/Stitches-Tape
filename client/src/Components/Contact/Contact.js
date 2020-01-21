@@ -25,7 +25,7 @@ class Contact extends Component {
       <div className='container'>
         <form onSubmit={this.handleSubmit}>
           <ul className='contact-form'>
-            <h1 className='center'>Drop Us A Message</h1>
+            <h1 className='center'>Contact Us</h1>
             <li>
               <input
                 type='text'
