@@ -169,10 +169,10 @@ export default class SignUp extends Component {
 
     if (!token) {
       return (
-        <div>
-          <div>
+        <div className='container'>
+          <div className='center'>
             {signUpError ? <p>{signUpError}</p> : null}
-            <h2 className='center'>Sign Up</h2>
+            <h2>Sign Up</h2>
             <input
               type='text'
               placeholder='First Name'
@@ -203,7 +203,9 @@ export default class SignUp extends Component {
               value={this.signUpPassword}
               onChange={this.onChangeSignUpPassword}
             />
-            <button onClick={this.onSignUp}>Sign Up</button>
+            <button className='btn' onClick={this.onSignUp}>
+              Sign Up
+            </button>
           </div>
         </div>
       );
