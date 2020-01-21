@@ -3,21 +3,20 @@ import React from 'react';
 const About = () => {
   return (
     <div className='container' id='about'>
-      <h1 className='center light-green-text accent-4'>More info</h1>
+      <h1 className='center light-green-text accent-4'>
+        You're In the Right Place!
+      </h1>
       <p className='flow-text'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-        culpa deserunt magni, enim consectetur amet id cupiditate explicabo
-        dolorem eligendi. Sunt esse soluta voluptatum iure sapiente velit ex
-        aperiam optio!
+        There is a proper way to take measurements to give the best fit when
+        making a garment. Your finished garment will only fit as well as the
+        accuracy of the measurements it is based upon. Whether it's for personal
+        use or to serve your clients, accurate measurements are essential for a
+        proper fit.
       </p>
-      <p className='flow-text'>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum,
-        obcaecati quod fuga mollitia harum, iusto architecto eius ratione, odio
-        magni ea quisquam! Nam odit rem ex voluptatem vero! Vero, sint? Lorem
-        ipsum dolor sit amet consectetur, adipisicing elit. Ab temporibus animi
-        quas nisi fuga itaque, culpa quam a eius officia atque fugit ipsa.
-        Maiores quas rerum natus tempore ut odit.
-      </p>
+      <h4 className='center'>
+        <strong>We provide you the perfect tool to do just that!</strong>
+      </h4>
+      <br></br>
     </div>
   );
 };
