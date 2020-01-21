@@ -166,13 +166,10 @@ import { getFromStorage, setInStorage } from './../../utils/storage';
             </ul>
           </form>
         </div>
+        </div>
     );
   }
-
-
-          </div>
-          )
-        }
+        
         return (
           <div>
       <p>Signed In!</p>
