@@ -3,7 +3,7 @@ import React from 'react';
 const UserStory = () => {
   return (
     <div className='container' id='about'>
-      <h2 className='center light-green-text accent-4'>
+      <h2 className='center accent-4'>
         I will never again be without this tool!
       </h2>
       <p className='flow-text'>

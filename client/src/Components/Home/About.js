@@ -3,9 +3,7 @@ import React from 'react';
 const About = () => {
   return (
     <div className='container' id='about'>
-      <h1 className='center light-green-text accent-4'>
-        You're In the Right Place!
-      </h1>
+      <h1 className='center accent-4'>You're In the Right Place!</h1>
       <p className='flow-text'>
         There is a proper way to take measurements to give the best fit when
         making a garment. Your finished garment will only fit as well as the
