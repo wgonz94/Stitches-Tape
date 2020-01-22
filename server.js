@@ -33,7 +33,6 @@ const configOptions = {
 
 //  Routes
 //  //  All Routes for Users APIs
-
 app.use('/api/users', require('./routes/api/user'));
 //  //  All Routes for Measurements APIs
 app.use('/api/measurements', require('./routes/api/measurement'));
