@@ -14,6 +14,8 @@ import LogOut from "./pages/Account/LogOut"
 import Contact from './Components/Contact/Contact';
 import MeasureWrapper from './pages/MeasureWrapper';
 import Footer from './Components/Footer/Footer';
+import auth from './utils/auth';
+import ProtectedRoute from "./utils/protectedRoute";
 
 // const initUser = {
 //   name: '',
@@ -74,7 +76,7 @@ class App extends Component {
             path='/logout'
             render={() => <LogOut logout={this.logout} />}
           />
-          <Route exact path='/newmeasure' component={MeasureWrapper} />
+          <ProtectedRoute exact path='/newmeasure' component={MeasureWrapper} />
           {/* <Route path='/measurements' component={Measurements} /> */}
           <Route path='/contact' component={Contact} />
           </Switch>

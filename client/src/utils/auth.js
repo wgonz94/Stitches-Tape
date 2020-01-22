@@ -1,25 +1,26 @@
-// import {getFromStorage} from "./storage"
-// const obj = getFromStorage('the_main_app')
-// const {token} = obj;
+
  class Auth{
     authenticate() {
         this.authenticated = false
     }
 
-    signedIn = (cb) => {
-        
+    signedIn = (cb) =>{
         this.authenticated = true;
-        cb()
-
+        console.log(cb);
+        console.log('Sign in Authenicated')
+        
     }
+
     signup(cb) {
         this.authenticated = false;
-        cb()
+        console.log('Account Created. Please sign in!')
+        console.log(cb)
     }
 
     logout(cb) {
         this.authenticated = false;
-        cb()
+        console.log('Logged Out. Authenication set to default')
+        console.log(cb)
     }
 
     isAuthenticated(){
