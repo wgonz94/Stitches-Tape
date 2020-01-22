@@ -1,0 +1,31 @@
+.side {
+  border: 2px solid #7e55aa;
+  height: 90vh;
+  background-color: white;
+  opacity: 90%;
+  margin-top: 2vh;
+}
+
+.display {
+  border: 2px solid #7e55aa;
+  height: 45vh;
+  background-color: white;
+  opacity: 90%;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+}
+
+.projects {
+  border: 2px solid #7e55aa;
+  height: 40vh;
+  background-color: white;
+  opacity: 90%;
+  margin-top: 3vh;
+  /* margin-bottom: 2vh; */
+}
+
+.imgr {
+  height: 300px;
+  width: 400px;
+  border: 1px solid black;
+}
