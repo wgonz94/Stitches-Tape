@@ -1,7 +1,7 @@
-const config = require('config');
+// const config = require('config');
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = require('./keys_prod');
 } else {
-  module.exports = config.get('mongoURI');
+  module.exports = require('./default.json');
 }
