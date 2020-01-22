@@ -3,6 +3,7 @@ import Home from "../Home"
 import 'whatwg-fetch'
 
 import { removeFromLocal } from './../../utils/storage';
+import auth from "../../utils/auth";
 
 class LogOut extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ componentDidMount = (e) => {
       isLoading: true,
     });
     const obj = removeFromLocal('the_main_app');
+    auth.logout()
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
@@ -25,7 +27,8 @@ componentDidMount = (e) => {
         .then(res => res.json())
         .then(json => {
           if (json.success) {
-              console.log('Token Empty')
+            
+            console.log('Token Empty')
             this.setState({
               token: '',
               isLoading: false,

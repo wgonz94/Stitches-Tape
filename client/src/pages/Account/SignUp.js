@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch';
 
 import { getFromStorage, setInStorage } from './../../utils/storage';
+import auth from '../../utils/auth';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class SignUp extends Component {
         .then(res => res.json())
         .then(json => {
           if (json.success) {
+            auth.signup()
             this.setState({
               token,
               isLoading: false
