@@ -1,4 +1,3 @@
-
 //  Package Variable Declarations
 const express = require('express');
 const mongoose = require('mongoose');
@@ -15,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 //  //  API Routes For Login Info
 const loginRoutes = require('./routes/api/login');
 //  //  Configuration for MongoDB
-const db = require('./config/keys_prod').mongoURI;
+const db = require('./config/keys').mongoURI;
 
 //  Middleware Method Calls
 //  //  Configures the use of .env files
@@ -28,9 +27,8 @@ app.use(express.json());
 app.use(morgan('dev'));
 //  //  Configures MongoDB options to avoid deprication errors
 const configOptions = {
-
-	useNewUrlParser: true,
-	useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 };
 
 //  Routes
@@ -42,31 +40,31 @@ app.use('/api/measurements', require('./routes/api/measurement'));
 //  //  All Routes For Login APIs
 app.use(loginRoutes);
 
-
 //  Production Only Assets
 //  //  Serve static assets if app is in production
 if (process.env.NODE_ENV === 'production') {
-	//  //  Set static folder
-	app.use(express.static('client/build'));
-	//  //  GET all relevant information, and send it to where it needs to be
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-	});
+  //  //  Set static folder
+  app.use(express.static('client/build'));
+  //  //  GET all relevant information, and send it to where it needs to be
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 
 //  Connections
 //  //  Connecting to MongoDB
 mongoose
-	.connect(db, configOptions)
-	.then(() => console.log('MongoDB Connected...'))
-	.catch(err => console.log(err));
+  .connect(db, configOptions)
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
+
 //  //  Starting the server, syncing our models ------------------------------------/
 app.listen(PORT, () => {
-	console.log(
-		'==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
-		PORT,
-		PORT
-	);
+  console.log(
+    '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
+    PORT,
+    PORT
+  );
 });
 
 //  Exports
