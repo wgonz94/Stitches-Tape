@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-
+import auth from './../../utils/auth'
 import { getFromStorage, setInStorage } from './../../utils/storage';
 
 export default class SignIn extends Component {
@@ -82,6 +82,7 @@ export default class SignIn extends Component {
       .then(res => res.json())
       .then(json => {
         if (json.success) {
+          auth.signedIn()
           console.log('Grabbing a token');
           setInStorage('the_main_app', { token: json.token });
           this.setState({
