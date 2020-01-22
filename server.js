@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 //  //  API Routes For Login Info
 const loginRoutes = require('./routes/api/login');
 //  //  Configuration for MongoDB
-const db = require('./config/keys_prod').mongoURI;
+const db = require('./config/keys').mongoURI;
 
 //  Middleware Method Calls
 //  //  Configures the use of .env files
