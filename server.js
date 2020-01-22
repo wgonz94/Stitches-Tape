@@ -1,3 +1,4 @@
+
 //  Package Variable Declarations
 const express = require('express');
 const mongoose = require('mongoose');
@@ -27,17 +28,20 @@ app.use(express.json());
 app.use(morgan('dev'));
 //  //  Configures MongoDB options to avoid deprication errors
 const configOptions = {
+
 	useNewUrlParser: true,
 	useUnifiedTopology: true
 };
 
 //  Routes
 //  //  All Routes for Users APIs
+
 app.use('/api/users', require('./routes/api/user'));
 //  //  All Routes for Measurements APIs
 app.use('/api/measurements', require('./routes/api/measurement'));
 //  //  All Routes For Login APIs
 app.use(loginRoutes);
+
 
 //  Production Only Assets
 //  //  Serve static assets if app is in production

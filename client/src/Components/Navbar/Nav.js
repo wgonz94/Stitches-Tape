@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import M from 'materialize-css';
+import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import M from "materialize-css";
 
 const Navbar = ({ handleSubcribe, handleLogin }) => {
   useEffect(() => {
-    let elements = document.querySelectorAll('.sidenav');
+    let elements = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elements);
     // document.addEventListener('DOMContentLoaded', function() {
     //   var elems = document.querySelectorAll('.sidenav');
