@@ -83,7 +83,7 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
               </li>
               <li>
                 <NavLink to='/contact' className='hoverable'>
-                  Contact Us
+                  Contact
                 </NavLink>
               </li>
             </ul>
@@ -114,7 +114,7 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to='/' className='logged-in'>
+          <NavLink to='/logout' className='logged-in'>
             Log Out
           </NavLink>
         </li>

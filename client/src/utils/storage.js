@@ -26,3 +26,7 @@ export function setInStorage(key, obj) {
 
     }
 }
+
+export function removeFromLocal(key) {
+    localStorage.removeItem(key);
+}

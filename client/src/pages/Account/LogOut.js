@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import Home from "../Home"
 import 'whatwg-fetch'
 
-import { getFromStorage } from './../../utils/storage';
+import { removeFromLocal } from './../../utils/storage';
 
 class LogOut extends Component {
-logout = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: true
+    }
+    
+  }
+componentDidMount = (e) => {
     this.setState({
       isLoading: true,
     });
-    const obj = getFromStorage('the_main_app');
+    const obj = removeFromLocal('the_main_app');
     if (obj && obj.token) {
       const { token } = obj;
       // Verify token
