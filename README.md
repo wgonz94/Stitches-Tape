@@ -86,8 +86,9 @@ Whether you're a novice designer or an experienced Clothier, S&T is the perfect 
 
 ## What's Next?
 
--   Interactive Measurements Image
 -   React Native/Mobile App
+-   Ads/Paid Model
+-   Interactive Measurements Image
 -   Speech-to-Text
 -   Add Storage for Reference Images/Files/Documents
 -   Email Form for Clients to do their own measurements remotely
