@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const About = () => {
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
   return (
-    <div className='container' id='about'>
+    <div
+      className='container'
+      style={{ color: theme.text, background: theme.bgc }}
+      id='about'
+    >
       <h1 className='center'>You're In the Right Place!</h1>
       <p className='flow-text'>
         There is a proper way to take measurements to give the best fit when

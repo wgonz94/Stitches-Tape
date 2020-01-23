@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from "react";
+import {ThemeContext} from "../../Context/ThemeContext";
 
 const UserStory = () => {
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
   return (
-    <div className='container' id='about'>
+    <div
+      className='container'
+      style={{
+        color: theme.text,
+        background: theme.bgc
+      }}
+      id='about'
+    >
       <h2 className='center'>I will never again be without this tool!</h2>
       <p className='flow-text'>
         I was the designer for two weddings both happening within weeks of each

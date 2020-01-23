@@ -8,7 +8,6 @@ main {
   flex: 1 0 auto;
 }
 
-
 .App {
   text-align: center;
 }
@@ -23,6 +22,11 @@ main {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+/* .main-container {
+  background: url("./Images/bodybg.png");
+  background-color: black;
+} */
 
 .App-header {
   background-color: #282c34;
