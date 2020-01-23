@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import 'materialize-css/dist/css/materialize.min.css';
 import Navbar from "./Components/Navbar/Nav";
 import Home from "./pages/Home";
-// import Measurements from './Components/Tables/Measurement';
 import SignUp from "./pages/Account/SignUp";
 import SignIn from "./pages/Account/SignIn";
 import LogOut from "./pages/Account/LogOut";
@@ -12,6 +11,8 @@ import MeasureWrapper from "./pages/MeasureWrapper";
 import Footer from "./Components/Footer/Footer";
 import ProtectedRoute from "./utils/protectedRoute";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ThemeContextProvider from "./Context/ThemeContext";
+import BackgroundImage from "./Images/bodybg.png";
 
 // const initUser = {
 //   name: '',
@@ -51,39 +52,44 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div className='App screen'>
-          <header>{/* <Navbar /> */}</header>
-          <main>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route
-                path='/signup'
-                render={() => <SignUp signUp={this.signUp} />}
-              />
-              <Route
-                path='/signin'
-                render={props => <SignIn signIn={this.signIn} />}
-              />
-              <Route
-                path='/logout'
-                render={() => <LogOut logout={this.logout} />}
-              />
-              <ProtectedRoute
-                exact
-                path='/newmeasure'
-                component={MeasureWrapper}
-              />
-              {/* <Route path='/measurements' component={Measurements} /> */}
-              <Route path='/contact' component={Contact} />
-            </Switch>
-            <Route path='/dashboard' component={Dashboard} />
-          </main>
-          <footer>
-            <Footer />
-          </footer>
-        </div>
-      </BrowserRouter>
+      <div className='main-container'>
+        <BrowserRouter>
+          <ThemeContextProvider>
+            <div className='App screen'>
+              <header>
+                <Navbar />
+              </header>
+              <main style={{ background: BackgroundImage }}>
+                <Switch>
+                  <Route exact path='/' component={Home} />
+                  <Route
+                    path='/signup'
+                    render={() => <SignUp signUp={this.signUp} />}
+                  />
+                  <Route
+                    path='/signin'
+                    render={props => <SignIn signIn={this.signIn} />}
+                  />
+                  <Route
+                    path='/logout'
+                    render={() => <LogOut logout={this.logout} />}
+                  />
+                  <ProtectedRoute
+                    exact
+                    path='/newmeasure'
+                    component={MeasureWrapper}
+                  />
+                  <Route path='/contact' component={Contact} />
+                </Switch>
+                <Route path='/dashboard' component={Dashboard} />
+              </main>
+              <footer>
+                <Footer />
+              </footer>
+            </div>
+          </ThemeContextProvider>
+        </BrowserRouter>
+      </div>
     );
   }
 }

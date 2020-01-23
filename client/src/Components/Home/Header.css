@@ -1,9 +1,9 @@
-.container {
+/* .container {
   background-color: white;
-}
+} */
 
 .image {
-  background: url('../../Images/logobg.jpg');
+  background: url("../../Images/logobg.jpg");
   background-size: cover;
   background-position: center;
   min-height: 500px;
