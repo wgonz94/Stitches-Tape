@@ -110,6 +110,7 @@ export default class SignUp extends Component {
       body: JSON.stringify({
         firstName: signUpFirstName,
         lastName: signUpLastName,
+        username: signUpUsername,
         email: signUpEmail,
         password: signUpPassword
       })
@@ -120,10 +121,11 @@ export default class SignUp extends Component {
         if (json.success) {
           this.setState({
             isLoading: false,
-            signUpEmail: "",
-            signUpPassword: "",
-            signUpFirstName: "",
-            signUpLastName: ""
+            signUpEmail: '',
+            signUpPassword: '',
+            signUpUsername: '',
+            signUpFirstName: '',
+            signUpLastName: ''
           });
         } else {
           this.setState({
