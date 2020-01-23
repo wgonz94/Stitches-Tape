@@ -8,20 +8,13 @@
 
 .display {
   border: 2px solid #7e55aa;
-  height: 45vh;
+  height: 90vh;
+  width: 80vw;
   background-color: white;
-  opacity: 90%;
+  padding: 5vh;
   margin-bottom: 2vh;
   margin-top: 2vh;
-}
-
-.projects {
-  border: 2px solid #7e55aa;
-  height: 40vh;
-  background-color: white;
-  opacity: 90%;
-  margin-top: 3vh;
-  /* margin-bottom: 2vh; */
+  margin-left: 18vw;
 }
 
 .imgr {

@@ -53,11 +53,11 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
                   About
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to='/newmeasure' className='logged-in hoverable'>
                   New Measurements
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 <NavLink
                   to='/signup'

@@ -1,5 +1,7 @@
 import React from "react";
 import UserImage from "../../Images/designergirl.png";
+import { NavLink } from "react-router-dom";
+import "./sidenav.css";
 
 const SideNav = () => {
   return (
@@ -9,8 +11,16 @@ const SideNav = () => {
         <p className='flow-text'>Edit Profile</p>
         <div className='divider'></div>
 
-        <li></li>
-        <li>Heres something else</li>
+        <li>
+          <NavLink to='/measurements' className=' logged-in hoverable'>
+            Measurements
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='/newmeasure' className='logged-in hoverable'>
+            New Measurements
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

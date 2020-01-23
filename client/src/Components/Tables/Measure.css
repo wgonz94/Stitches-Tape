@@ -10,8 +10,18 @@
   background-color: white;
 }
 
-/* .scroll:hover,
-.scroll:focus {
+.measurements {
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #5558aa;
+}
+
+/* .readback {
+  overflow: visible;
+}
+
+.readback:hover,
+.readback:focus {
   overflow-y: scroll;
 } */
 
@@ -27,7 +37,7 @@
     height: 100%;
     padding-left: 0px;
     padding-right: 0px;
-    width: 100%;  
+    width: 100%;
   }
 
   .models {
@@ -35,5 +45,4 @@
     width: 100%;
     margin: 0 auto;
   }
-
 }
