@@ -16,6 +16,7 @@ class ThemeContextProvider extends Component {
       title: images("./Title.png"),
       bgImage: images("./bodybg.png"),
       name: "Dark Mode"
+      // bg: (document.body.style.backgroundColor = "white")
     },
     dark: {
       text: "#667",
@@ -24,11 +25,15 @@ class ThemeContextProvider extends Component {
       title: images("./DarkModeTitle.png"),
       bgImage: images("./bodybg.png"),
       name: "Light Mode"
+      // bg: (document.body.style.backgroundColor = "black")
     }
   };
 
   toggleTheme = () => {
     this.setState({ isLightTheme: !this.state.isLightTheme });
+    this.state.isLightTheme
+      ? (document.body.style.backgroundColor = "black")
+      : (document.body.style.backgroundColor = "white");
   };
 
   render() {
