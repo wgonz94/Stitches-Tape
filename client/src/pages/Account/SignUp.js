@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import 'whatwg-fetch';
+import React, { Component } from "react";
+import "whatwg-fetch";
 
-import { getFromStorage, setInStorage } from './../../utils/storage';
-import auth from '../../utils/auth';
+import { getFromStorage, setInStorage } from "./../../utils/storage";
+import auth from "../../utils/auth";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -10,12 +10,12 @@ export default class SignUp extends Component {
 
     this.state = {
       isLoading: true,
-      signUpError: '',
-      signUpFirstName: '',
-      signUpLastName: '',
-      signUpUsername: '',
-      signUpEmail: '',
-      signUpPassword: '',
+      signUpError: "",
+      signUpFirstName: "",
+      signUpLastName: "",
+      signUpUsername: "",
+      signUpEmail: "",
+      signUpPassword: "",
       signUpUpdatesBox: false
     };
 
@@ -29,15 +29,15 @@ export default class SignUp extends Component {
   }
 
   componentDidMount() {
-    const obj = getFromStorage('the_main_app');
+    const obj = getFromStorage("the_main_app");
     if (obj && obj.token) {
       const { token } = obj;
       //verify token
-      fetch('/api/account/verify?token' + token)
+      fetch("/api/account/verify?token" + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
-            auth.signup()
+            auth.signup();
             this.setState({
               token,
               isLoading: false
@@ -101,11 +101,11 @@ export default class SignUp extends Component {
     console.log(signUpPassword);
 
     //Post request to backend
-    fetch('/api/signup', {
-      method: 'POST',
+    fetch("/api/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json"
       },
       body: JSON.stringify({
         firstName: signUpFirstName,
@@ -116,14 +116,14 @@ export default class SignUp extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log('json', json);
+        console.log("json", json);
         if (json.success) {
           this.setState({
             isLoading: false,
-            signUpEmail: '',
-            signUpPassword: '',
-            signUpFirstName: '',
-            signUpLastName: ''
+            signUpEmail: "",
+            signUpPassword: "",
+            signUpFirstName: "",
+            signUpLastName: ""
           });
         } else {
           this.setState({
@@ -205,6 +205,9 @@ export default class SignUp extends Component {
               value={this.signUpPassword}
               onChange={this.onChangeSignUpPassword}
             />
+            {/*             
+            <input
+             */}
             <button className='btn' onClick={this.onSignUp}>
               Sign Up
             </button>

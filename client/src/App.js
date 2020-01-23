@@ -11,6 +11,7 @@ import Contact from "./Components/Contact/Contact";
 import MeasureWrapper from "./pages/MeasureWrapper";
 import Footer from "./Components/Footer/Footer";
 import ProtectedRoute from "./utils/protectedRoute";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 // const initUser = {
 //   name: '',
@@ -52,9 +53,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='App screen'>
-          <header>
-            <Navbar />
-          </header>
+          <header>{/* <Navbar /> */}</header>
           <main>
             <Switch>
               <Route exact path='/' component={Home} />
@@ -78,6 +77,7 @@ class App extends Component {
               {/* <Route path='/measurements' component={Measurements} /> */}
               <Route path='/contact' component={Contact} />
             </Switch>
+            <Route path='/dashboard' component={Dashboard} />
           </main>
           <footer>
             <Footer />
