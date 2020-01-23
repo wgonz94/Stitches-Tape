@@ -39,7 +39,7 @@ router.post('/api/signup', (req, res, next) => {
 	if (!username) {
 		return res.send({
 			success: false,
-			message: 'Error: Last name cannot be blank.'
+			message: 'Error: Username cannot be blank.'
 		});
 	}
 	//	//	//	email
