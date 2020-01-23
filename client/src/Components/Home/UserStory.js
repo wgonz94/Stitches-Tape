@@ -3,9 +3,7 @@ import React from 'react';
 const UserStory = () => {
   return (
     <div className='container' id='about'>
-      <h2 className='center light-green-text accent-4'>
-        I will never again be without this tool!
-      </h2>
+      <h2 className='center'>I will never again be without this tool!</h2>
       <p className='flow-text'>
         I was the designer for two weddings both happening within weeks of each
         other. One wedding party had 6 bridesmaids and the other had 10. I had
