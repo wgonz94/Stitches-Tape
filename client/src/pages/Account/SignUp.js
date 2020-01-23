@@ -110,6 +110,7 @@ export default class SignUp extends Component {
       body: JSON.stringify({
         firstName: signUpFirstName,
         lastName: signUpLastName,
+        username: signUpUsername,
         email: signUpEmail,
         password: signUpPassword
       })
@@ -122,6 +123,7 @@ export default class SignUp extends Component {
             isLoading: false,
             signUpEmail: '',
             signUpPassword: '',
+            signUpUsername: '',
             signUpFirstName: '',
             signUpLastName: ''
           });
