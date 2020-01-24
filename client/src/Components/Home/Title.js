@@ -38,7 +38,7 @@ const Title = () => {
           offers you a selection of generic measurements, 50 measurements to
           track, color preferences, plus 5 custom measurements! You have the
           option to track these measurements in inches or centimeters (whichever
-          best suits your needs). Also, you can capture any notes to relating to
+          best suits your needs). Also, you can capture any notes relating to
           your client!
         </p>
       </div>

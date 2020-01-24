@@ -1,89 +1,120 @@
-import React, { useState, useContext } from "react";
-import "./Measure.css";
-import { ThemeContext } from "../../Context/ThemeContext";
+import React, { useState, useContext } from 'react';
+import './Measure.css';
+import { ThemeContext } from '../../Context/ThemeContext';
+
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
 
 const NewMeasurement = () => {
   const [state, setState] = useState([
-    { value: null, id: "clientName" },
-    { value: null, id: "projectName" },
-    { value: null, id: "email" },
-    { value: null, id: "phone" },
-    { value: null, id: "suitSize" },
-    { value: null, id: "dressSize" },
-    { value: null, id: "shirtSize" },
-    { value: null, id: "pantWaist" },
-    { value: null, id: "pantInseam" },
-    { value: null, id: "hatSize" },
-    { value: null, id: "shoeSize" },
-    { value: null, id: "height" },
-    { value: null, id: "weight" },
-    { value: null, id: "hairColor" },
-    { value: null, id: "eyeColor" },
-    { value: null, id: "handedness" },
-    { value: null, id: "colorPref" },
-    { value: "unchecked", id: "units" },
-    { value: null, id: "headDiam" },
-    { value: null, id: "headOver" },
-    { value: null, id: "neck" },
-    { value: null, id: "neckFront" },
-    { value: null, id: "neckBack" },
-    { value: null, id: "bust" },
-    { value: null, id: "chest" },
-    { value: null, id: "bustFront" },
-    { value: null, id: "bustBack" },
-    { value: null, id: "bustPtp" },
-    { value: null, id: "chestFront" },
-    { value: null, id: "shoulderFront" },
-    { value: null, id: "shoulderBack" },
-    { value: null, id: "shoulderSeam" },
-    { value: null, id: "slope" },
-    { value: null, id: "shoulderCtrFront" },
-    { value: null, id: "shoulderCtrBack" },
-    { value: null, id: "armscyeFront" },
-    { value: null, id: "armholeSnug" },
-    { value: null, id: "underarmSeam" },
-    { value: null, id: "waist" },
-    { value: null, id: "neckToWaistFront" },
-    { value: null, id: "neckToWaistBack" },
-    { value: null, id: "hipAtHipbone" },
-    { value: null, id: "hipWaist" },
-    { value: null, id: "lgHipAcross" },
-    { value: null, id: "lgHipVert" },
-    { value: null, id: "neckToFloor" },
-    { value: null, id: "waistToFloor" },
-    { value: null, id: "waistToBelowKnee" },
-    { value: null, id: "inseam" },
-    { value: null, id: "kneeToAnkle" },
-    { value: null, id: "upperThigh" },
-    { value: null, id: "upperThighFlexed" },
-    { value: null, id: "knee" },
-    { value: null, id: "kneeFlexed" },
-    { value: null, id: "calf" },
-    { value: null, id: "ankle" },
-    { value: null, id: "overallRise" },
-    { value: null, id: "riseFront" },
-    { value: null, id: "riseBack" },
-    { value: null, id: "armLength" },
-    { value: null, id: "overarm" },
-    { value: null, id: "armToElbow" },
-    { value: null, id: "elbowToWrist" },
-    { value: null, id: "bicep" },
-    { value: null, id: "bicepFlexed" },
-    { value: null, id: "elbow" },
-    { value: null, id: "wrist" },
-    { value: null, id: "hand" },
-    { value: null, id: "custom1" },
-    { value: null, id: "custom2" },
-    { value: null, id: "custom3" },
-    { value: null, id: "custom4" },
-    { value: null, id: "custom5" },
-    { value: null, id: "notes" }
+    { value: null, id: 'clientName' },
+    { value: null, id: 'projectName' },
+    { value: null, id: 'email' },
+    { value: null, id: 'phone' },
+    { value: null, id: 'suitSize' },
+    { value: null, id: 'dressSize' },
+    { value: null, id: 'shirtSize' },
+    { value: null, id: 'pantWaist' },
+    { value: null, id: 'pantInseam' },
+    { value: null, id: 'hatSize' },
+    { value: null, id: 'shoeSize' },
+    { value: null, id: 'height' },
+    { value: null, id: 'weight' },
+    { value: null, id: 'hairColor' },
+    { value: null, id: 'eyeColor' },
+    { value: null, id: 'handedness' },
+    { value: null, id: 'colorPref' },
+    { value: 'unchecked', id: 'units' },
+    { value: null, id: 'headDiam' },
+    { value: null, id: 'headOver' },
+    { value: null, id: 'neck' },
+    { value: null, id: 'neckFront' },
+    { value: null, id: 'neckBack' },
+    { value: null, id: 'bust' },
+    { value: null, id: 'chest' },
+    { value: null, id: 'bustFront' },
+    { value: null, id: 'bustBack' },
+    { value: null, id: 'bustPtp' },
+    { value: null, id: 'chestFront' },
+    { value: null, id: 'shoulderFront' },
+    { value: null, id: 'shoulderBack' },
+    { value: null, id: 'shoulderSeam' },
+    { value: null, id: 'slope' },
+    { value: null, id: 'shoulderCtrFront' },
+    { value: null, id: 'shoulderCtrBack' },
+    { value: null, id: 'armscyeFront' },
+    { value: null, id: 'armholeSnug' },
+    { value: null, id: 'underarmSeam' },
+    { value: null, id: 'waist' },
+    { value: null, id: 'neckToWaistFront' },
+    { value: null, id: 'neckToWaistBack' },
+    { value: null, id: 'hipAtHipbone' },
+    { value: null, id: 'hipWaist' },
+    { value: null, id: 'lgHipAcross' },
+    { value: null, id: 'lgHipVert' },
+    { value: null, id: 'neckToFloor' },
+    { value: null, id: 'waistToFloor' },
+    { value: null, id: 'waistToBelowKnee' },
+    { value: null, id: 'inseam' },
+    { value: null, id: 'kneeToAnkle' },
+    { value: null, id: 'upperThigh' },
+    { value: null, id: 'upperThighFlexed' },
+    { value: null, id: 'knee' },
+    { value: null, id: 'kneeFlexed' },
+    { value: null, id: 'calf' },
+    { value: null, id: 'ankle' },
+    { value: null, id: 'overallRise' },
+    { value: null, id: 'riseFront' },
+    { value: null, id: 'riseBack' },
+    { value: null, id: 'armLength' },
+    { value: null, id: 'overarm' },
+    { value: null, id: 'armToElbow' },
+    { value: null, id: 'elbowToWrist' },
+    { value: null, id: 'bicep' },
+    { value: null, id: 'bicepFlexed' },
+    { value: null, id: 'elbow' },
+    { value: null, id: 'wrist' },
+    { value: null, id: 'hand' },
+    { value: null, id: 'custom1' },
+    { value: null, id: 'custom2' },
+    { value: null, id: 'custom3' },
+    { value: null, id: 'custom4' },
+    { value: null, id: 'custom5' },
+    { value: null, id: 'notes' }
   ]);
+
+  // use voiceinput
+  let getVoice = () => {
+    // start listening
+    recognition.start();
+    console.log('listening...');
+
+    // handle input
+    recognition.onresult = e => {
+      let last = e.results.length - 1;
+      let transcript = e.results[last][0].transcript;
+      let mobileRepeatBug =
+        last === 1 && transcript === e.results[0][0].transcript;
+
+      if (!mobileRepeatBug) {
+        console.log(transcript);
+        console.log(state[1]);
+        setState({ projectName: transcript });
+        console.log(state[1]);
+      }
+    };
+
+    recognition.onspeechend = () => {
+      recognition.stop();
+      console.log('no longer listening.');
+    };
+  };
 
   let handleChange = e => {
     setState({
       [e.target.id]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value
+        e.target.type === 'checkbox' ? e.target.checked : e.target.value
     });
     console.log(state);
   };
@@ -91,9 +122,9 @@ const NewMeasurement = () => {
   let handleSubmit = e => {
     e.preventDefault();
 
-    console.log("Submitted");
+    console.log('Submitted');
     console.log(state);
-    document.getElementById("NMForm").reset();
+    document.getElementById('NMForm').reset();
     setState({ state });
   };
 
@@ -120,9 +151,17 @@ const NewMeasurement = () => {
               </label>
             </div>
             <div className='input-field col s6'>
+              <i
+                className='material-icons'
+                name='projectName'
+                onClick={getVoice}
+              >
+                microphone
+              </i>
               <i className='material-icons prefix'>assignment</i>
               <input
                 type='text'
+                value={state.projectName}
                 onChange={handleChange}
                 placeholder='Project Name'
                 id='projectName'
@@ -372,7 +411,7 @@ const NewMeasurement = () => {
                           id='colorPref'
                           cols={30}
                           rows={10}
-                          defaultValue={""}
+                          defaultValue={''}
                         />
                         <label htmlFor='colorPref'>Color Preferences</label>
                       </div>
@@ -1108,7 +1147,7 @@ const NewMeasurement = () => {
                       id='notes'
                       cols={30}
                       rows={10}
-                      defaultValue={""}
+                      defaultValue={''}
                       onChange={handleChange}
                     />
                     <label htmlFor='notes'>Enter Any Notes Here</label>
