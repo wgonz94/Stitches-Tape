@@ -1,7 +1,8 @@
-// const config = require('config');
-
+//  Exports
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./keys_prod');
+	//  //  When in the Production environment, file will export the contents of the keys_prod.js file
+	module.exports = require('./keys_prod');
 } else {
-  module.exports = require('./default.json');
+	//  //  All other environments, file will export the contents of the default.json file (Which contains our protected values)
+	module.exports = require('./default.json');
 }
