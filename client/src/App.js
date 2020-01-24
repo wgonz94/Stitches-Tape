@@ -10,7 +10,7 @@ import Contact from "./Components/Contact/Contact";
 import MeasureWrapper from "./pages/MeasureWrapper";
 import Footer from "./Components/Footer/Footer";
 import ProtectedRoute from "./utils/protectedRoute";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Display from "./Components/Dashboard/Display";
 import ThemeContextProvider from "./Context/ThemeContext";
 import AuthContextProvider from "./Context/AuthContext";
 
@@ -75,7 +75,7 @@ class App extends Component {
               <Route exact path='/newmeasure' component={MeasureWrapper} />
               <Route path='/contact' component={Contact} />
             </Switch>
-            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/display' component={Display} />
           </main>
           <footer>
             <Footer />

@@ -11,7 +11,7 @@ const MeasureWrapper = () => {
   return (
     <div
       style={{
-        color: theme.text,
+        color: "#5558aa",
         background: theme.bgc
       }}
     >

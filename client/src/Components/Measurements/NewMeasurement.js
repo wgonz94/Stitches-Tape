@@ -2,83 +2,6 @@ import React, { useState, useContext } from "react";
 import "./Measure.css";
 import { ThemeContext } from "../../Context/ThemeContext";
 
-const initState = [
-  { value: null, id: "clientName" },
-  { value: null, id: "projectName" },
-  { value: null, id: "email" },
-  { value: null, id: "phone" },
-  { value: null, id: "suitSize" },
-  { value: null, id: "dressSize" },
-  { value: null, id: "shirtSize" },
-  { value: null, id: "pantWaist" },
-  { value: null, id: "pantInseam" },
-  { value: null, id: "hatSize" },
-  { value: null, id: "shoeSize" },
-  { value: null, id: "height" },
-  { value: null, id: "weight" },
-  { value: null, id: "hairColor" },
-  { value: null, id: "eyeColor" },
-  { value: null, id: "handedness" },
-  { value: null, id: "colorPref" },
-  { value: "unchecked", id: "units" },
-  { value: null, id: "headDiam" },
-  { value: null, id: "headOver" },
-  { value: null, id: "neck" },
-  { value: null, id: "neckFront" },
-  { value: null, id: "neckBack" },
-  { value: null, id: "bust" },
-  { value: null, id: "chest" },
-  { value: null, id: "bustFront" },
-  { value: null, id: "bustBack" },
-  { value: null, id: "bustPtp" },
-  { value: null, id: "chestFront" },
-  { value: null, id: "shoulderFront" },
-  { value: null, id: "shoulderBack" },
-  { value: null, id: "shoulderSeam" },
-  { value: null, id: "slope" },
-  { value: null, id: "shoulderCtrFront" },
-  { value: null, id: "shoulderCtrBack" },
-  { value: null, id: "armscyeFront" },
-  { value: null, id: "armholeSnug" },
-  { value: null, id: "underarmSeam" },
-  { value: null, id: "waist" },
-  { value: null, id: "neckToWaistFront" },
-  { value: null, id: "neckToWaistBack" },
-  { value: null, id: "hipAtHipbone" },
-  { value: null, id: "hipWaist" },
-  { value: null, id: "lgHipAcross" },
-  { value: null, id: "lgHipVert" },
-  { value: null, id: "neckToFloor" },
-  { value: null, id: "waistToFloor" },
-  { value: null, id: "waistToBelowKnee" },
-  { value: null, id: "inseam" },
-  { value: null, id: "kneeToAnkle" },
-  { value: null, id: "upperThigh" },
-  { value: null, id: "upperThighFlexed" },
-  { value: null, id: "knee" },
-  { value: null, id: "kneeFlexed" },
-  { value: null, id: "calf" },
-  { value: null, id: "ankle" },
-  { value: null, id: "overallRise" },
-  { value: null, id: "riseFront" },
-  { value: null, id: "riseBack" },
-  { value: null, id: "armLength" },
-  { value: null, id: "overarm" },
-  { value: null, id: "armToElbow" },
-  { value: null, id: "elbowToWrist" },
-  { value: null, id: "bicep" },
-  { value: null, id: "bicepFlexed" },
-  { value: null, id: "elbow" },
-  { value: null, id: "wrist" },
-  { value: null, id: "hand" },
-  { value: null, id: "custom1" },
-  { value: null, id: "custom2" },
-  { value: null, id: "custom3" },
-  { value: null, id: "custom4" },
-  { value: null, id: "custom5" },
-  { value: null, id: "notes" }
-];
-
 const NewMeasurement = () => {
   const [state, setState] = useState([
     { value: null, id: "clientName" },
@@ -174,9 +97,12 @@ const NewMeasurement = () => {
     setState({ state });
   };
 
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
+
   return (
     <main>
-      <div className='scroll'>
+      <div className='scroll' style={{ backgroundColor: theme.bgc }}>
         <form id='NMForm' onSubmit={handleSubmit}>
           <h3 className='center-align'>Client Info</h3>
           <div className='row'>

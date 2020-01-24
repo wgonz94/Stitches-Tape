@@ -1,7 +1,7 @@
 .scroll {
   height: 900px;
   width: 90%;
-  overflow: scroll;
+  overflow: auto;
   border: 2px solid #132b52;
   padding-left: 50px;
   padding-right: 50px;
@@ -11,19 +11,19 @@
 }
 
 .measurements {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 10vw;
+  overflow: auto;
   color: #5558aa;
 }
 
-/* .readback {
+.readback {
   overflow: visible;
 }
 
-.readback:hover,
-.readback:focus {
+.measurements:hover,
+.measurements:focus {
   overflow-y: scroll;
-} */
+}
 
 .models {
   height: 100vh;
