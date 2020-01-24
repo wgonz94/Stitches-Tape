@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ThemeContext } from "../../Context/ThemeContext";
+import "./Measure.css";
 
 const Measurement = () => {
   const [state, setState] = useState([
@@ -14,72 +15,72 @@ const Measurement = () => {
     { value: 55, id: "pantInseam" },
     { value: 55, id: "hatSize" },
     { value: 55, id: "shoeSize" },
-    { value: 55, id: "height" },
-    { value: 55, id: "weight" },
+    { value: 55, id: "height", unit: "in" },
+    { value: 55, id: "weight", unit: "" },
     { value: 55, id: "hairColor" },
     { value: 55, id: "eyeColor" },
     { value: 55, id: "handedness" },
     { value: 55, id: "colorPref" },
-    { value: "unchecked", id: "units" },
-    { value: 55, id: "headDiam" },
-    { value: 55, id: "headOver" },
-    { value: 55, id: "neck" },
-    { value: 55, id: "neckFront" },
-    { value: 55, id: "neckBack" },
-    { value: 55, id: "bust" },
-    { value: 55, id: "chest" },
-    { value: 55, id: "bustFront" },
-    { value: 55, id: "bustBack" },
-    { value: 55, id: "bustPtp" },
-    { value: 55, id: "chestFront" },
-    { value: 55, id: "shoulderFront" },
-    { value: 55, id: "shoulderBack" },
-    { value: 55, id: "shoulderSeam" },
-    { value: 55, id: "slope" },
-    { value: 55, id: "shoulderCtrFront" },
-    { value: 55, id: "shoulderCtrBack" },
-    { value: 55, id: "armscyeFront" },
-    { value: 55, id: "armholeSnug" },
-    { value: 55, id: "underarmSeam" },
-    { value: 55, id: "waist" },
-    { value: 55, id: "neckToWaistFront" },
-    { value: 55, id: "neckToWaistBack" },
-    { value: 55, id: "hipAtHipbone" },
-    { value: 55, id: "hipWaist" },
-    { value: 55, id: "lgHipAcross" },
-    { value: 55, id: "lgHipVert" },
-    { value: 55, id: "neckToFloor" },
-    { value: 55, id: "waistToFloor" },
-    { value: 55, id: "waistToBelowKnee" },
-    { value: 55, id: "inseam" },
-    { value: 55, id: "kneeToAnkle" },
-    { value: 55, id: "upperThigh" },
-    { value: 55, id: "upperThighFlexed" },
-    { value: 55, id: "knee" },
-    { value: 55, id: "kneeFlexed" },
-    { value: 55, id: "calf" },
-    { value: 55, id: "ankle" },
-    { value: 55, id: "overallRise" },
-    { value: 55, id: "riseFront" },
-    { value: 55, id: "riseBack" },
-    { value: 55, id: "armLength" },
-    { value: 55, id: "overarm" },
-    { value: 55, id: "armToElbow" },
-    { value: 55, id: "elbowToWrist" },
-    { value: 55, id: "bicep" },
-    { value: 55, id: "bicepFlexed" },
-    { value: 55, id: "elbow" },
-    { value: 55, id: "wrist" },
-    { value: 55, id: "hand" },
-    { value: 55, id: "custom1" },
-    { value: 55, id: "custom2" },
-    { value: 55, id: "custom3" },
-    { value: 55, id: "custom4" },
-    { value: 55, id: "custom5" },
+    { value: 55, id: "headDiam", unit: "" },
+    { value: 55, id: "headOver", unit: "" },
+    { value: 55, id: "neck", unit: "" },
+    { value: 55, id: "neckFront", unit: "" },
+    { value: 55, id: "neckBack", unit: "" },
+    { value: 55, id: "bust", unit: "" },
+    { value: 55, id: "chest", unit: "" },
+    { value: 55, id: "bustFront", unit: "" },
+    { value: 55, id: "bustBack", unit: "" },
+    { value: 55, id: "bustPtp", unit: "" },
+    { value: 55, id: "chestFront", unit: "" },
+    { value: 55, id: "shoulderFront", unit: "" },
+    { value: 55, id: "shoulderBack", unit: "" },
+    { value: 55, id: "shoulderSeam", unit: "" },
+    { value: 55, id: "slope", unit: "" },
+    { value: 55, id: "shoulderCtrFront", unit: "" },
+    { value: 55, id: "shoulderCtrBack", unit: "" },
+    { value: 55, id: "armscyeFront", unit: "" },
+    { value: 55, id: "armholeSnug", unit: "" },
+    { value: 55, id: "underarmSeam", unit: "" },
+    { value: 55, id: "waist", unit: "" },
+    { value: 55, id: "neckToWaistFront", unit: "" },
+    { value: 55, id: "neckToWaistBack", unit: "" },
+    { value: 55, id: "hipAtHipbone", unit: "" },
+    { value: 55, id: "hipWaist", unit: "" },
+    { value: 55, id: "lgHipAcross", unit: "" },
+    { value: 55, id: "lgHipVert", unit: "" },
+    { value: 55, id: "neckToFloor", unit: "" },
+    { value: 55, id: "waistToFloor", unit: "" },
+    { value: 55, id: "waistToBelowKnee", unit: "" },
+    { value: 55, id: "inseam", unit: "" },
+    { value: 55, id: "kneeToAnkle", unit: "" },
+    { value: 55, id: "upperThigh", unit: "" },
+    { value: 55, id: "upperThighFlexed", unit: "" },
+    { value: 55, id: "knee", unit: "" },
+    { value: 55, id: "kneeFlexed", unit: "" },
+    { value: 55, id: "calf", unit: "" },
+    { value: 55, id: "ankle", unit: "" },
+    { value: 55, id: "overallRise", unit: "" },
+    { value: 55, id: "riseFront", unit: "" },
+    { value: 55, id: "riseBack", unit: "" },
+    { value: 55, id: "armLength", unit: "" },
+    { value: 55, id: "overarm", unit: "" },
+    { value: 55, id: "armToElbow", unit: "" },
+    { value: 55, id: "elbowToWrist", unit: "" },
+    { value: 55, id: "bicep", unit: "" },
+    { value: 55, id: "bicepFlexed", unit: "" },
+    { value: 55, id: "elbow", unit: "" },
+    { value: 55, id: "wrist", unit: "" },
+    { value: 55, id: "hand", unit: "" },
+    { value: 55, id: "custom1", unit: "" },
+    { value: 55, id: "custom2", unit: "" },
+    { value: 55, id: "custom3", unit: "" },
+    { value: 55, id: "custom4", unit: "" },
+    { value: 55, id: "custom5", unit: "" },
     {
       value:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam iure tempora quia nihil nisi, soluta totam explicabo sint a. Saepe, magnam? Facilis nesciunt tempore ipsum harum quo vitae facere tenetur.",
-      id: "notes"
+      id: "notes",
+      isImperial: true
     }
   ]);
 
@@ -90,8 +91,7 @@ const Measurement = () => {
     <div
       className='measurements'
       style={{
-        color: theme.text,
-        background: theme.bgc
+        backgroundColor: theme.bgc
       }}
     >
       <h3 className='center'>Client Info</h3>
@@ -100,7 +100,6 @@ const Measurement = () => {
           <div
             className='input-field col s3 readback'
             style={{
-              color: theme.text,
               background: theme.bgc
             }}
           >

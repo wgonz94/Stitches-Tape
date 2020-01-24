@@ -1,17 +1,19 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import Measurements from "../Measurements/Measurement";
+import { ThemeContext } from "../../Context/ThemeContext";
 import "./display.css";
 
-class Display extends Component {
-  render() {
-    return (
-      <section>
-        <div className='display'>
-          <Measurements />
-        </div>
-      </section>
-    );
-  }
-}
+const Display = () => {
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
+  return (
+    <div
+      className='display'
+      style={{ color: theme.text, backgroundColor: theme.bgc }}
+    >
+      <Measurements />
+    </div>
+  );
+};
 
 export default Display;

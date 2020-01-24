@@ -6,9 +6,10 @@ import { AuthContext } from "../../Context/AuthContext";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import UserImage from "../../Images/designergirl.png";
 
-const Navbar = ({ handleSubcribe, handleLogin }) => {
+const Navbar = () => {
   // Initialize SideNav
   useEffect(() => {
+    const M = window.M;
     let elements = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elements);
   });
@@ -33,21 +34,31 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
       {isAuthorized ? (
         <div>
           <div className='navbar-fixed' style={{ backgroundColor: "#5558aa" }}>
-            <div className='container'>
-              <NavLink
-                to='/'
-                className='brand-logo-center left hide-on-med-and-down flow-text'
-                style={{ color: theme.uitext }}
-              >
-                Stitches &amp; Tape
-              </NavLink>
-              <div className='nav-wrapper'>
+            <div className='nav-wrapper'>
+              <div className='container'>
+                <NavLink
+                  to='/'
+                  className='brand-logo right left hide-on-med-and-down flow-text'
+                  style={{ color: theme.uitext }}
+                >
+                  <strong>
+                    <h4>Stitches &amp; Tape</h4>
+                  </strong>
+                </NavLink>
+
+                <NavLink
+                  to='#'
+                  className='sidenav-trigger'
+                  data-target='mobile'
+                >
+                  <i className='material-icons'>menu</i>
+                </NavLink>
                 <ul
                   id='nav-mobile'
                   className='sidenav sidenav-fixed center'
                   style={{ color: theme.ui, backgroundColor: theme.bgc }}
                 >
-                  <img src={UserImage} alt='' />
+                  <img src={UserImage} className='responsive-img' alt='' />
                   <p
                     className='flow-text'
                     style={{ color: theme.ui, backgroundColor: theme.bgc }}
@@ -59,7 +70,7 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
                   <li>
                     <NavLink
                       to='/measurements'
-                      className='hoverable'
+                      className='hoverable center'
                       style={{ color: theme.ui, backgroundColor: theme.bgc }}
                     >
                       Measurements
@@ -97,6 +108,60 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
                   </li>
                 </ul>
               </div>
+              <ul
+                id='mobile'
+                className='sidenav'
+                style={{ color: theme.ui, backgroundColor: theme.bgc }}
+              >
+                <img src={UserImage} className='responsive-img center' alt='' />
+                <p
+                  className='flow-text'
+                  style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                >
+                  Edit Profile
+                </p>
+                <div className='divider'></div>
+
+                <li>
+                  <NavLink
+                    to='/measurements'
+                    className='hoverable'
+                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                  >
+                    Measurements
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/newmeasure'
+                    className='hoverable'
+                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                  >
+                    New Measurements
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/'
+                    onClick={toggleTheme}
+                    className='hoverable'
+                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                  >
+                    {theme.name}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to='/'
+                    id='logout'
+                    className='logged-in hoverable'
+                    onClick={toggleAuth}
+                    style={{ color: theme.ui }}
+                  >
+                    Log Out
+                  </NavLink>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -170,7 +235,7 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
                 </li>
                 <li>
                   <NavLink
-                    to='/'
+                    to='/display'
                     id='logout'
                     className='logged-in hoverable'
                     onClick={toggleAuth}
