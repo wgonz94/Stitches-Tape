@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import "./Title.css";
-import { ThemeContext } from "../../Context/ThemeContext";
+import React, { useContext } from 'react';
+import './Title.css';
+import { ThemeContext } from '../../Context/ThemeContext';
 
 const Title = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
@@ -36,9 +36,10 @@ const Title = () => {
           the perfect tool. Unlike most measurement tracking tools on the
           market, S&T, provides you with a large scope measurement tracking. S&T
           offers you a selection of generic measurements, 50 measurements to
-          track, and 5 custom measurements! You have the option to track these
-          measurements in inches or centimeters (whichever best suits your
-          needs). Also, you can capture any notes to relating to your client!
+          track, color preferences, plus 5 custom measurements! You have the
+          option to track these measurements in inches or centimeters (whichever
+          best suits your needs). Also, you can capture any notes to relating to
+          your client!
         </p>
       </div>
     </section>
