@@ -32,64 +32,74 @@ const Navbar = ({ handleSubcribe, handleLogin }) => {
     <header>
       {isAuthorized ? (
         <div>
-          <div className='navbar-fixed'>
-            <div className='nav-wrapper'>
-              <ul
-                id='nav-mobile'
-                className='sidenav sidenav-fixed center'
-                style={{ color: theme.ui, backgroundColor: theme.bgc }}
+          <div className='navbar-fixed' style={{ backgroundColor: "#5558aa" }}>
+            <div className='container'>
+              <NavLink
+                to='/'
+                className='brand-logo-center left hide-on-med-and-down flow-text'
+                style={{ color: theme.uitext }}
               >
-                <img src={UserImage} alt='' />
-                <p
-                  className='flow-text'
+                Stitches &amp; Tape
+              </NavLink>
+              <div className='nav-wrapper'>
+                <ul
+                  id='nav-mobile'
+                  className='sidenav sidenav-fixed center'
                   style={{ color: theme.ui, backgroundColor: theme.bgc }}
                 >
-                  Edit Profile
-                </p>
-                <div className='divider'></div>
+                  <img src={UserImage} alt='' />
+                  <p
+                    className='flow-text'
+                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                  >
+                    Edit Profile
+                  </p>
+                  <div className='divider'></div>
 
-                <li>
-                  <NavLink
-                    to='/measurements'
-                    className=' logged-in hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    Measurements
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/newmeasure'
-                    className='logged-in hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    New Measurements
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/'
-                    onClick={toggleTheme}
-                    className='hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    {theme.name}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/'
-                    id='logout'
-                    className='logged-in hoverable'
-                    onClick={toggleAuth}
-                    style={{ color: theme.ui }}
-                  >
-                    Log Out
-                  </NavLink>
-                </li>
-              </ul>
+                  <li>
+                    <NavLink
+                      to='/measurements'
+                      className='hoverable'
+                      style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                    >
+                      Measurements
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to='/newmeasure'
+                      className='hoverable'
+                      style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                    >
+                      New Measurements
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to='/'
+                      onClick={toggleTheme}
+                      className='hoverable'
+                      style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                    >
+                      {theme.name}
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to='/'
+                      id='logout'
+                      className='logged-in hoverable'
+                      onClick={toggleAuth}
+                      style={{ color: theme.ui }}
+                    >
+                      Log Out
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+
           <Dashboard />
         </div>
       ) : (

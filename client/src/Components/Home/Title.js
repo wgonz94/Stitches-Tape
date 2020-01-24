@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./Title.css";
 import { ThemeContext } from "../../Context/ThemeContext";
-import BackgroundImage from "../../Images/bodybg.png";
 
 const Title = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
