@@ -1,21 +1,28 @@
-const mongoose = require("mongoose");
+//  Package Variable Declarations
+const mongoose = require('mongoose');
+
+//  Package Dependent Variable Declarations
 const Schema = mongoose.Schema;
 
+//  New Schema Declaration
 const UserSessionSchema = new Schema({
-    userId: {
-        type: String,
-        default: ''
-    },
-    timestamp: {
-        type: Date,
-        default: Date.now()
-    },
-    isDeleted: {
-        type: Boolean,
-        default: false
-    }
-  });
+	//  //  Defines the fields for the UserSessionSchema
+	userId: {
+		type: String,
+		default: ''
+	},
+	timestamp: {
+		type: Date,
+		default: Date.now()
+	},
+	isDeleted: {
+		type: Boolean,
+		default: false
+	}
+});
 
-const User = mongoose.model("UserSession", UserSessionSchema);
-
+//  Exports
+//  //  Declares UserSession using the UserSessionSchema
+const User = mongoose.model('UserSession', UserSessionSchema);
+//  //  Exports the UserSession Model
 module.exports = User;
