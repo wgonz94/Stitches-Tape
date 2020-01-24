@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const Measurement = () => {
   const [state, setState] = useState([
@@ -82,12 +83,27 @@ const Measurement = () => {
     }
   ]);
 
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
+
   return (
-    <div className='measurements'>
+    <div
+      className='measurements'
+      style={{
+        color: theme.text,
+        background: theme.bgc
+      }}
+    >
       <h3 className='center'>Client Info</h3>
       <div className='row'>
         {state.map((initState, index) => (
-          <div className='input-field col s3 readback'>
+          <div
+            className='input-field col s3 readback'
+            style={{
+              color: theme.text,
+              background: theme.bgc
+            }}
+          >
             <p id={initState.id} value={initState.value}>
               {initState.value}
             </p>
