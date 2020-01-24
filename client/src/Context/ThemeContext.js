@@ -1,6 +1,4 @@
 import React, { createContext, Component } from "react";
-// import Title from "../Images/Title.png";
-// import DarkModeTitle from "../Images/DarkModeTitle.png";
 
 const images = require.context("../Images", true);
 
@@ -11,21 +9,21 @@ class ThemeContextProvider extends Component {
     isLightTheme: true,
     light: {
       text: "black",
-      ui: "white",
+      uitext: "white",
+      ui: "black",
       bgc: "white",
       title: images("./Title.png"),
       bgImage: images("./bodybg.png"),
       name: "Dark Mode"
-      // bg: (document.body.style.backgroundColor = "white")
     },
     dark: {
       text: "#667",
-      ui: "black",
+      uitext: "black",
+      ui: "white",
       bgc: "#000",
       title: images("./DarkModeTitle.png"),
       bgImage: images("./bodybg.png"),
       name: "Light Mode"
-      // bg: (document.body.style.backgroundColor = "black")
     }
   };
 

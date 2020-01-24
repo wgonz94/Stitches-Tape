@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MeasureImg from '../Components/Tables/MeasureImg';
+import MeasureImg from '../Components/Measurements/MeasureImg';
 
-import NewMeasurement from '../Components/Tables/NewMeasurement';
-import '../Components/Tables/Measure.css';
+import NewMeasurement from '../Components/Measurements/NewMeasurement';
+import '../Components/Measurements/Measure.css';
 
 class MeasureWrapper extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Measurements from "../Tables/Measurement";
+import Measurements from "../Measurements/Measurement";
 import "./display.css";
 
 class Display extends Component {

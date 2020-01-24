@@ -13,6 +13,7 @@ import ProtectedRoute from "./utils/protectedRoute";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ThemeContextProvider from "./Context/ThemeContext";
 import BackgroundImage from "./Images/bodybg.png";
+import AuthContextProvider from "./Context/AuthContext";
 
 // const initUser = {
 //   name: '',
@@ -54,40 +55,42 @@ class App extends Component {
     return (
       <div className='main-container'>
         <BrowserRouter>
-          <ThemeContextProvider>
-            <div className='App screen'>
-              <header>
-                <Navbar />
-              </header>
-              <main style={{ background: BackgroundImage }}>
-                <Switch>
-                  <Route exact path='/' component={Home} />
-                  <Route
-                    path='/signup'
-                    render={() => <SignUp signUp={this.signUp} />}
-                  />
-                  <Route
-                    path='/signin'
-                    render={props => <SignIn signIn={this.signIn} />}
-                  />
-                  <Route
-                    path='/logout'
-                    render={() => <LogOut logout={this.logout} />}
-                  />
-                  <ProtectedRoute
-                    exact
-                    path='/newmeasure'
-                    component={MeasureWrapper}
-                  />
-                  <Route path='/contact' component={Contact} />
-                </Switch>
-                <Route path='/dashboard' component={Dashboard} />
-              </main>
-              <footer>
-                <Footer />
-              </footer>
-            </div>
-          </ThemeContextProvider>
+          <AuthContextProvider>
+            <ThemeContextProvider>
+              <div className='App screen'>
+                <header>
+                  <Navbar />
+                </header>
+                <main style={{ background: BackgroundImage }}>
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route
+                      path='/signup'
+                      render={() => <SignUp signUp={this.signUp} />}
+                    />
+                    <Route
+                      path='/signin'
+                      render={props => <SignIn signIn={this.signIn} />}
+                    />
+                    <Route
+                      path='/logout'
+                      render={() => <LogOut logout={this.logout} />}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path='/newmeasure'
+                      component={MeasureWrapper}
+                    />
+                    <Route path='/contact' component={Contact} />
+                  </Switch>
+                  <Route path='/dashboard' component={Dashboard} />
+                </main>
+                <footer>
+                  <Footer />
+                </footer>
+              </div>
+            </ThemeContextProvider>
+          </AuthContextProvider>
         </BrowserRouter>
       </div>
     );

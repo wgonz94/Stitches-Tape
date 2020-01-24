@@ -12,7 +12,6 @@ class Dashboard extends Component {
     return (
       <div className='dashboard'>
         <Display />
-        <SideNav />
       </div>
     );
   }
