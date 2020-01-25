@@ -15,12 +15,12 @@ const UserStory = () => {
       id='about'
     >
       <div className='container'>
-        <h2
+        <h3
           className='center user-header'
           style={{ backgroundColor: "#ABADE0", color: theme.uitext }}
         >
-          I will never again be without this tool!
-        </h2>
+          "I will never again be without this tool!"
+        </h3>
       </div>
       <div className='row'>
         <div className='col s12 l8'>

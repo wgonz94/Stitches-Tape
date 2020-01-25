@@ -1,83 +1,83 @@
-import React, { Component } from 'react';
-import './Measure.css';
-import { ThemeContext } from '../../Context/ThemeContext';
-import Speech from '../Voice/Speech';
+import React, { Component } from "react";
+import "./Measure.css";
+import { ThemeContext } from "../../Context/ThemeContext";
+import Speech from "../Voice/Speech";
 
 const initialState = [
-  { value: '', id: 'clientName' },
-  { value: '', id: 'projectName' },
-  { value: '', id: 'email' },
-  { value: '', id: 'phone' },
-  { value: '', id: 'suitSize' },
-  { value: '', id: 'dressSize' },
-  { value: '', id: 'shirtSize' },
-  { value: '', id: 'pantWaist' },
-  { value: '', id: 'pantInseam' },
-  { value: '', id: 'hatSize' },
-  { value: '', id: 'shoeSize' },
-  { value: '', id: 'height' },
-  { value: '', id: 'weight' },
-  { value: '', id: 'hairColor' },
-  { value: '', id: 'eyeColor' },
-  { value: '', id: 'handedness' },
-  { value: '', id: 'colorPref' },
-  { value: 'unchecked', id: 'units' },
-  { value: '', id: 'headDiam' },
-  { value: '', id: 'headOver' },
-  { value: '', id: 'neck' },
-  { value: '', id: 'neckFront' },
-  { value: '', id: 'neckBack' },
-  { value: '', id: 'bust' },
-  { value: '', id: 'chest' },
-  { value: '', id: 'bustFront' },
-  { value: '', id: 'bustBack' },
-  { value: '', id: 'bustPtp' },
-  { value: '', id: 'chestFront' },
-  { value: '', id: 'shoulderFront' },
-  { value: '', id: 'shoulderBack' },
-  { value: '', id: 'shoulderSeam' },
-  { value: '', id: 'slope' },
-  { value: '', id: 'shoulderCtrFront' },
-  { value: '', id: 'shoulderCtrBack' },
-  { value: '', id: 'armscyeFront' },
-  { value: '', id: 'armholeSnug' },
-  { value: '', id: 'underarmSeam' },
-  { value: '', id: 'waist' },
-  { value: '', id: 'neckToWaistFront' },
-  { value: '', id: 'neckToWaistBack' },
-  { value: '', id: 'hipAtHipbone' },
-  { value: '', id: 'hipWaist' },
-  { value: '', id: 'lgHipAcross' },
-  { value: '', id: 'lgHipVert' },
-  { value: '', id: 'neckToFloor' },
-  { value: '', id: 'waistToFloor' },
-  { value: '', id: 'waistToBelowKnee' },
-  { value: '', id: 'inseam' },
-  { value: '', id: 'kneeToAnkle' },
-  { value: '', id: 'upperThigh' },
-  { value: '', id: 'upperThighFlexed' },
-  { value: '', id: 'knee' },
-  { value: '', id: 'kneeFlexed' },
-  { value: '', id: 'calf' },
-  { value: '', id: 'ankle' },
-  { value: '', id: 'overallRise' },
-  { value: '', id: 'riseFront' },
-  { value: '', id: 'riseBack' },
-  { value: '', id: 'armLength' },
-  { value: '', id: 'overarm' },
-  { value: '', id: 'armToElbow' },
-  { value: '', id: 'elbowToWrist' },
-  { value: '', id: 'bicep' },
-  { value: '', id: 'bicepFlexed' },
-  { value: '', id: 'elbow' },
-  { value: '', id: 'wrist' },
-  { value: '', id: 'hand' },
-  { value: '', id: 'custom1' },
-  { value: '', id: 'custom2' },
-  { value: '', id: 'custom3' },
-  { value: '', id: 'custom4' },
-  { value: '', id: 'custom5' },
-  { value: '', id: 'notes' }
+  { value: "", id: "clientName" },
+  { value: "", id: "projectName" },
+  { value: "", id: "email" },
+  { value: "", id: "phone" },
+  { value: "", id: "suitSize" },
+  { value: "", id: "dressSize" },
+  { value: "", id: "shirtSize" },
+  { value: "", id: "pantWaist" },
+  { value: "", id: "pantInseam" },
+  { value: "", id: "hatSize" },
+  { value: "", id: "shoeSize" },
+  { value: "", id: "height" },
+  { value: "", id: "weight" },
+  { value: "", id: "hairColor" },
+  { value: "", id: "eyeColor" },
+  { value: "", id: "handedness" },
+  { value: "", id: "colorPref" },
+  { value: "unchecked", id: "units" },
+  { value: "", id: "headDiam" },
+  { value: "", id: "headOver" },
+  { value: "", id: "neck" },
+  { value: "", id: "neckFront" },
+  { value: "", id: "neckBack" },
+  { value: "", id: "bust" },
+  { value: "", id: "chest" },
+  { value: "", id: "bustFront" },
+  { value: "", id: "bustBack" },
+  { value: "", id: "bustPtp" },
+  { value: "", id: "chestFront" },
+  { value: "", id: "shoulderFront" },
+  { value: "", id: "shoulderBack" },
+  { value: "", id: "shoulderSeam" },
+  { value: "", id: "slope" },
+  { value: "", id: "shoulderCtrFront" },
+  { value: "", id: "shoulderCtrBack" },
+  { value: "", id: "armscyeFront" },
+  { value: "", id: "armholeSnug" },
+  { value: "", id: "underarmSeam" },
+  { value: "", id: "waist" },
+  { value: "", id: "neckToWaistFront" },
+  { value: "", id: "neckToWaistBack" },
+  { value: "", id: "hipAtHipbone" },
+  { value: "", id: "hipWaist" },
+  { value: "", id: "lgHipAcross" },
+  { value: "", id: "lgHipVert" },
+  { value: "", id: "neckToFloor" },
+  { value: "", id: "waistToFloor" },
+  { value: "", id: "waistToBelowKnee" },
+  { value: "", id: "inseam" },
+  { value: "", id: "kneeToAnkle" },
+  { value: "", id: "upperThigh" },
+  { value: "", id: "upperThighFlexed" },
+  { value: "", id: "knee" },
+  { value: "", id: "kneeFlexed" },
+  { value: "", id: "calf" },
+  { value: "", id: "ankle" },
+  { value: "", id: "overallRise" },
+  { value: "", id: "riseFront" },
+  { value: "", id: "riseBack" },
+  { value: "", id: "armLength" },
+  { value: "", id: "overarm" },
+  { value: "", id: "armToElbow" },
+  { value: "", id: "elbowToWrist" },
+  { value: "", id: "bicep" },
+  { value: "", id: "bicepFlexed" },
+  { value: "", id: "elbow" },
+  { value: "", id: "wrist" },
+  { value: "", id: "hand" },
+  { value: "", id: "custom1" },
+  { value: "", id: "custom2" },
+  { value: "", id: "custom3" },
+  { value: "", id: "custom4" },
+  { value: "", id: "custom5" },
+  { value: "", id: "notes" }
 ];
 
 class NewMeasurement extends Component {
@@ -97,7 +97,7 @@ class NewMeasurement extends Component {
     this.setState({
       measurements: this.state.measurements.map(measure => {
         if (measure.id === e.target.id) {
-          if (e.target.type === 'checkbox') {
+          if (e.target.type === "checkbox") {
             measure.value = e.target.checked;
           } else {
             measure.value = e.target.value;
@@ -111,9 +111,9 @@ class NewMeasurement extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    console.log('Submitted');
+    console.log("Submitted");
     console.log(this.state);
-    document.getElementById('NMForm').reset();
+    document.getElementById("NMForm").reset();
     this.setState({ initialState });
   };
 
@@ -141,6 +141,22 @@ class NewMeasurement extends Component {
           <form id='NMForm' onSubmit={this.handleSubmit}>
             <h3 className='center-align'>Client Info</h3>
             <div className='row'>
+              {/* {this.state.measurements.map((initState, index) => (
+                <div className='input-field col s6'>
+                  <i className='material-icons prefix'>account_circle</i>
+                  <input
+                    type='text'
+                    onChange={this.handleChange}
+                    placeholder={initState.id}
+                    id={initState.id}
+                    value={this.state.measurements[index].value}
+                  />
+                  <label htmlFor={initState.id} className='active'>
+                    {initState.id} (Required)
+                  </label>
+                  <Speech name={initState.id} handleVoice={this.handleVoice} />
+                </div>
+              ))} */}
               <div className='input-field col s6'>
                 <i className='material-icons prefix'>account_circle</i>
                 <input
@@ -216,17 +232,6 @@ class NewMeasurement extends Component {
                     <label htmlFor='suitSize' className='active'>
                       Suit Size
                     </label>
-                    {/* Select Suit or Dress */}
-                    {/* <p>
-                  <label>
-                    <input name='group1' type='radio' />
-                    <span>Suit</span>
-                  </label>
-                  <label>
-                    <input name='group1' type='radio' />
-                    <span>Dress</span>
-                  </label>
-                </p> */}
                   </div>
                   {/* Dress Size */}
                   <div className='input-field col s12 m6 l3'>
