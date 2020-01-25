@@ -8,6 +8,7 @@ import SignIn from "./pages/Account/SignIn";
 import LogOut from "./pages/Account/LogOut";
 import Contact from "./Components/Contact/Contact";
 import MeasureWrapper from "./pages/MeasureWrapper";
+import Measurements from "./Components/Measurements/Measurement";
 import Footer from "./Components/Footer/Footer";
 import ProtectedRoute from "./utils/protectedRoute";
 import Display from "./Components/Dashboard/Display";
@@ -74,6 +75,7 @@ class App extends Component {
               />
               <Route exact path='/newmeasure' component={MeasureWrapper} />
               <Route path='/contact' component={Contact} />
+              <Route path='/measurements' component={Measurements} />
             </Switch>
             <Route path='/display' component={Display} />
           </main>

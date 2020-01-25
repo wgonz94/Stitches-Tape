@@ -23,7 +23,18 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 	User.findById(req.params.id)
 		.then(user => res.json(user))
-		.catch(err => res.status(404).json('User Not Found'));
+		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
+});
+
+//  Get one by username and password
+//  //  @route      PUT api/users/verify/:username
+//  //  @desc       Get User info by id
+//  //  @access     Public
+router.get('/verify/:username', (req, res) => {
+	// console.log(`username: ${req.params.username}`);
+	User.findOne({ username: req.params.username })
+		.then(user => res.json(user._id))
+		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
 });
 
 //  Add new User
@@ -53,7 +64,7 @@ router.put('/:id', (req, res) => {
 		.then(user =>
 			user.update(req.body).then(() => res.json({ success: true }))
 		)
-		.catch(err => res.status(404).json({ success: false }));
+		.catch(err => res.status(404).json({ success: false, error: err }));
 });
 
 //  Remove existing User
@@ -63,7 +74,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 	User.findById(req.params.id)
 		.then(user => user.remove().then(() => res.json({ success: true })))
-		.catch(err => res.status(404).json({ success: false }));
+		.catch(err => res.status(404).json({ success: false, error: err }));
 });
 
 //  Exports
