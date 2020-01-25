@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "whatwg-fetch";
-
+import { ThemeContext } from "../../Context/ThemeContext";
 import { getFromStorage, setInStorage } from "./../../utils/storage";
 import auth from "../../utils/auth";
 
@@ -121,11 +121,11 @@ export default class SignUp extends Component {
         if (json.success) {
           this.setState({
             isLoading: false,
-            signUpEmail: '',
-            signUpPassword: '',
-            signUpUsername: '',
-            signUpFirstName: '',
-            signUpLastName: ''
+            signUpEmail: "",
+            signUpPassword: "",
+            signUpUsername: "",
+            signUpFirstName: "",
+            signUpLastName: ""
           });
         } else {
           this.setState({
@@ -152,7 +152,12 @@ export default class SignUp extends Component {
     event.preventDefault();
   };
 
+  static contextType = ThemeContext;
+
   render() {
+    const { isLightTheme, light, dark } = this.context;
+    const theme = isLightTheme ? light : dark;
+
     const {
       isLoading,
       token,
@@ -174,45 +179,54 @@ export default class SignUp extends Component {
     if (!token) {
       return (
         <div className='container'>
-          <div className='center'>
+          <div className='center' style={{ color: theme.ui }}>
             {signUpError ? <p>{signUpError}</p> : null}
-            <h2>Sign Up</h2>
-            <input
-              type='text'
-              placeholder='First Name'
-              value={this.signUpFirstName}
-              onChange={this.onChangeSignUpFirstName}
-            />
-            <input
-              type='text'
-              placeholder='Last Name'
-              value={this.signUpLastName}
-              onChange={this.onChangeSignUpLastName}
-            />
-            <input
-              type='text'
-              placeholder='Username'
-              value={this.signUpUsername}
-              onChange={this.onChangeSignUpUsername}
-            />
-            <input
-              type='email'
-              placeholder='Email'
-              value={this.signUpEmail}
-              onChange={this.onChangeSignUpEmail}
-            />
-            <input
-              type='password'
-              placeholder='Password'
-              value={this.signUpPassword}
-              onChange={this.onChangeSignUpPassword}
-            />
-            {/*             
+            <div className='container'>
+              <h2 className='center-align'>Sign Up</h2>
+
+              <form className='border' style={{ backgroundColor: theme.bgc }}>
+                <input
+                  type='text'
+                  placeholder='First Name'
+                  value={this.signUpFirstName}
+                  onChange={this.onChangeSignUpFirstName}
+                />
+                <input
+                  type='text'
+                  placeholder='Last Name'
+                  value={this.signUpLastName}
+                  onChange={this.onChangeSignUpLastName}
+                />
+                <input
+                  type='text'
+                  placeholder='Username'
+                  value={this.signUpUsername}
+                  onChange={this.onChangeSignUpUsername}
+                />
+                <input
+                  type='email'
+                  placeholder='Email'
+                  value={this.signUpEmail}
+                  onChange={this.onChangeSignUpEmail}
+                />
+                <input
+                  type='password'
+                  placeholder='Password'
+                  value={this.signUpPassword}
+                  onChange={this.onChangeSignUpPassword}
+                />
+                {/*             
             <input
              */}
-            <button className='btn' onClick={this.onSignUp}>
-              Sign Up
-            </button>
+                <button
+                  className='btn'
+                  style={{ backgroundColor: "#5558aa" }}
+                  onClick={this.onSignUp}
+                >
+                  Sign Up
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       );

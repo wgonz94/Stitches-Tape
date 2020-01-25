@@ -4,38 +4,38 @@ import "./Measure.css";
 
 const Measurement = () => {
   const [state, setState] = useState([
-    { value: null, id: "clientName" },
-    { value: null, id: "projectName" },
-    { value: null, id: "email" },
-    { value: null, id: "phone" },
-    { value: null, id: "suitSize" },
-    { value: null, id: "dressSize" },
-    { value: null, id: "shirtSize" },
-    { value: null, id: "pantWaist" },
-    { value: null, id: "pantInseam" },
-    { value: null, id: "hatSize" },
-    { value: null, id: "shoeSize" },
-    { value: null, id: "height", unit: "in" },
-    { value: null, id: "weight", unit: "" },
-    { value: null, id: "hairColor" },
-    { value: null, id: "eyeColor" },
-    { value: null, id: "handedness" },
-    { value: null, id: "colorPref" },
-    { value: null, id: "headDiam", unit: "" },
-    { value: null, id: "headOver", unit: "" },
-    { value: null, id: "neck", unit: "" },
-    { value: null, id: "neckFront", unit: "" },
-    { value: null, id: "neckBack", unit: "" },
-    { value: null, id: "bust", unit: "" },
-    { value: null, id: "chest", unit: "" },
-    { value: null, id: "bustFront", unit: "" },
-    { value: null, id: "bustBack", unit: "" },
-    { value: null, id: "bustPtp", unit: "" },
-    { value: null, id: "chestFront", unit: "" },
-    { value: null, id: "shoulderFront", unit: "" },
-    { value: null, id: "shoulderBack", unit: "" },
-    { value: null, id: "shoulderSeam", unit: "" },
-    { value: null, id: "slope", unit: "" },
+    { value: 55, id: "clientName" },
+    { value: 55, id: "projectName" },
+    { value: 55, id: "email" },
+    { value: 55, id: "phone" },
+    { value: 55, id: "suitSize" },
+    { value: 55, id: "dressSize" },
+    { value: 55, id: "shirtSize" },
+    { value: 55, id: "pantWaist" },
+    { value: 55, id: "pantInseam" },
+    { value: 55, id: "hatSize" },
+    { value: 55, id: "shoeSize" },
+    { value: 55, id: "height", unit: "in" },
+    { value: 55, id: "weight", unit: "" },
+    { value: 55, id: "hairColor" },
+    { value: 55, id: "eyeColor" },
+    { value: 55, id: "handedness" },
+    { value: 55, id: "colorPref" },
+    { value: 55, id: "headDiam", unit: "" },
+    { value: 55, id: "headOver", unit: "" },
+    { value: 55, id: "neck", unit: "" },
+    { value: 55, id: "neckFront", unit: "" },
+    { value: 55, id: "neckBack", unit: "" },
+    { value: 55, id: "bust", unit: "" },
+    { value: 55, id: "chest", unit: "" },
+    { value: 55, id: "bustFront", unit: "" },
+    { value: 55, id: "bustBack", unit: "" },
+    { value: 55, id: "bustPtp", unit: "" },
+    { value: 55, id: "chestFront", unit: "" },
+    { value: 55, id: "shoulderFront", unit: "" },
+    { value: 55, id: "shoulderBack", unit: "" },
+    { value: 55, id: "shoulderSeam", unit: "" },
+    { value: 55, id: "slope", unit: "" },
     { value: null, id: "shoulderCtrFront", unit: "" },
     { value: null, id: "shoulderCtrBack", unit: "" },
     { value: null, id: "armscyeFront", unit: "" },
@@ -92,21 +92,24 @@ const Measurement = () => {
     >
       <h3 className='center'>Client Info</h3>
       <div className='row'>
-        {state.map((initState, index) => (
-          <div
-            className='input-field col s3 readback'
-            style={{
-              background: theme.bgc
-            }}
-          >
-            <p id={initState.id} value={initState.value}>
-              {initState.value}
-            </p>
-            <label htmlFor={initState.id} className='active'>
-              {initState.id}
-            </label>
-          </div>
-        ))}
+        <ul className='measurements'>
+          {state.map((initState, index) => (
+            <div
+              className='input-field col s3'
+              style={{
+                background: theme.bgc
+              }}
+              key={index}
+            >
+              <li id={initState.id} value={initState.value}>
+                {initState.value}
+              </li>
+              <label htmlFor={initState.id} className='active'>
+                {initState.id}
+              </label>
+            </div>
+          ))}
+        </ul>
       </div>
     </div>
   );
