@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Display from "../../Components/Dashboard/Display";
 import "./Dashboard.css";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { NavLink } from "react-router-dom";

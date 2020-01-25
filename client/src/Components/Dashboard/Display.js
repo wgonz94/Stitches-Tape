@@ -3,6 +3,8 @@ import Measurements from "../Measurements/Measurement";
 import { ThemeContext } from "../../Context/ThemeContext";
 import "./display.css";
 
+import Dashboard from "../../pages/Dashboard/Dashboard";
+
 const Display = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
   const theme = isLightTheme ? light : dark;

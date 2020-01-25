@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import M from "materialize-css";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { AuthContext } from "../../Context/AuthContext";
-import Dashboard from "../../pages/Dashboard/Dashboard";
 import UserImage from "../../Images/designergirl.png";
 
 const Navbar = () => {
@@ -201,8 +200,6 @@ const Navbar = () => {
               </div>
             </div>
           </nav>
-
-          <Dashboard />
         </div>
       ) : (
         <div className='navbar-fixed'>
@@ -272,7 +269,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to='/display'
+                    to='/dashboard'
                     id='logout'
                     className='logged-in hoverable'
                     onClick={toggleAuth}
