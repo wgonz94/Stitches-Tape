@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import './Measure.css';
 import { ThemeContext } from '../../Context/ThemeContext';
+import Speech from '../Voice/Speech';
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
+// const SpeechRecognition =
+//   window.SpeechRecognition || window.webkitSpeechRecognition;
+// const recognition = new SpeechRecognition();
 
 const NewMeasurement = () => {
   const [state, setState] = useState([
@@ -84,32 +85,37 @@ const NewMeasurement = () => {
     { value: null, id: 'notes' }
   ]);
 
-  // use voiceinput
-  let getVoice = () => {
-    // start listening
-    recognition.start();
-    console.log('listening...');
-
-    // handle input
-    recognition.onresult = e => {
-      let last = e.results.length - 1;
-      let transcript = e.results[last][0].transcript;
-      let mobileRepeatBug =
-        last === 1 && transcript === e.results[0][0].transcript;
-
-      if (!mobileRepeatBug) {
-        console.log(transcript);
-        console.log(state[1]);
-        setState({ projectName: transcript });
-        console.log(state[1]);
-      }
-    };
-
-    recognition.onspeechend = () => {
-      recognition.stop();
-      console.log('no longer listening.');
-    };
+  let handleVoice = voiceInput => {
+    // setState({ [state[1].value]: voiceInput });
+    console.log(voiceInput);
   };
+
+  // // use voiceinput
+  // let getVoice = () => {
+  //   // start listening
+  //   recognition.start();
+  //   console.log('listening...');
+
+  //   // handle input
+  //   recognition.onresult = e => {
+  //     let last = e.results.length - 1;
+  //     let transcript = e.results[last][0].transcript;
+  //     let mobileRepeatBug =
+  //       last === 1 && transcript === e.results[0][0].transcript;
+
+  //     if (!mobileRepeatBug) {
+  //       console.log(transcript);
+  //       console.log(state[1]);
+  //       setState({ projectName: transcript });
+  //       console.log(state[1]);
+  //     }
+  //   };
+
+  //   recognition.onspeechend = () => {
+  //     recognition.stop();
+  //     console.log('no longer listening.');
+  //   };
+  // };
 
   let handleChange = e => {
     setState({
@@ -151,13 +157,7 @@ const NewMeasurement = () => {
               </label>
             </div>
             <div className='input-field col s6'>
-              <i
-                className='material-icons'
-                name='projectName'
-                onClick={getVoice}
-              >
-                microphone
-              </i>
+              <Speech handleVoice={handleVoice} />
               <i className='material-icons prefix'>assignment</i>
               <input
                 type='text'
