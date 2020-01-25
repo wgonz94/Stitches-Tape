@@ -41,6 +41,7 @@ const Navbar = () => {
               <div className='nav-wrapper'>
                 <div className='container'>
                   <NavLink
+                    onClick={toggleAuth}
                     to='/'
                     className='brand-logo right left hide-on-med-and-down flow-text'
                     style={{ color: theme.uitext }}
