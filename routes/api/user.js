@@ -8,7 +8,7 @@ const router = express.Router();
 //  //  Pull in User model
 const User = require('../../models/User');
 
-//  Get all
+//  Get all Users
 //  //  @route      GET /api/users
 //  //  @desc       Get all users
 //  //  @access     Public
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 	User.find().then(users => res.json(users));
 });
 
-//  Get one
+//  Get one User by id
 //  //  @route      PUT api/users/:id
 //  //  @desc       Get User info by id
 //  //  @access     Public
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
 		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
 });
 
-//  Get one by username and password
+//  Get one User by username
 //  //  @route      PUT api/users/verify/:username
 //  //  @desc       Get User info by id
 //  //  @access     Public

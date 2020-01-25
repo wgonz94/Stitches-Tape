@@ -1,221 +1,242 @@
-import React, { Component } from "react";
-import "whatwg-fetch";
+import React, { Component } from 'react';
+import 'whatwg-fetch';
 
-import { getFromStorage, setInStorage } from "./../../utils/storage";
-import auth from "../../utils/auth";
+import { getFromStorage, setInStorage } from './../../utils/storage';
+import auth from '../../utils/auth';
 
 export default class SignUp extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      isLoading: true,
-      signUpError: "",
-      signUpFirstName: "",
-      signUpLastName: "",
-      signUpUsername: "",
-      signUpEmail: "",
-      signUpPassword: "",
-      signUpUpdatesBox: false
-    };
+		this.state = {
+			isLoading: true,
+			signUpError: '',
+			signUpFirstName: '',
+			signUpLastName: '',
+			signUpUsername: '',
+			signUpEmail: '',
+			signUpPassword: '',
+			signUpUpdatesBox: false
+		};
 
-    this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this);
-    this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this);
-    this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this);
-    this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
-    this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		// this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this);
+		// this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this);
+		// this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
+		// this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this);
 
-    this.onSignUp = this.onSignUp.bind(this);
-  }
+		this.onSignUp = this.onSignUp.bind(this);
+	}
 
-  componentDidMount() {
-    const obj = getFromStorage("the_main_app");
-    if (obj && obj.token) {
-      const { token } = obj;
-      //verify token
-      fetch("/api/account/verify?token" + token)
-        .then(res => res.json())
-        .then(json => {
-          if (json.success) {
-            auth.signup();
-            this.setState({
-              token,
-              isLoading: false
-            });
-          } else {
-            this.setState({
-              isLoading: false
-            });
-          }
-        });
-    } else {
-      this.setState({
-        isLoading: false
-      });
-    }
-  }
+	componentDidMount() {
+		const obj = getFromStorage('the_main_app');
+		if (obj && obj.token) {
+			const { token } = obj;
+			//verify token
+			fetch('/api/account/verify?token' + token)
+				.then(res => res.json())
+				.then(json => {
+					if (json.success) {
+						auth.signup();
+						this.setState({
+							token,
+							isLoading: false
+						});
+					} else {
+						this.setState({
+							isLoading: false
+						});
+					}
+				});
+		} else {
+			this.setState({
+				isLoading: false
+			});
+		}
+	}
 
-  onChangeSignUpEmail(event) {
+	/* onChangeSignUpEmail(event) {
     this.setState({
       signUpEmail: event.target.value
     });
-  }
-  onChangeSignUpPassword(event) {
+  } */
+	/* onChangeSignUpPassword(event) {
     this.setState({
       signUpPassword: event.target.value
     });
-  }
-  onChangeSignUpUsername(event) {
+  } */
+	/* onChangeSignUpUsername(event) {
     this.setState({
       signUpUsername: event.target.value
     });
-  }
-  onChangeSignUpFirstName(event) {
+  } */
+	/* onChangeSignUpFirstName(event) {
     this.setState({
       signUpFirstName: event.target.value
     });
-  }
-  onChangeSignUpLastName(event) {
+  } */
+	/* onChangeSignUpLastName(event) {
     this.setState({
       signUpLastName: event.target.value
     });
-  }
+  } */
 
-  onSignUp() {
-    //Grab State
-    const {
-      signUpFirstName,
-      signUpLastName,
-      signUpEmail,
-      signUpPassword,
-      signUpUsername
-    } = this.state;
+	handleInputChange = event => {
+		const { name, value } = event.target;
+		this.setState({
+			[name]: value
+		});
+	};
 
-    this.setState({
-      isLoading: true
-    });
-    console.log(signUpFirstName);
-    console.log(signUpLastName);
-    console.log(signUpUsername);
-    console.log(signUpEmail);
-    console.log(signUpPassword);
+	onSignUp() {
+		//Grab State
+		const {
+			signUpFirstName,
+			signUpLastName,
+			signUpEmail,
+			signUpPassword,
+			signUpUsername
+		} = this.state;
 
-    //Post request to backend
-    fetch("/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        firstName: signUpFirstName,
-        lastName: signUpLastName,
-        username: signUpUsername,
-        email: signUpEmail,
-        password: signUpPassword
-      })
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log("json", json);
-        if (json.success) {
-          this.setState({
-            isLoading: false,
-            signUpEmail: '',
-            signUpPassword: '',
-            signUpUsername: '',
-            signUpFirstName: '',
-            signUpLastName: ''
-          });
-        } else {
-          this.setState({
-            signUpError: json.message,
-            isLoading: false
-          });
-        }
-      })
-      .catch(error => {
-        throw error;
-      });
-  }
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
+		this.setState({
+			isLoading: true
+		});
+		console.log(signUpFirstName);
+		console.log(signUpLastName);
+		console.log(signUpUsername);
+		console.log(signUpEmail);
+		console.log(signUpPassword);
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
+		//Post request to backend
+		fetch('/api/signup', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: JSON.stringify({
+				firstName: signUpFirstName,
+				lastName: signUpLastName,
+				username: signUpUsername,
+				email: signUpEmail,
+				password: signUpPassword
+			})
+		})
+			.then(res => res.json())
+			.then(json => {
+				console.log('json', json);
+				if (json.success) {
+					this.setState({
+						isLoading: false,
+						signUpEmail: '',
+						signUpPassword: '',
+						signUpUsername: '',
+						signUpFirstName: '',
+						signUpLastName: ''
+					});
+				} else {
+					this.setState({
+						signUpError: json.message,
+						isLoading: false
+					});
+				}
+			})
+			.catch(error => {
+				throw error;
+			});
+	}
+	validateForm() {
+		return this.state.email.length > 0 && this.state.password.length > 0;
+	}
 
-  handleSubmit = event => {
-    event.preventDefault();
-  };
+	handleChange = event => {
+		this.setState({
+			[event.target.id]: event.target.value
+		});
+	};
 
-  render() {
-    const {
-      isLoading,
-      token,
-      signUpFirstName,
-      signUpLastName,
-      signUpEmail,
-      signUpPassword,
-      signUpError
-    } = this.state;
+	handleSubmit = event => {
+		event.preventDefault();
+	};
 
-    if (isLoading) {
-      return (
-        <div>
-          <p>Loading...</p>
-        </div>
-      );
-    }
+	render() {
+		const {
+			isLoading,
+			token,
+			signUpFirstName,
+			signUpLastName,
+			signUpEmail,
+			signUpPassword,
+			signUpError
+		} = this.state;
 
-    if (!token) {
-      return (
-        <div className='container'>
-          <div className='center'>
-            {signUpError ? <p>{signUpError}</p> : null}
-            <h2>Sign Up</h2>
-            <input
-              type='text'
-              placeholder='First Name'
-              value={this.signUpFirstName}
-              onChange={this.onChangeSignUpFirstName}
-            />
-            <input
-              type='text'
-              placeholder='Last Name'
-              value={this.signUpLastName}
-              onChange={this.onChangeSignUpLastName}
-            />
-            <input
-              type='text'
-              placeholder='Username'
-              value={this.signUpUsername}
-              onChange={this.onChangeSignUpUsername}
-            />
-            <input
-              type='email'
-              placeholder='Email'
-              value={this.signUpEmail}
-              onChange={this.onChangeSignUpEmail}
-            />
-            <input
-              type='password'
-              placeholder='Password'
-              value={this.signUpPassword}
-              onChange={this.onChangeSignUpPassword}
-            />
-            {/*             
+		if (isLoading) {
+			return (
+				<div>
+					<p>Loading...</p>
+				</div>
+			);
+		}
+
+		if (!token) {
+			return (
+				<div className='container'>
+					<div className='center'>
+						{signUpError ? <p>{signUpError}</p> : null}
+						<h2>Sign Up</h2>
+						<input
+							type='text'
+							name='signUpFirstName'
+							placeholder='First Name'
+							value={this.signUpFirstName}
+							onChange={this.handleInputChange}
+						/>
+						<input
+							type='text'
+							name='signUpLastName'
+							placeholder='Last Name'
+							value={this.signUpLastName}
+							onChange={this.handleInputChange}
+						/>
+						<input
+							type='text'
+							name='signUpUsername'
+							placeholder='Username'
+							value={this.signUpUsername}
+							onChange={this.handleInputChange}
+						/>
+						<input
+							type='email'
+							name='signUpEmail'
+							placeholder='Email'
+							value={this.signUpEmail}
+							onChange={this.handleInputChange}
+						/>
+						<input
+							type='password'
+							name='signUpPassword'
+							placeholder='Password'
+							value={this.signUpPassword}
+							onChange={this.handleInputChange}
+						/>
+						{/*             
             <input
              */}
-            <button className='btn' onClick={this.onSignUp}>
-              Sign Up
-            </button>
-          </div>
-        </div>
-      );
-    }
-  }
+						<button
+							className='btn'
+							disabled={
+								!this.state.signUpFirstName &&
+								this.state.signUpLastName &&
+								this.state.signUpUsername &&
+								this.state.signUpPassword
+							}
+							onClick={this.onSignUp}
+						>
+							Sign Up
+						</button>
+					</div>
+				</div>
+			);
+		}
+	}
 }
