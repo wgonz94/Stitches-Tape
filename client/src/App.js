@@ -11,7 +11,7 @@ import MeasureWrapper from "./pages/MeasureWrapper";
 import Measurements from "./Components/Measurements/Measurement";
 import Footer from "./Components/Footer/Footer";
 import ProtectedRoute from "./utils/protectedRoute";
-import Display from "./Components/Dashboard/Display";
+import Dashboard from "./pages/Dashboard/Dashboard";
 import ThemeContextProvider from "./Context/ThemeContext";
 import AuthContextProvider from "./Context/AuthContext";
 
@@ -30,27 +30,6 @@ import AuthContextProvider from "./Context/AuthContext";
 // };
 
 class App extends Component {
-  // state = {
-  //   currUser: initUser,
-  //   subscribed: false,
-  //   login: false
-  // };
-  // signUp = newUser => {
-  //   this.setState({ currUser: newUser });
-  // };
-
-  // signIn = user => {
-  //   this.setState({ currUser: user });
-  // };
-
-  // handleSubcribe = () => {
-  //   this.state.subscribed ?  : { divStyleAgain };
-  // };
-
-  // handleLoggedIn = () => {
-  //   this.state.login ? console.log('Logged In!') : console.log('Logged Out!');
-  // };
-
   render() {
     return (
       <div className='main-container'>
@@ -73,11 +52,15 @@ class App extends Component {
                 path='/logout'
                 render={() => <LogOut logout={this.logout} />}
               />
-              <Route exact path='/newmeasure' component={MeasureWrapper} />
+              <ProtectedRoute
+                exact
+                path='/newmeasure'
+                component={MeasureWrapper}
+              />
               <Route path='/contact' component={Contact} />
               <Route path='/measurements' component={Measurements} />
+              <ProtectedRoute path='/dashboard' component={Dashboard} />
             </Switch>
-            <Route path='/display' component={Display} />
           </main>
           <footer>
             <Footer />
