@@ -1,11 +1,14 @@
-import React from 'react';
-import './Footer.css';
+import React, { useContext } from "react";
+import "./Footer.css";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const Footer = () => {
+  const { isLightTheme, light, dark } = useContext(ThemeContext);
+  const theme = isLightTheme ? light : dark;
+
   return (
-    <footer>
+    <footer style={{ color: theme.uitext }}>
       <div className='footer'>
-        <hr />
         <div className='copy-right'>
           <p className='footer'> © 2019 Stitches &amp; Tape</p>
         </div>
