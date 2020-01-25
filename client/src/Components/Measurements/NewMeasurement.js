@@ -1,102 +1,133 @@
-import React, { Component } from "react";
-import "./Measure.css";
-import { ThemeContext } from "../../Context/ThemeContext";
+import React, { Component } from 'react';
+import './Measure.css';
+import { ThemeContext } from '../../Context/ThemeContext';
+import Speech from '../Voice/Speech';
 
-const initialState = {
-  clientName: "",
-  projectName: "",
-  email: "",
-  phone: "",
-  suitSize: "",
-  dressSize: "",
-  shirtSize: "",
-  pantWaist: "",
-  pantInseam: "",
-  hatSize: "",
-  shoeSize: "",
-  height: "",
-  weight: "",
-  hairColor: "",
-  eyeColor: "",
-  handedness: "",
-  colorPref: "",
-  headDiam: "",
-  headOver: "",
-  neck: "",
-  neckFront: "",
-  neckBack: "",
-  bust: "",
-  chest: "",
-  bustFront: "",
-  bustBack: "",
-  bustPtp: "",
-  chestFront: "",
-  shoulderFront: "",
-  shoulderBack: "",
-  shoulderSeam: "",
-  slope: "",
-  shoulderCtrFront: "",
-  shoulderCtrBack: "",
-  armscyeFront: "",
-  armholeSnug: "",
-  underarmSeam: "",
-  waist: "",
-  neckToWaistFront: "",
-  neckToWaistBack: "",
-  hipAtHipbone: "",
-  hipWaist: "",
-  lgHipAcross: "",
-  lgHipVert: "",
-  neckToFloor: "",
-  waistToFloor: "",
-  waistToBelowKnee: "",
-  inseam: "",
-  kneeToAnkle: "",
-  upperThigh: "",
-  upperThighFlexed: "",
-  knee: "",
-  kneeFlexed: "",
-  calf: "",
-  ankle: "",
-  overallRise: "",
-  riseFront: "",
-  riseBack: "",
-  armLength: "",
-  overarm: "",
-  armToElbow: "",
-  elbowToWrist: "",
-  bicep: "",
-  bicepFlexed: "",
-  elbow: "",
-  wrist: "",
-  hand: "",
-  custom1: "",
-  custom2: "",
-  custom3: "",
-  custom4: "",
-  custom5: "",
-  notes: "",
-  units: "unchecked"
-};
+const initialState = [
+  { value: '', id: 'clientName' },
+  { value: '', id: 'projectName' },
+  { value: '', id: 'email' },
+  { value: '', id: 'phone' },
+  { value: '', id: 'suitSize' },
+  { value: '', id: 'dressSize' },
+  { value: '', id: 'shirtSize' },
+  { value: '', id: 'pantWaist' },
+  { value: '', id: 'pantInseam' },
+  { value: '', id: 'hatSize' },
+  { value: '', id: 'shoeSize' },
+  { value: '', id: 'height' },
+  { value: '', id: 'weight' },
+  { value: '', id: 'hairColor' },
+  { value: '', id: 'eyeColor' },
+  { value: '', id: 'handedness' },
+  { value: '', id: 'colorPref' },
+  { value: 'unchecked', id: 'units' },
+  { value: '', id: 'headDiam' },
+  { value: '', id: 'headOver' },
+  { value: '', id: 'neck' },
+  { value: '', id: 'neckFront' },
+  { value: '', id: 'neckBack' },
+  { value: '', id: 'bust' },
+  { value: '', id: 'chest' },
+  { value: '', id: 'bustFront' },
+  { value: '', id: 'bustBack' },
+  { value: '', id: 'bustPtp' },
+  { value: '', id: 'chestFront' },
+  { value: '', id: 'shoulderFront' },
+  { value: '', id: 'shoulderBack' },
+  { value: '', id: 'shoulderSeam' },
+  { value: '', id: 'slope' },
+  { value: '', id: 'shoulderCtrFront' },
+  { value: '', id: 'shoulderCtrBack' },
+  { value: '', id: 'armscyeFront' },
+  { value: '', id: 'armholeSnug' },
+  { value: '', id: 'underarmSeam' },
+  { value: '', id: 'waist' },
+  { value: '', id: 'neckToWaistFront' },
+  { value: '', id: 'neckToWaistBack' },
+  { value: '', id: 'hipAtHipbone' },
+  { value: '', id: 'hipWaist' },
+  { value: '', id: 'lgHipAcross' },
+  { value: '', id: 'lgHipVert' },
+  { value: '', id: 'neckToFloor' },
+  { value: '', id: 'waistToFloor' },
+  { value: '', id: 'waistToBelowKnee' },
+  { value: '', id: 'inseam' },
+  { value: '', id: 'kneeToAnkle' },
+  { value: '', id: 'upperThigh' },
+  { value: '', id: 'upperThighFlexed' },
+  { value: '', id: 'knee' },
+  { value: '', id: 'kneeFlexed' },
+  { value: '', id: 'calf' },
+  { value: '', id: 'ankle' },
+  { value: '', id: 'overallRise' },
+  { value: '', id: 'riseFront' },
+  { value: '', id: 'riseBack' },
+  { value: '', id: 'armLength' },
+  { value: '', id: 'overarm' },
+  { value: '', id: 'armToElbow' },
+  { value: '', id: 'elbowToWrist' },
+  { value: '', id: 'bicep' },
+  { value: '', id: 'bicepFlexed' },
+  { value: '', id: 'elbow' },
+  { value: '', id: 'wrist' },
+  { value: '', id: 'hand' },
+  { value: '', id: 'custom1' },
+  { value: '', id: 'custom2' },
+  { value: '', id: 'custom3' },
+  { value: '', id: 'custom4' },
+  { value: '', id: 'custom5' },
+  { value: '', id: 'notes' }
+];
 
 class NewMeasurement extends Component {
-  state = { initialState };
+  state = {
+    measurements: initialState
+  };
+
+  // handleChange = e => {
+  //   this.setState({
+  //     [e.target.id]:
+  //       e.target.type === 'checkbox' ? e.target.checked : e.target.value
+  //   });
+  //   console.log(this.state);
+  // };
 
   handleChange = e => {
     this.setState({
-      [e.target.id]:
-        e.target.type === "checkbox" ? e.target.checked : e.target.value
+      measurements: this.state.measurements.map(measure => {
+        if (measure.id === e.target.id) {
+          if (e.target.type === 'checkbox') {
+            measure.value = e.target.checked;
+          } else {
+            measure.value = e.target.value;
+          }
+        }
+        return measure;
+      })
     });
-    console.log(this.state);
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    console.log("Submitted");
+    console.log('Submitted');
     console.log(this.state);
-    document.getElementById("NMForm").reset();
+    document.getElementById('NMForm').reset();
     this.setState({ initialState });
+  };
+
+  handleVoice = (voiceInput, name) => {
+    console.log(voiceInput);
+    console.log(this.state.measurements);
+    this.setState({
+      measurements: this.state.measurements.map(measure => {
+        if (measure.id === name) {
+          measure.value = voiceInput;
+        }
+        return measure;
+      })
+    });
   };
 
   static contextType = ThemeContext;
@@ -117,7 +148,7 @@ class NewMeasurement extends Component {
                   onChange={this.handleChange}
                   placeholder='John Smith'
                   id='clientName'
-                  value={this.clientName}
+                  value={this.state.measurements[0].value}
                 />
                 <label htmlFor='clientName' className='active'>
                   Client Name (Required)
@@ -127,6 +158,7 @@ class NewMeasurement extends Component {
                 <i className='material-icons prefix'>assignment</i>
                 <input
                   type='text'
+                  value={this.state.measurements[1].value}
                   onChange={this.handleChange}
                   placeholder='Project Name'
                   id='projectName'
@@ -142,6 +174,7 @@ class NewMeasurement extends Component {
                 <input
                   id='email'
                   type='email'
+                  value={this.state.measurements[2].value}
                   onChange={this.handleChange}
                   placeholder='youremail@mail.com'
                   className='validate'
@@ -154,6 +187,7 @@ class NewMeasurement extends Component {
                 <i className='material-icons prefix'>phone</i>
                 <input
                   id='phone'
+                  value={this.state.measurements[3].value}
                   onChange={this.handleChange}
                   placeholder='(555) 555-5555'
                   type='tel'
@@ -170,9 +204,11 @@ class NewMeasurement extends Component {
                 <div className='row'>
                   {/* Suit or Dress Size */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='suitSize' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>wc</i>
                     <input
                       type='text'
+                      value={this.state.measurements[4].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='suitSize'
@@ -194,9 +230,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Dress Size */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='dressSize' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>wc</i>
                     <input
                       type='text'
+                      value={this.state.measurements[5].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='dressSize'
@@ -207,9 +245,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Shirt Size */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='shirtSize' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>perm_identity</i>
                     <input
                       type='text'
+                      value={this.state.measurements[6].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='shirtSize'
@@ -220,9 +260,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Pant Waist */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='pantWaist' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>accessibility</i>
                     <input
                       type='text'
+                      value={this.state.measurements[7].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='pantWaist'
@@ -233,9 +275,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Pant Inseam */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='pantInseam' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>accessibility</i>
                     <input
                       type='text'
+                      value={this.state.measurements[8].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='pantInseam'
@@ -246,9 +290,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Hat Size */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='hatSize' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>insert_emoticon</i>
                     <input
                       type='text'
+                      value={this.state.measurements[9].value}
                       onChange={this.handleChange}
                       placeholder='Enter Size'
                       id='hatSize'
@@ -259,9 +305,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Shoe Size */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='shoeSize' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>directions_walk</i>
                     <input
                       type='text'
+                      value={this.state.measurements[10].value}
                       onChange={this.handleChange}
                       placeholder='Shoe Size'
                       id='shoeSize'
@@ -272,9 +320,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Height */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='height' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>nature_people</i>
                     <input
                       type='text'
+                      value={this.state.measurements[11].value}
                       onChange={this.handleChange}
                       placeholder='Height in Inches'
                       id='height'
@@ -285,9 +335,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Weight */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='weight' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>money</i>
                     <input
                       type='text'
+                      value={this.state.measurements[12].value}
                       onChange={this.handleChange}
                       placeholder='Weight in lbs'
                       id='weight'
@@ -298,9 +350,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Hair Color */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='hairColor' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>face</i>
                     <input
                       type='text'
+                      value={this.state.measurements[13].value}
                       onChange={this.handleChange}
                       placeholder='Brunette'
                       id='hairColor'
@@ -311,9 +365,11 @@ class NewMeasurement extends Component {
                   </div>
                   {/* Eye Color */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='eyeColor' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>visibility</i>
                     <input
                       type='text'
+                      value={this.state.measurements[14].value}
                       onChange={this.handleChange}
                       placeholder='Hazel'
                       id='eyeColor'
@@ -325,10 +381,12 @@ class NewMeasurement extends Component {
                   {/* Handedness */}
                   {/* <p> */}
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='handedness' handleVoice={this.handleVoice} />
                     <i className='material-icons prefix'>pan_tool</i>
                     <input
                       type='text'
                       id='handedness'
+                      defaultValue={this.state.measurements[15].value}
                       placeholder='Left, Right, Amb'
                       className='center'
                     />
@@ -340,6 +398,10 @@ class NewMeasurement extends Component {
                     <div className='col s12'>
                       <div className='row'>
                         <div className='input-field col s12 center'>
+                          <Speech
+                            name='colorPref'
+                            handleVoice={this.handleVoice}
+                          />
                           <i className='material-icons prefix'>color_lens</i>
                           <textarea
                             name='colorPref'
@@ -348,7 +410,8 @@ class NewMeasurement extends Component {
                             id='colorPref'
                             cols={30}
                             rows={10}
-                            defaultValue={""}
+                            placeholder=' '
+                            value={this.state.measurements[16].value}
                           />
                           <label htmlFor='colorPref'>Color Preferences</label>
                         </div>
@@ -369,7 +432,7 @@ class NewMeasurement extends Component {
                         type='checkbox'
                         onChange={this.handleChange}
                         id='units'
-                        checked={this.checked}
+                        checked={this.state.measurements[17].value}
                       />
                       <span className='lever' />
                       Centimeters
@@ -378,8 +441,10 @@ class NewMeasurement extends Component {
                 </div>
                 <div className='row'>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='headDiam' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[18].value}
                       onChange={this.handleChange}
                       placeholder='1'
                       id='headDiam'
@@ -390,8 +455,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='headOver' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[19].value}
                       onChange={this.handleChange}
                       placeholder='2'
                       id='headOver'
@@ -402,8 +469,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='neck' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[20].value}
                       onChange={this.handleChange}
                       placeholder='3'
                       id='neck'
@@ -414,8 +483,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='neckFront' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[21].value}
                       onChange={this.handleChange}
                       placeholder='4'
                       id='neckFront'
@@ -428,8 +499,10 @@ class NewMeasurement extends Component {
                 </div>
                 <div className='row'>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='neckBack' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[22].value}
                       onChange={this.handleChange}
                       placeholder='5'
                       className='center'
@@ -440,8 +513,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='bust' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[23].value}
                       onChange={this.handleChange}
                       placeholder='6'
                       id='bust'
@@ -452,8 +527,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='chest' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[24].value}
                       onChange={this.handleChange}
                       placeholder='7'
                       id='chest'
@@ -464,8 +541,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='bustFront' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[25].value}
                       onChange={this.handleChange}
                       placeholder='8'
                       id='bustFront'
@@ -478,8 +557,10 @@ class NewMeasurement extends Component {
                 </div>
                 <div className='row'>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='bustBack' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[26].value}
                       onChange={this.handleChange}
                       placeholder='9'
                       id='bustBack'
@@ -490,8 +571,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='bustPtp' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[27].value}
                       onChange={this.handleChange}
                       placeholder='10'
                       id='bustPtp'
@@ -502,8 +585,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='chestFront' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[28].value}
                       onChange={this.handleChange}
                       placeholder='11'
                       id='chestFront'
@@ -514,8 +599,13 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech
+                      name='shoulderFront'
+                      handleVoice={this.handleVoice}
+                    />
                     <input
                       type='text'
+                      value={this.state.measurements[29].value}
                       onChange={this.handleChange}
                       placeholder='12'
                       id='shoulderFront'
@@ -528,8 +618,13 @@ class NewMeasurement extends Component {
                 </div>
                 <div className='row'>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech
+                      name='shoulderBack'
+                      handleVoice={this.handleVoice}
+                    />
                     <input
                       type='text'
+                      value={this.state.measurements[30].value}
                       onChange={this.handleChange}
                       placeholder='13'
                       id='shoulderBack'
@@ -540,8 +635,13 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech
+                      name='shoulderSeam'
+                      handleVoice={this.handleVoice}
+                    />
                     <input
                       type='text'
+                      value={this.state.measurements[31].value}
                       onChange={this.handleChange}
                       placeholder='14'
                       id='shoulderSeam'
@@ -552,8 +652,10 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech name='slope' handleVoice={this.handleVoice} />
                     <input
                       type='text'
+                      value={this.state.measurements[32].value}
                       onChange={this.handleChange}
                       placeholder='15'
                       id='slope'
@@ -564,8 +666,13 @@ class NewMeasurement extends Component {
                     </label>
                   </div>
                   <div className='input-field col s12 m6 l3'>
+                    <Speech
+                      name='shoulderCtrFront'
+                      handleVoice={this.handleVoice}
+                    />
                     <input
                       type='text'
+                      value={this.state.measurements[33].value}
                       onChange={this.handleChange}
                       placeholder='16'
                       id='shoulderCtrFront'
@@ -581,8 +688,13 @@ class NewMeasurement extends Component {
             <div id='measurements2'>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech
+                    name='shoulderCtrBack'
+                    handleVoice={this.handleVoice}
+                  />
                   <input
                     type='text'
+                    value={this.state.measurements[34].value}
                     onChange={this.handleChange}
                     placeholder='17'
                     id='shoulderCtrBack'
@@ -593,8 +705,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='armscyeFront' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[35].value}
                     onChange={this.handleChange}
                     placeholder='18'
                     id='armscyeFront'
@@ -605,8 +719,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='armholeSnug' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[36].value}
                     onChange={this.handleChange}
                     placeholder='19'
                     id='armholeSnug'
@@ -617,8 +733,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='underarmSeam' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[37].value}
                     onChange={this.handleChange}
                     placeholder='20'
                     id='underarmSeam'
@@ -631,8 +749,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='waist' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[38].value}
                     onChange={this.handleChange}
                     placeholder='21'
                     id='waist'
@@ -643,8 +763,13 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech
+                    name='neckToWaistFront'
+                    handleVoice={this.handleVoice}
+                  />
                   <input
                     type='text'
+                    value={this.state.measurements[39].value}
                     onChange={this.handleChange}
                     placeholder='22'
                     id='neckToWaistFront'
@@ -655,8 +780,13 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech
+                    name='neckToWaistBack'
+                    handleVoice={this.handleVoice}
+                  />
                   <input
                     type='text'
+                    value={this.state.measurements[40].value}
                     onChange={this.handleChange}
                     placeholder='23'
                     id='neckToWaistBack'
@@ -667,8 +797,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='hipAtHipbone' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[41].value}
                     onChange={this.handleChange}
                     placeholder='24'
                     id='hipAtHipbone'
@@ -681,8 +813,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='hipWaist' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[42].value}
                     onChange={this.handleChange}
                     placeholder='25'
                     id='hipWaist'
@@ -693,8 +827,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='lgHipAcross' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[43].value}
                     onChange={this.handleChange}
                     placeholder='26'
                     id='lgHipAcross'
@@ -705,8 +841,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='lgHipVert' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[44].value}
                     onChange={this.handleChange}
                     placeholder='27'
                     id='lgHipVert'
@@ -717,8 +855,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='neckToFloor' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[45].value}
                     onChange={this.handleChange}
                     placeholder='28'
                     id='neckToFloor'
@@ -731,8 +871,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='waistToFloor' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[46].value}
                     onChange={this.handleChange}
                     placeholder='29'
                     id='waistToFloor'
@@ -743,8 +885,13 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech
+                    name='waistToBelowKnee'
+                    handleVoice={this.handleVoice}
+                  />
                   <input
                     type='text'
+                    value={this.state.measurements[47].value}
                     onChange={this.handleChange}
                     placeholder='30'
                     id='waistToBelowKnee'
@@ -755,8 +902,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='inseam' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[48].value}
                     onChange={this.handleChange}
                     placeholder='31'
                     id='inseam'
@@ -767,8 +916,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='kneeToAnkle' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[49].value}
                     onChange={this.handleChange}
                     placeholder='32'
                     id='kneeToAnkle'
@@ -784,8 +935,10 @@ class NewMeasurement extends Component {
             <div id='measurements12 m6 l3'>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='upperThigh' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[50].value}
                     onChange={this.handleChange}
                     placeholder='33'
                     id='upperThigh'
@@ -796,8 +949,13 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech
+                    name='upperThighFlexed'
+                    handleVoice={this.handleVoice}
+                  />
                   <input
                     type='text'
+                    value={this.state.measurements[51].value}
                     onChange={this.handleChange}
                     placeholder='34'
                     id='upperThighFlexed'
@@ -808,8 +966,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='knee' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[52].value}
                     onChange={this.handleChange}
                     placeholder='35'
                     id='knee'
@@ -820,8 +980,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='kneeFlexed' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[53].value}
                     onChange={this.handleChange}
                     placeholder='36'
                     id='kneeFlexed'
@@ -832,8 +994,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='calf' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[54].value}
                     onChange={this.handleChange}
                     placeholder='37'
                     id='calf'
@@ -844,8 +1008,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='ankle' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[55].value}
                     onChange={this.handleChange}
                     placeholder='38'
                     id='ankle'
@@ -858,8 +1024,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='overallRise' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[56].value}
                     onChange={this.handleChange}
                     placeholder='39'
                     id='overallRise'
@@ -870,8 +1038,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='riseFront' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[57].value}
                     onChange={this.handleChange}
                     placeholder='40'
                     id='riseFront'
@@ -882,8 +1052,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='riseBack' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[58].value}
                     onChange={this.handleChange}
                     placeholder='41'
                     id='riseBack'
@@ -894,8 +1066,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='armLength' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[59].value}
                     onChange={this.handleChange}
                     placeholder='42'
                     id='armLength'
@@ -908,8 +1082,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='overarm' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[60].value}
                     onChange={this.handleChange}
                     placeholder='43'
                     id='overarm'
@@ -920,8 +1096,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='armToElbow' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[61].value}
                     onChange={this.handleChange}
                     placeholder='44'
                     id='armToElbow'
@@ -932,8 +1110,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='elbowToWrist' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[62].value}
                     onChange={this.handleChange}
                     placeholder='45'
                     id='elbowToWrist'
@@ -944,8 +1124,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='bicep' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[63].value}
                     onChange={this.handleChange}
                     placeholder='46'
                     id='bicep'
@@ -958,8 +1140,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='bicepFlexed' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[64].value}
                     onChange={this.handleChange}
                     placeholder='47'
                     id='bicepFlexed'
@@ -970,8 +1154,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='elbow' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[65].value}
                     onChange={this.handleChange}
                     placeholder='48'
                     id='elbow'
@@ -982,10 +1168,13 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='wrist' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[66].value}
                     onChange={this.handleChange}
                     placeholder='49'
+                    id='wrist'
                     className='center'
                   />
                   <label htmlFor='wrist' className='active'>
@@ -993,8 +1182,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s12 m6 l3'>
+                  <Speech name='hand' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[67].value}
                     onChange={this.handleChange}
                     placeholder='50'
                     id='hand'
@@ -1013,8 +1204,10 @@ class NewMeasurement extends Component {
               </h5>
               <div className='row'>
                 <div className='input-field col s6 m4'>
+                  <Speech name='custom1' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[68].value}
                     onChange={this.handleChange}
                     placeholder='Custom Measurement'
                     id='custom1'
@@ -1024,8 +1217,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s6 m4'>
+                  <Speech name='custom2' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[69].value}
                     onChange={this.handleChange}
                     placeholder='Custom Measurement'
                     id='custom2'
@@ -1035,8 +1230,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s6 m4'>
+                  <Speech name='custom3' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[70].value}
                     onChange={this.handleChange}
                     placeholder='Custom Measurement2'
                     id='custom3'
@@ -1048,8 +1245,10 @@ class NewMeasurement extends Component {
               </div>
               <div className='row'>
                 <div className='input-field col s6'>
+                  <Speech name='custom4' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[71].value}
                     onChange={this.handleChange}
                     placeholder='Custom Measurement'
                     id='custom4'
@@ -1059,8 +1258,10 @@ class NewMeasurement extends Component {
                   </label>
                 </div>
                 <div className='input-field col s6'>
+                  <Speech name='custom5' handleVoice={this.handleVoice} />
                   <input
                     type='text'
+                    value={this.state.measurements[72].value}
                     onChange={this.handleChange}
                     placeholder='Custom Measurement'
                     id='custom5'
@@ -1078,13 +1279,14 @@ class NewMeasurement extends Component {
                   <div className='row'>
                     <div className='input-field col s12'>
                       <i className='material-icons prefix'>edit</i>
+                      <Speech name='notes' handleVoice={this.handleVoice} />
                       <textarea
                         name='notes'
                         className='materialize-textarea'
                         id='notes'
                         cols={30}
                         rows={10}
-                        defaultValue={""}
+                        defaultValue={this.state.measurements[73].value}
                         onChange={this.handleChange}
                       />
                       <label htmlFor='notes'>Enter Any Notes Here</label>
