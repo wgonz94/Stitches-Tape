@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import "./Title.css";
 import { ThemeContext } from "../../Context/ThemeContext";
@@ -26,6 +27,7 @@ const Title = () => {
             </h2>
           </div>
         </div>
+
         <div className='row' id='about'>
           <p
             className='flow-text col s12 m8 left z-depth-3'
