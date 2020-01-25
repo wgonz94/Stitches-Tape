@@ -4,9 +4,7 @@ const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-const Speech = ({ handleVoice }) => {
-  //   const [voiceInput, setVoiceInput] = useState('');
-
+const Speech = ({ handleVoice, name }) => {
   // use voiceinput
   let getVoice = () => {
     // start listening
@@ -22,8 +20,7 @@ const Speech = ({ handleVoice }) => {
 
       if (!mobileRepeatBug) {
         console.log(transcript);
-        // setVoiceInput({ transcript });
-        handleVoice({ transcript });
+        handleVoice(transcript, name);
       }
     };
 
@@ -33,14 +30,10 @@ const Speech = ({ handleVoice }) => {
     };
   };
 
-  //   useEffect(() => {
-  //     getVoice();
-  //   });
-
   return (
     <div>
       <i className='material-icons' onClick={getVoice}>
-        microphone
+        mic
       </i>
     </div>
   );
