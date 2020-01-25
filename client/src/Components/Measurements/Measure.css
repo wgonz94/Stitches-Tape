@@ -21,6 +21,15 @@
   overflow-y: scroll;
 }
 
+label {
+  color: #5558aa;
+}
+
+input {
+  color: #5558aa;
+  font: 25em;
+}
+
 .models {
   height: 100vh;
   border: 2px solid #132b52;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "whatwg-fetch";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 import { getFromStorage, setInStorage } from "./../../utils/storage";
 
@@ -147,9 +148,15 @@ export default class SignUp extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.state);
   };
 
+  static contextType = ThemeContext;
+
   render() {
+    const { isLightTheme, light, dark } = this.context;
+    const theme = isLightTheme ? light : dark;
+
     const {
       isLoading,
       token,
@@ -171,52 +178,63 @@ export default class SignUp extends Component {
     if (!token) {
       return (
         <div>
-          <div>
-            {signUpError ? <p>{signUpError}</p> : null}
-            <p>Sign Up</p>
-            <input
-              type='text'
-              placeholder='First Name'
-              value={this.signUpFirstName}
-              onChange={this.onChangeSignUpFirstName}
-            />
-            <input
-              type='text'
-              placeholder='Last Name'
-              value={this.signUpLastName}
-              onChange={this.onChangeSignUpLastName}
-            />
-            <input
-              type='text'
-              placeholder='Username'
-              value={this.signUpUsername}
-              onChange={this.onChangeSignUpUsername}
-            />
-            <input
-              type='email'
-              placeholder='Email'
-              value={this.signUpEmail}
-              onChange={this.onChangeSignUpEmail}
-            />
-            <input
-              type='password'
-              placeholder='Password'
-              value={this.signUpPassword}
-              onChange={this.onChangeSignUpPassword}
-            />
-            <label>
+          <div className='container' style={{ backgroundColor: theme.bgc }}>
+            <form
+              style={{ backgroundColor: theme.bgc }}
+              className='signup-form'
+            >
+              {signUpError ? <p>{signUpError}</p> : null}
+              <p>Sign Up</p>
               <input
-                type='checkbox'
-                id='moreInfo'
-                value={this.state.moreInfo}
-                checked={this.state.moreInfo}
-                onChange={e => this.handleChange(e, true)}
+                type='text'
+                placeholder='First Name'
+                value={this.signUpFirstName}
+                onChange={this.onChangeSignUpFirstName}
+                style={{ backgroundColor: theme.bgc }}
+                id={this.signUpFirstName}
               />
-              <span>
-                Please inform me of upcoming Changes, Promotions, and News
-              </span>
-            </label>
-            <button onClick={this.onSignUp}>Sign Up</button>
+              <input
+                type='text'
+                placeholder='Last Name'
+                value={this.signUpLastName}
+                onChange={this.onChangeSignUpLastName}
+                id={this.signUpLastName}
+              />
+              <input
+                type='text'
+                placeholder='Username'
+                value={this.signUpUsername}
+                onChange={this.onChangeSignUpUsername}
+                id={this.signUpUsername}
+              />
+              <input
+                type='email'
+                placeholder='Email'
+                value={this.signUpEmail}
+                onChange={this.onChangeSignUpEmail}
+                id={this.signUpEmail}
+              />
+              <input
+                type='password'
+                placeholder='Password'
+                value={this.signUpPassword}
+                onChange={this.onChangeSignUpPassword}
+                id={this.signUpPassword}
+              />
+              <label>
+                <input
+                  type='checkbox'
+                  id='moreInfo'
+                  value={this.state.moreInfo}
+                  checked={this.state.moreInfo}
+                  onChange={e => this.handleChange(e, true)}
+                />
+                <span>
+                  Please inform me of upcoming Changes, Promotions, and News
+                </span>
+              </label>
+              <button onClick={this.onSignUp}>Sign Up</button>
+            </form>
           </div>
         </div>
       );
