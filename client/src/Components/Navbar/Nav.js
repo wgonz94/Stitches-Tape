@@ -9,7 +9,6 @@ import UserImage from "../../Images/designergirl.png";
 const Navbar = () => {
   // Initialize SideNav
   useEffect(() => {
-    const M = window.M;
     let elements = document.querySelectorAll(".sidenav");
     M.Sidenav.init(elements);
   });
@@ -33,32 +32,124 @@ const Navbar = () => {
     <header>
       {isAuthorized ? (
         <div>
-          <div className='navbar-fixed' style={{ backgroundColor: "#5558aa" }}>
-            <div className='nav-wrapper'>
-              <div className='container'>
-                <NavLink
-                  to='/'
-                  className='brand-logo right left hide-on-med-and-down flow-text'
-                  style={{ color: theme.uitext }}
-                >
-                  <strong>
-                    <h4>Stitches &amp; Tape</h4>
-                  </strong>
-                </NavLink>
+          <nav>
+            <div
+              className='navbar-fixed'
+              style={{
+                backgroundColor: "#5558aa"
+              }}
+            >
+              <div className='nav-wrapper'>
+                <div className='container'>
+                  <NavLink
+                    to='/'
+                    className='brand-logo right left hide-on-med-and-down flow-text'
+                    style={{ color: theme.uitext }}
+                  >
+                    <strong>
+                      <h4>Stitches &amp; Tape</h4>
+                    </strong>
+                  </NavLink>
 
-                <NavLink
-                  to='#'
-                  className='sidenav-trigger'
-                  data-target='mobile'
-                >
-                  <i className='material-icons'>menu</i>
-                </NavLink>
+                  <NavLink
+                    to='#'
+                    className='sidenav-trigger hide-on-med-and-up'
+                    data-target='mobile'
+                  >
+                    <i className='material-icons'>menu</i>
+                  </NavLink>
+                  <ul
+                    id='nav-mobile'
+                    className='sidenav sidenav-fixed center'
+                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                  >
+                    <img src={UserImage} className='responsive-img' alt='' />
+                    <NavLink
+                      to='/profile'
+                      className='flow-text hoverable'
+                      style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                    >
+                      Edit Profile
+                    </NavLink>
+                    <div className='divider'></div>
+                    <li>
+                      <NavLink
+                        to='/newmeasure'
+                        className='hoverable'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        New Measurements
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/measurements'
+                        className='hoverable center'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        Measurements
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/newmeasure'
+                        className='hoverable'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        Templates
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/newmeasure'
+                        className='hoverable'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        Client List
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/newmeasure'
+                        className='hoverable disabled'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        Projects
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/'
+                        onClick={toggleTheme}
+                        className='hoverable'
+                        style={{ color: theme.ui, backgroundColor: theme.bgc }}
+                      >
+                        {theme.name}
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to='/'
+                        id='logout'
+                        className='logged-in hoverable'
+                        onClick={toggleAuth}
+                        style={{ color: theme.ui }}
+                      >
+                        Log Out
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
                 <ul
-                  id='nav-mobile'
-                  className='sidenav sidenav-fixed center'
+                  id='mobile'
+                  className='sidenav'
                   style={{ color: theme.ui, backgroundColor: theme.bgc }}
                 >
-                  <img src={UserImage} className='responsive-img' alt='' />
+                  <img
+                    src={UserImage}
+                    className='responsive-img center'
+                    alt=''
+                  />
                   <p
                     className='flow-text'
                     style={{ color: theme.ui, backgroundColor: theme.bgc }}
@@ -70,7 +161,7 @@ const Navbar = () => {
                   <li>
                     <NavLink
                       to='/measurements'
-                      className='hoverable center'
+                      className='hoverable'
                       style={{ color: theme.ui, backgroundColor: theme.bgc }}
                     >
                       Measurements
@@ -108,62 +199,8 @@ const Navbar = () => {
                   </li>
                 </ul>
               </div>
-              <ul
-                id='mobile'
-                className='sidenav'
-                style={{ color: theme.ui, backgroundColor: theme.bgc }}
-              >
-                <img src={UserImage} className='responsive-img center' alt='' />
-                <p
-                  className='flow-text'
-                  style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                >
-                  Edit Profile
-                </p>
-                <div className='divider'></div>
-
-                <li>
-                  <NavLink
-                    to='/measurements'
-                    className='hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    Measurements
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/newmeasure'
-                    className='hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    New Measurements
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/'
-                    onClick={toggleTheme}
-                    className='hoverable'
-                    style={{ color: theme.ui, backgroundColor: theme.bgc }}
-                  >
-                    {theme.name}
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/'
-                    id='logout'
-                    className='logged-in hoverable'
-                    onClick={toggleAuth}
-                    style={{ color: theme.ui }}
-                  >
-                    Log Out
-                  </NavLink>
-                </li>
-              </ul>
             </div>
-          </div>
+          </nav>
 
           <Dashboard />
         </div>
@@ -249,7 +286,6 @@ const Navbar = () => {
 
             {/* Mobile Nav Bar */}
             <ul className='sidenav grey lighten-2' id='mobile-menu'>
-              {/* <li><a href="#" class="logged-in">Account</NavLink></li> */}
               <li>
                 <NavLink to='/measure' className='logged-in'>
                   View Measurements

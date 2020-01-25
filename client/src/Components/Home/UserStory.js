@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import {ThemeContext} from "../../Context/ThemeContext";
+import { ThemeContext } from "../../Context/ThemeContext";
+import "./Title.css";
 
 const UserStory = () => {
   const { isLightTheme, light, dark } = useContext(ThemeContext);
@@ -14,7 +15,7 @@ const UserStory = () => {
       id='about'
     >
       <h2 className='center'>I will never again be without this tool!</h2>
-      <p className='flow-text'>
+      <blockquote className='flow-text'>
         I was the designer for two weddings both happening within weeks of each
         other. One wedding party had 6 bridesmaids and the other had 10. I had
         to lug around several binders that held everyone's measurements, color
@@ -24,7 +25,7 @@ const UserStory = () => {
         all. It added unnecessary extra work and hastle. Needless to say, the
         bride wasn't pleased. A friend later told me about S&T. This would have
         been my lifesaver had I had this tool at that time.
-      </p>
+      </blockquote>
     </div>
   );
 };
