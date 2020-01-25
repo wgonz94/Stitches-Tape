@@ -142,7 +142,6 @@ class NewMeasurement extends Component {
             <h3 className='center-align'>Client Info</h3>
             <div className='row'>
               <div className='input-field col s6'>
-                <Speech name='clientName' handleVoice={this.handleVoice} />
                 <i className='material-icons prefix'>account_circle</i>
                 <input
                   type='text'
@@ -156,7 +155,6 @@ class NewMeasurement extends Component {
                 </label>
               </div>
               <div className='input-field col s6'>
-                <Speech name='projectName' handleVoice={this.handleVoice} />
                 <i className='material-icons prefix'>assignment</i>
                 <input
                   type='text'
@@ -172,7 +170,6 @@ class NewMeasurement extends Component {
             </div>
             <div className='row'>
               <div className='input-field col s6'>
-                <Speech name='email' handleVoice={this.handleVoice} />
                 <i className='material-icons prefix'>email</i>
                 <input
                   id='email'
@@ -187,7 +184,6 @@ class NewMeasurement extends Component {
                 </label>
               </div>
               <div className='input-field col s6'>
-                <Speech name='phone' handleVoice={this.handleVoice} />
                 <i className='material-icons prefix'>phone</i>
                 <input
                   id='phone'
