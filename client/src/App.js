@@ -52,14 +52,10 @@ class App extends Component {
                 path='/logout'
                 render={() => <LogOut logout={this.logout} />}
               />
-              <ProtectedRoute
-                exact
-                path='/newmeasure'
-                component={MeasureWrapper}
-              />
+              <Route exact path='/newmeasure' component={MeasureWrapper} />
               <Route path='/contact' component={Contact} />
               <Route path='/measurements' component={Measurements} />
-              <ProtectedRoute path='/dashboard' component={Dashboard} />
+              <Route path='/dashboard' component={Dashboard} />
             </Switch>
           </main>
           <footer>
