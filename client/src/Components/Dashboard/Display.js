@@ -10,9 +10,7 @@ const Display = () => {
     <div
       className='display'
       style={{ color: theme.text, backgroundColor: theme.bgc }}
-    >
-      <Measurements />
-    </div>
+    ></div>
   );
 };
 

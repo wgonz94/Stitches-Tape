@@ -16,19 +16,15 @@
   color: #5558aa;
 }
 
-.readback {
-  overflow: visible;
-}
-
-.measurements:hover,
-.measurements:focus {
+.measurements::hover,
+.measurements::focus {
   overflow-y: scroll;
 }
 
 .models {
   height: 100vh;
   border: 2px solid #132b52;
-  margin-left: 100px;
+  margin-left: 15vw;
   max-height: 900px;
 }
 

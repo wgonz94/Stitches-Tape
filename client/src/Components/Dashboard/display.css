@@ -1,5 +1,6 @@
 .display {
-  overflow: auto;
+  overflow: clip;
+  float: right;
 }
 
 .display::hover,
