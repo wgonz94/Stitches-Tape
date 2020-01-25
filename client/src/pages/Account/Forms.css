@@ -12,12 +12,8 @@ form {
   padding-right: 50px;
 }
 
-h2 {
+.form-header {
   height: 80px;
   background-color: #5558aa;
   color: white;
-}
-
-.btn {
-  background-color: #5558aa;
 }

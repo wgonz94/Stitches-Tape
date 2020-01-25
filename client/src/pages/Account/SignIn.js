@@ -146,7 +146,7 @@ export default class SignIn extends Component {
           <div style={{ color: theme.ui }}>
             {signInError ? <p>{signInError}</p> : null}
             <div className='container'>
-              <h2 className='center'>Sign In</h2>
+              <h2 className='center form-header'>Sign In</h2>
               <form
                 onClick={this.handleSubmit}
                 className='border'
