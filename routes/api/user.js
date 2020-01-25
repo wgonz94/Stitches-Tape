@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
 router.get('/verify/:username', (req, res) => {
 	// console.log(`username: ${req.params.username}`);
 	User.findOne({ username: req.params.username })
-		.then(user => res.json(user._id))
+		.then(user => res.json(user))
 		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
 });
 
