@@ -9,6 +9,7 @@ class AuthContextProvider extends Component {
 
   toggleAuth = () => {
     this.setState({ isAuthorized: !this.state.isAuthorized });
+    console.log(this.state);
   };
 
   render() {

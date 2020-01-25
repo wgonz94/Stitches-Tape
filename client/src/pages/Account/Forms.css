@@ -3,7 +3,7 @@
 }
 
 .border {
-  border: 2px solid #132b52;
+  border: 2px solid #5558aa;
 }
 
 form {
@@ -16,4 +16,8 @@ h2 {
   height: 80px;
   background-color: #5558aa;
   color: white;
+}
+
+.btn {
+  background-color: #5558aa;
 }

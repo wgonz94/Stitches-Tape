@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import 'whatwg-fetch';
-
-import { getFromStorage, setInStorage } from './../../utils/storage';
-import auth from '../../utils/auth';
+import React, { Component } from "react";
+import "whatwg-fetch";
+import { ThemeContext } from "../../Context/ThemeContext";
+import { getFromStorage, setInStorage } from "./../../utils/storage";
+import auth from "../../utils/auth";
 
 export default class SignUp extends Component {
 	constructor(props) {
@@ -80,6 +80,7 @@ export default class SignUp extends Component {
       signUpLastName: event.target.value
     });
   } */
+
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
