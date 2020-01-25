@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
 });
 
 //  Get one by username and password
-//  //  @route      PUT api/users/:username&:password
+//  //  @route      PUT api/users/verify/:username
 //  //  @desc       Get User info by id
 //  //  @access     Public
 router.get('/verify/:username', (req, res) => {
