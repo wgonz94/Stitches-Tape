@@ -193,7 +193,7 @@ const Navbar = () => {
                 <i className='material-icons'>menu</i>
               </NavLink>
               <ul className='right hide-on-med-and-down'>
-                <li>
+                {/* <li>
                   <NavLink
                     to='/'
                     className='hoverable'
@@ -201,7 +201,7 @@ const Navbar = () => {
                   >
                     About
                   </NavLink>
-                </li>
+                </li> */}
 
                 <li>
                   <NavLink
@@ -242,16 +242,6 @@ const Navbar = () => {
                     style={{ color: theme.uitext }}
                   >
                     Log In
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to='/'
-                    onClick={toggleTheme}
-                    className='hoverable'
-                    style={{ color: theme.uitext }}
-                  >
-                    {theme.name}
                   </NavLink>
                 </li>
               </ul>
