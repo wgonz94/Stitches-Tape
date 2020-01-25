@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import M from 'materialize-css';
-import midbg from '../../Images/midbg.jpg';
-import logobg from '../../Images/logobg.jpg';
-import UserStory from './UserStory';
+import React, { useEffect } from "react";
+import M from "materialize-css";
+import midbg from "../../Images/midbg.jpg";
+import sewing from "../../Images/sewingmachine.jpg";
+import UserStory from "./UserStory";
 
 const Parallax = () => {
   useEffect(() => {
-    let elements = document.querySelectorAll('.parallax');
+    let elements = document.querySelectorAll(".parallax");
     M.Parallax.init(elements);
   }, []);
 
@@ -20,7 +20,7 @@ const Parallax = () => {
       <UserStory />
       <div className='parallax-container'>
         <div className='parallax'>
-          <img className='responsive-img' src={logobg} alt='stitchandbatton' />
+          <img className='responsive-img' src={sewing} alt='stitchandbatton' />
         </div>
       </div>
     </section>
