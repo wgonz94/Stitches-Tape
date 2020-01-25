@@ -105,12 +105,11 @@ router.post('/api/signup', (req, res, next) => {
 
 //  Login
 //  //  @route   POST api/account/login
-//  //  @desc    Post New User
+//  //  @desc    Login
 //  //  @access  Public
 router.post('/api/account/login', (req, res, next) => {
 	const { body } = req;
-	const { password } = body;
-	let { username } = body;
+	const { password, username } = body;
 
 	//	//	Validation
 	//	//	//	username
@@ -128,25 +127,18 @@ router.post('/api/account/login', (req, res, next) => {
 		});
 	}
 
-	User.find(
+	User.findOne(
 		{
 			username: username
 		},
-		(err, users) => {
+		(err, user) => {
 			if (err) {
 				return res.send({
 					success: false,
 					message: 'Error: Server error'
 				});
 			}
-			if (users.length != 1) {
-				return res.send({
-					success: false,
-					message: 'Error: Invalid'
-				});
-			}
 
-			const user = users[0];
 			if (!user.validPassword(password)) {
 				return res.send({
 					success: false,
