@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import "./Title.css";
 import { ThemeContext } from "../../Context/ThemeContext";
@@ -17,21 +16,21 @@ const Title = () => {
           color: theme.text
         }}
       >
-        <div className='row '>
-          <div className='col s12 valign-wrapper'>
-            <h2
-              className=' title'
+        <div className='row hide-on-small-and-down'>
+          <div className='col s12 hide-on-small-and-down'>
+            <h1
+              className=' center title'
               style={{ backgroundColor: "#5558aa", color: theme.uitext }}
             >
               The only measurement tracking tool you’ll ever need!
-            </h2>
+            </h1>
           </div>
         </div>
 
         <div className='row' id='about'>
           <p
             className='flow-text col s12 m8 left z-depth-3'
-            style={{ background: theme.bgc, border: '5px solid #5558aa' }}
+            style={{ background: theme.bgc, border: "5px solid #5558aa" }}
           >
             The Stitches and Tape (S&T) measurement tracker is a simplified, yet
             dynamic, tracking tool. It allows you, the Clothier, to store and
@@ -48,7 +47,7 @@ const Title = () => {
 
           <p
             className='flow-text col s12 m8 right z-depth-3'
-            style={{ background: theme.bgc, border: '5px solid #5558aa' }}
+            style={{ background: theme.bgc, border: "5px solid #5558aa" }}
           >
             Whether you're a novice designer or an experienced Clothier, S&T is
             the perfect tool. Unlike most measurement tracking tools on the
