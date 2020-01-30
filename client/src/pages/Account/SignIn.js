@@ -62,7 +62,7 @@ export default class SignIn extends Component {
 
 	onSignIn() {
 		//Grab State
-		const { signInUsername, signInPassword } = this.state;
+		const { signInUsername, signInPassword, user } = this.state;
 
 		this.setState({
 			isLoading: true
@@ -75,16 +75,16 @@ export default class SignIn extends Component {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
+				'Accept': 'application/json'
 			},
 			body: JSON.stringify({
 				username: signInUsername,
 				password: signInPassword
 			})
 		})
-			.then(res => res.json())
+			.then(res => res.json(user))
 			.then(json => {
-				if (json.success) {
+				if (json) {
 					auth.signedIn();
 					console.log('Grabbing a token');
 					setInStorage('the_main_app', { token: json.token });
@@ -97,7 +97,6 @@ export default class SignIn extends Component {
 					});
 				} else {
 					this.setState({
-						signInError: json.message,
 						isLoading: false
 					});
 				}
@@ -129,8 +128,6 @@ export default class SignIn extends Component {
 			isLoading,
 			token,
 			signInError,
-			signInUsername,
-			signInPassword
 		} = this.state;
 
 		if (isLoading) {
@@ -160,6 +157,7 @@ export default class SignIn extends Component {
 												type='text'
 												id='username'
 												placeholder='Username'
+												name='username'
 												value={this.signInUsername}
 												required
 												onChange={
@@ -169,6 +167,7 @@ export default class SignIn extends Component {
 											<input
 												type='password'
 												placeholder='Password'
+												name='password'
 												value={this.signInPassword}
 												onChange={
 													this.onChangeSignInPassword
@@ -190,13 +189,15 @@ export default class SignIn extends Component {
 								</ul>
 							</form>
 						</div>
-					</div>
+					</div>	
 				</div>
 			);
 		}
-
+		
 		return (
-			<Redirect
+			<div>
+				Welcome!
+				<Redirect
 				to={{
 					pathname: '/dashboard',
 					state: {
@@ -204,6 +205,8 @@ export default class SignIn extends Component {
 					}
 				}}
 			/>
+			</div>
+			
 		);
 	}
 }
