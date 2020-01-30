@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import 'whatwg-fetch';
-
-import { getFromStorage, setInStorage } from './../../utils/storage';
-import auth from '../../utils/auth';
+import React, { Component } from "react";
+import "whatwg-fetch";
+import { ThemeContext } from "../../Context/ThemeContext";
+import { getFromStorage, setInStorage } from "./../../utils/storage";
+import auth from "../../utils/auth";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -10,34 +10,34 @@ export default class SignUp extends Component {
 
     this.state = {
       isLoading: true,
-      signUpError: '',
-      signUpFirstName: '',
-      signUpLastName: '',
-      signUpUsername: '',
-      signUpEmail: '',
-      signUpPassword: '',
+      signUpError: "",
+      signUpFirstName: "",
+      signUpLastName: "",
+      signUpUsername: "",
+      signUpEmail: "",
+      signUpPassword: "",
       signUpUpdatesBox: false
     };
 
-    this.onChangeSignUpEmail = this.onChangeSignUpEmail.bind(this);
-    this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this);
-    this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this);
-    this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
-    this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    // this.onChangeSignUpPassword = this.onChangeSignUpPassword.bind(this);
+    // this.onChangeSignUpUsername = this.onChangeSignUpUsername.bind(this);
+    // this.onChangeSignUpFirstName = this.onChangeSignUpFirstName.bind(this);
+    // this.onChangeSignUpLastName = this.onChangeSignUpLastName.bind(this);
 
     this.onSignUp = this.onSignUp.bind(this);
   }
 
   componentDidMount() {
-    const obj = getFromStorage('the_main_app');
+    const obj = getFromStorage("the_main_app");
     if (obj && obj.token) {
       const { token } = obj;
       //verify token
-      fetch('/api/account/verify?token' + token)
+      fetch("/api/account/verify?token" + token)
         .then(res => res.json())
         .then(json => {
           if (json.success) {
-            auth.signup()
+            auth.signup();
             this.setState({
               token,
               isLoading: false
@@ -55,31 +55,39 @@ export default class SignUp extends Component {
     }
   }
 
-  onChangeSignUpEmail(event) {
+  /* onChangeSignUpEmail(event) {
     this.setState({
       signUpEmail: event.target.value
     });
-  }
-  onChangeSignUpPassword(event) {
+  } */
+  /* onChangeSignUpPassword(event) {
     this.setState({
       signUpPassword: event.target.value
     });
-  }
-  onChangeSignUpUsername(event) {
+  } */
+  /* onChangeSignUpUsername(event) {
     this.setState({
       signUpUsername: event.target.value
     });
-  }
-  onChangeSignUpFirstName(event) {
+  } */
+  /* onChangeSignUpFirstName(event) {
     this.setState({
       signUpFirstName: event.target.value
     });
-  }
-  onChangeSignUpLastName(event) {
+  } */
+  /* onChangeSignUpLastName(event) {
     this.setState({
       signUpLastName: event.target.value
     });
-  }
+<<<<<<< Updated upstream
+  } */
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   onSignUp() {
     //Grab State
@@ -101,11 +109,11 @@ export default class SignUp extends Component {
     console.log(signUpPassword);
 
     //Post request to backend
-    fetch('/api/signup', {
-      method: 'POST',
+    fetch("/api/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json"
       },
       body: JSON.stringify({
         firstName: signUpFirstName,
@@ -117,15 +125,15 @@ export default class SignUp extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log('json', json);
+        console.log("json", json);
         if (json.success) {
           this.setState({
             isLoading: false,
-            signUpEmail: '',
-            signUpPassword: '',
-            signUpUsername: '',
-            signUpFirstName: '',
-            signUpLastName: ''
+            signUpEmail: "",
+            signUpPassword: "",
+            signUpUsername: "",
+            signUpFirstName: "",
+            signUpLastName: ""
           });
         } else {
           this.setState({
@@ -151,8 +159,11 @@ export default class SignUp extends Component {
   handleSubmit = event => {
     event.preventDefault();
   };
-
+  static contextType = ThemeContext;
   render() {
+    const { isLightTheme, light, dark } = this.context;
+    const theme = isLightTheme ? light : dark;
+
     const {
       isLoading,
       token,
@@ -174,42 +185,65 @@ export default class SignUp extends Component {
     if (!token) {
       return (
         <div className='container'>
-          <div className='center'>
+          <div className='center' style={{ color: theme.ui }}>
             {signUpError ? <p>{signUpError}</p> : null}
-            <h2>Sign Up</h2>
+            <div className='container'>
+              <h2 className='center-align form-header'>Sign Up</h2>
+
+              <form className='border' style={{ backgroundColor: theme.bgc }}>
+                <input
+                  type='text'
+                  name='signUpFirstName'
+                  placeholder='First Name'
+                  value={this.signUpFirstName}
+                  onChange={this.handleInputChange}
+                />
+                <input
+                  type='text'
+                  name='signUpLastName'
+                  placeholder='Last Name'
+                  value={this.signUpLastName}
+                  onChange={this.handleInputChange}
+                />
+                <input
+                  type='text'
+                  name='signUpUsername'
+                  placeholder='Username'
+                  value={this.signUpUsername}
+                  onChange={this.handleInputChange}
+                />
+                <input
+                  type='email'
+                  name='signUpEmail'
+                  placeholder='Email'
+                  value={this.signUpEmail}
+                  onChange={this.handleInputChange}
+                />
+                <input
+                  type='password'
+                  name='signUpPassword'
+                  placeholder='Password'
+                  value={this.signUpPassword}
+                  onChange={this.handleInputChange}
+                />
+                {/*             
             <input
-              type='text'
-              placeholder='First Name'
-              value={this.signUpFirstName}
-              onChange={this.onChangeSignUpFirstName}
-            />
-            <input
-              type='text'
-              placeholder='Last Name'
-              value={this.signUpLastName}
-              onChange={this.onChangeSignUpLastName}
-            />
-            <input
-              type='text'
-              placeholder='Username'
-              value={this.signUpUsername}
-              onChange={this.onChangeSignUpUsername}
-            />
-            <input
-              type='email'
-              placeholder='Email'
-              value={this.signUpEmail}
-              onChange={this.onChangeSignUpEmail}
-            />
-            <input
-              type='password'
-              placeholder='Password'
-              value={this.signUpPassword}
-              onChange={this.onChangeSignUpPassword}
-            />
-            <button className='btn' onClick={this.onSignUp}>
-              Sign Up
-            </button>
+             */}
+                <button
+                  className='btn'
+                  disabled={
+                    !this.state.signUpFirstName &&
+                    this.state.signUpLastName &&
+                    this.state.signUpUsername &&
+                    this.state.signUpPassword
+                  }
+                  onClick={this.onSignUp}
+                  style={{ backgroundColor: "#5558aa" }}
+                >
+                  Sign Up
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       );
