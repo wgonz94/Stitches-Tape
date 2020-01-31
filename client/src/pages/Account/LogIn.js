@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { UserGenerate } from '../../Context/UserContext';
 import { AuthContext } from '../../Context/AuthContext'
 import  SignIn  from '../../utils/auth'
-// import 'whatwg-fetch';
+import 'whatwg-fetch';
 // // import auth from './../../utils/auth';
 // // import { getFromStorage, setInStorage } from './../../utils/storage';
 // import ThemeContextProvider, { ThemeContext } from '../../Context/ThemeContext';
@@ -11,15 +11,16 @@ import  SignIn  from '../../utils/auth'
 
 
 
-function Login () {
+function Login (props) {
     const { isAuthorized} = useContext(AuthContext);
     const { user, setUser} = useContext(UserGenerate)
     const [username, setUsername] = useState()
     const [password, setPassword] = useState();
     // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-    const [helperText] = useState();
+    const [helperText, setHelperText] = useState();
     // const [loading, isLoading] = useState(true)
-    const [error, setError] = useState(false);
+	const [error, setError] = useState(false);
+	
 
     const handleLogin = (e) => {
         console.log("username is " + username);
@@ -30,12 +31,20 @@ function Login () {
 
     if(isAuthorized){
         return(
-            <div>Hi! {user.firstName}</div>
+            <div>Hi! {user.firstName}
+			<Redirect to={
+				{
+					pathname:"/",
+					state: {
+						from: props.location
+					}
+				}
+			} />
+			</div>
         )
     }
 return (
     <div>
-        Stitches & Tape-- Login
        <pre> {JSON.stringify(user, null, 2)}</pre>
 				<div className='container'>
 					{/* <div style={{ color: theme.ui }}>
@@ -56,10 +65,9 @@ return (
 												placeholder='Username'
                                                 name='username'
                                                 error={error}
-												value={username}
 												required
 												onChange={ e =>
-													setUsername(e.target.value)
+												setUsername(e.target.value)
 												}
 											/>
 											<input
@@ -67,7 +75,6 @@ return (
 												placeholder='Password'
                                                 name='password'
                                                 error={error}
-                                                value={password}
                                                 helperText={helperText}
 												onChange={ e =>
 												setPassword(e.target.value)

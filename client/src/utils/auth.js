@@ -3,20 +3,20 @@ import { setInStorage } from '../utils/storage';
 import API from './API';
 
  
- function SignIn() {
+ async  function SignIn() {
     const [username] = useState(username);
     const [password] = useState(password);
     // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [setHelperText] = useState('');
     // const [loading, isLoading] = useState(true)
-    const [error, setError] = useState(false);
+    const [ setError ] = useState(false);
  
     
     
           //Post request to backend
         useEffect(() => {
-            if(username && password == ''){
-                return console.log('Error: Issue with Username/Password');
+            if(username && password === ''){
+                return;
             }
            API.grabUser(username, password)
               .then(res => res.json())

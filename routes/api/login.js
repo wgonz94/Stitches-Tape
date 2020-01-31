@@ -1,7 +1,6 @@
 //  This file handles all of the login/sign-up/logout calls
 
 //  Package Variable Declarations
-const bcrypt = require('bcryptjs')
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
 const router = require('express').Router();
@@ -14,12 +13,12 @@ const router = require('express').Router();
 //////update 1-30-2020
 ///----Using this route to get the User info
 ///---- must add the parameters to compare password and username
-router.get('/api/users/verify/:username', (req, res) => {
-	// console.log(`username: ${req.params.username}`);
-	User.findOne({ username: req.params.username })
-		.then(user => res.json(user))
-		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
-});
+// router.get('/api/users/verify/:username', (req, res) => {
+// 	// console.log(`username: ${req.params.username}`);
+// 	User.findOne({ username: req.params.username })
+// 		.then(user => res.json(user))
+// 		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
+// });
 
 router.post('/api/signup', (req, res, next) => {
 	const { body } = req;
@@ -123,24 +122,11 @@ router.post('/api/signup', (req, res, next) => {
 //////UPDATE: 1-30-2020
 ////////Take this route out, but take and insert "bcrypt.compare" to compare encrypted password to password inputed on frontend
 ////////towards the route of 'api/users/verify/:username'
-router.post('/api/account/login', async(req, res, next) => {
-  User.find(username = req.body.username)
-	if (!username) {
-		return res.status(400).send('Cannot find User')
-	}
-	try {
-		if(await bcrypt.compare(req.body.password, User.password)){
-			res.send('Success')
-		} else {
-			res.send('Failed: Not Allowed')
-		}
-	} catch {
-		return res.status(500).send('Something has gone wrong')
-	}
-	// const { body } = req;
-    // const {password, username} = body;
+router.post('/api/users/login', ( req, res, next) => {
+	const { body } = req;
+	const { password } = body
+	let { username } = body
     
-
 	//	//	Validation
 	//	//	//	username
 	if (!username) {
@@ -149,32 +135,38 @@ router.post('/api/account/login', async(req, res, next) => {
 			message: 'Error: Username cannot be blank.'
 		});
 	}
-	//	//	//	password
 	if (!password) {
 		return res.send({
-			success: false,
-			message: 'Error: Password cannot be blank.'
+		  success: false,
+		  message: 'Error: Password cannot be blank.'
 		});
-	}
-
-	// User.findOne(
-	// 	{
-	// 		username: username
-	// 	},
-	// 	(err, user) => {
-	// 		if (err) {
-	// 			return res.send({
-	// 				success: false,
-	// 				message: 'Error: Server error'
-	// 			});
-	// 		}
-
-	// 		if (!user.validPassword(password)) {
-	// 			return res.send({
-	// 				success: false,
-	// 				message: 'Error: Invalid Password'
-	// 			});
-	// 		}
+	  }
+	  username = username.trim();
+	  
+	User.find(
+		{
+			username: username
+		},
+		(err, users) => {
+			if (err) {
+				return res.send({
+					success: false,
+					message: 'Error: Server error'
+				});
+			}
+			if (users.length != 1) {
+				return res.send({
+				  success: false,
+				  message: 'Error: Invalid'
+				});
+			  }
+			  const user = users[0];
+			if (!user.validPassword(password)) {
+				return res.send({
+					success: false,
+					message: 'Error: Invalid Password'
+				});
+			}
 			// `UPDATE: 1-30-2020`
 			// `need to use this code here to create user session`
 	// 		//Otherwise correct user
@@ -194,8 +186,8 @@ router.post('/api/account/login', async(req, res, next) => {
 					token: doc._id
 				});
 			});
-	// 	}
-	// );
+		}
+	);
 });
 
 //	Verify User
