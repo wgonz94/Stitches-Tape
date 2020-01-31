@@ -4,7 +4,7 @@ import 'whatwg-fetch'
 
 export default {
   grabUser: function(username, password) {
-    return fetch('/api/users/verify/' + username, {
+    return fetch('/api/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
