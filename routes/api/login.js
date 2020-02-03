@@ -10,15 +10,12 @@ const router = require('express').Router();
 //  //  @desc    Post New User Registration
 //  //  @access  Public
 
-//////update 1-30-2020
-///----Using this route to get the User info
-///---- must add the parameters to compare password and username
-// router.get('/api/users/verify/:username', (req, res) => {
-// 	// console.log(`username: ${req.params.username}`);
-// 	User.findOne({ username: req.params.username })
-// 		.then(user => res.json(user))
-// 		.catch(err => res.status(404).json(`User Not Found\nError: ${err}`));
-// });
+router.get('/api/users/verify/user', (req, res) => {
+	// console.log(`username: ${req.params.username}`);
+	User.findOne({ username: req.params.username })
+		.then(user => res.json(user))
+		.catch(err => res.status(404).json(`User Not Found`));
+});
 
 router.post('/api/signup', (req, res, next) => {
 	const { body } = req;
@@ -27,8 +24,7 @@ router.post('/api/signup', (req, res, next) => {
 		lastName,
 		username,
 		password,
-		email,
-		wantsUpdates
+		email
 	} = body;
 
 	//	//	Validation
@@ -167,8 +163,6 @@ router.post('/api/users/login', ( req, res, next) => {
 					message: 'Error: Invalid Password'
 				});
 			}
-			// `UPDATE: 1-30-2020`
-			// `need to use this code here to create user session`
 	// 		//Otherwise correct user
 			const userSession = new UserSession();
 			userSession.userId = user._id;

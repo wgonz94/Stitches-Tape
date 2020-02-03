@@ -250,7 +250,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to='/login'
+                    to='/signin'
                     id='signin'
                     className='logged-out hoverable'
                     style={{ color: theme.uitext }}
