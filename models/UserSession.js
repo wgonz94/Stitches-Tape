@@ -23,6 +23,6 @@ const UserSessionSchema = new Schema({
 
 //  Exports
 //  //  Declares UserSession using the UserSessionSchema
-const User = mongoose.model('UserSession', UserSessionSchema);
+const UserSession = mongoose.model('UserSession', UserSessionSchema);
 //  //  Exports the UserSession Model
-module.exports = User;
+module.exports = UserSession;
