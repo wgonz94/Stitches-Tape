@@ -9,6 +9,14 @@ const router = require('express').Router();
 //  //  @route   POST api/signup
 //  //  @desc    Post New User Registration
 //  //  @access  Public
+
+router.get('/api/users/verify/user', (req, res) => {
+	// console.log(`username: ${req.params.username}`);
+	User.findOne({ username: req.params.username })
+		.then(user => res.json(user))
+		.catch(err => res.status(404).json(`User Not Found`));
+});
+
 router.post('/api/signup', (req, res, next) => {
 	const { body } = req;
 	const {
@@ -16,8 +24,7 @@ router.post('/api/signup', (req, res, next) => {
 		lastName,
 		username,
 		password,
-		email,
-		wantsUpdates
+		email
 	} = body;
 
 	//	//	Validation
@@ -85,7 +92,6 @@ router.post('/api/signup', (req, res, next) => {
 			newUser.firstName = firstName;
 			newUser.lastName = lastName;
 			newUser.username = username;
-			newUser.wantsUpdates = wantsUpdates;
 			newUser.password = newUser.generateHash(password);
 			newUser.save((err, user) => {
 				if (err) {
@@ -107,10 +113,15 @@ router.post('/api/signup', (req, res, next) => {
 //  //  @route   POST api/account/login
 //  //  @desc    Login
 //  //  @access  Public
-router.post('/api/account/login', (req, res, next) => {
-	const { body } = req;
-	const { password, username } = body;
 
+//////UPDATE: 1-30-2020
+////////Take this route out, but take and insert "bcrypt.compare" to compare encrypted password to password inputed on frontend
+////////towards the route of 'api/users/verify/:username'
+router.post('/api/users/login', ( req, res, next) => {
+	const { body } = req;
+	const { password } = body
+	let { username } = body
+    
 	//	//	Validation
 	//	//	//	username
 	if (!username) {
@@ -119,38 +130,44 @@ router.post('/api/account/login', (req, res, next) => {
 			message: 'Error: Username cannot be blank.'
 		});
 	}
-	//	//	//	password
 	if (!password) {
 		return res.send({
-			success: false,
-			message: 'Error: Password cannot be blank.'
+		  success: false,
+		  message: 'Error: Password cannot be blank.'
 		});
-	}
-
-	User.findOne(
+	  }
+	  username = username.trim();
+	  
+	User.find(
 		{
 			username: username
 		},
-		(err, user) => {
+		(err, users) => {
 			if (err) {
 				return res.send({
 					success: false,
 					message: 'Error: Server error'
 				});
 			}
-
+			if (users.length != 1) {
+				return res.send({
+				  success: false,
+				  message: 'Error: Invalid'
+				});
+			  }
+			  const user = users[0];
 			if (!user.validPassword(password)) {
 				return res.send({
 					success: false,
 					message: 'Error: Invalid Password'
 				});
 			}
-
-			//Otherwise correct user
+	// 		//Otherwise correct user
 			const userSession = new UserSession();
 			userSession.userId = user._id;
 			userSession.save((err, doc) => {
 				if (err) {
+					console.log(err)
 					return res.send({
 						success: false,
 						message: 'Error: Server error'
@@ -159,7 +176,8 @@ router.post('/api/account/login', (req, res, next) => {
 				return res.send({
 					success: true,
 					message: 'Valid sign in!',
-					token: doc._id
+					token: doc._id,
+					data: user
 				});
 			});
 		}

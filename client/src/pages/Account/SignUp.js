@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import "whatwg-fetch";
 import { ThemeContext } from "../../Context/ThemeContext";
-import { getFromStorage, setInStorage } from "./../../utils/storage";
+import { getFromStorage } from "./../../utils/storage";
 import auth from "../../utils/auth";
+import SignIn from "./SignIn";
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      isSignedUp: false,
       isLoading: true,
       signUpError: "",
       signUpFirstName: "",
@@ -113,7 +115,7 @@ export default class SignUp extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        "Accept": "application/json"
       },
       body: JSON.stringify({
         firstName: signUpFirstName,
@@ -133,7 +135,8 @@ export default class SignUp extends Component {
             signUpPassword: "",
             signUpUsername: "",
             signUpFirstName: "",
-            signUpLastName: ""
+            signUpLastName: "",
+            isSignedUp: true,
           });
         } else {
           this.setState({
@@ -167,10 +170,7 @@ export default class SignUp extends Component {
     const {
       isLoading,
       token,
-      signUpFirstName,
-      signUpLastName,
-      signUpEmail,
-      signUpPassword,
+      isSignedUp,
       signUpError
     } = this.state;
 
@@ -180,6 +180,13 @@ export default class SignUp extends Component {
           <p>Loading...</p>
         </div>
       );
+    }
+    if(isSignedUp){
+      return(
+        <div>
+          <SignIn/>
+        </div>
+      )
     }
 
     if (!token) {

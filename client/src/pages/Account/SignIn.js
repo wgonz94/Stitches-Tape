@@ -1,10 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import 'whatwg-fetch';
 import auth from './../../utils/auth';
 import { getFromStorage, setInStorage } from './../../utils/storage';
 import { ThemeContext } from '../../Context/ThemeContext';
 import './Forms.css';
+import { isAuthorized, AuthContext } from '../../Context/AuthContext'
+import { UserGenerate } from '../../Context/UserContext';
+import Dashboard from '../Dashboard/Dashboard';
+import { Sidenav } from 'materialize-css';
+
+
 
 export default class SignIn extends Component {
 	constructor(props) {
@@ -15,12 +21,15 @@ export default class SignIn extends Component {
 			isLoggedIn: '',
 			signInError: '',
 			signInUsername: '',
-			signInPassword: ''
+            signInPassword: '',
+            data: '',
+            user: ''
 		};
 		this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this);
 		this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
 
-		this.onSignIn = this.onSignIn.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
+       
 	}
 
 	componentDidMount() {
@@ -58,11 +67,16 @@ export default class SignIn extends Component {
 		this.setState({
 			signInPassword: event.target.value
 		});
-	}
-
+    }
+    // user(data){
+    //     const {getUser} = useContext(UserGenerate)
+    //     getUser(data)
+    // }
+    
 	onSignIn() {
+        
 		//Grab State
-		const { signInUsername, signInPassword } = this.state;
+		const { signInUsername, signInPassword,  } = this.state;
 
 		this.setState({
 			isLoading: true
@@ -71,11 +85,10 @@ export default class SignIn extends Component {
 		console.log(signInPassword);
 
 		//Post request to backend
-		fetch('/api/account/login', {
+		fetch('/api/users/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Accept: 'application/json'
 			},
 			body: JSON.stringify({
 				username: signInUsername,
@@ -84,8 +97,7 @@ export default class SignIn extends Component {
 		})
 			.then(res => res.json())
 			.then(json => {
-				if (json.success) {
-					auth.signedIn();
+				if (json) {
 					console.log('Grabbing a token');
 					setInStorage('the_main_app', { token: json.token });
 					this.setState({
@@ -93,16 +105,21 @@ export default class SignIn extends Component {
 						isLoading: false,
 						signInUsername: '',
 						signInPassword: '',
-						token: json.token
-					});
+                        token: json.token,
+                        data: json.data
+                    });
 				} else {
 					this.setState({
-						signInError: json.message,
 						isLoading: false
 					});
 				}
 			});
-	}
+    }
+    handleUser = () => {
+        const user = this.state.data
+        this.setState({user: user})
+        console.log(user)
+    }
 
 	validateForm() {
 		return (
@@ -116,9 +133,11 @@ export default class SignIn extends Component {
 			[event.target.id]: event.target.value
 		});
 	};
-
+    static contextType = AuthContext
 	handleSubmit = event => {
-		event.preventDefault();
+        event.preventDefault();
+      const {isAuthorized} = this.state
+      this.setState({isAuthorized: true})
 	};
 	static contextType = ThemeContext;
 	render() {
@@ -128,9 +147,7 @@ export default class SignIn extends Component {
 		const {
 			isLoading,
 			token,
-			signInError,
-			signInUsername,
-			signInPassword
+            signInError
 		} = this.state;
 
 		if (isLoading) {
@@ -139,7 +156,8 @@ export default class SignIn extends Component {
 					<p>Loading...</p>
 				</div>
 			);
-		}
+        }
+        
 
 		if (!token) {
 			return (
@@ -160,6 +178,7 @@ export default class SignIn extends Component {
 												type='text'
 												id='username'
 												placeholder='Username'
+												name='username'
 												value={this.signInUsername}
 												required
 												onChange={
@@ -169,6 +188,7 @@ export default class SignIn extends Component {
 											<input
 												type='password'
 												placeholder='Password'
+												name='password'
 												value={this.signInPassword}
 												onChange={
 													this.onChangeSignInPassword
@@ -190,20 +210,18 @@ export default class SignIn extends Component {
 								</ul>
 							</form>
 						</div>
-					</div>
+					</div>	
 				</div>
 			);
 		}
-
+		
 		return (
-			<Redirect
-				to={{
-					pathname: '/dashboard',
-					state: {
-						from: this.props.location
-					}
-				}}
-			/>
+			<div>
+				
+                <Dashboard user = {this.state.data}/>
+                
+			</div>
+			
 		);
 	}
 }

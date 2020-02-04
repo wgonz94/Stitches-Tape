@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import Header from '../Components/Home/Header';
 import Title from '../Components/Home/Title';
 import About from '../Components/Home/About';
 import Parallax from '../Components/Home/Parallax';
+import {UserGenerate} from '../Context/UserContext'
 
-class Home extends Component {
-  render() {
+export function Home() {
+  const {user} = useContext(UserGenerate)
+
     return (
       <div>
+        <pre> {JSON.stringify(user, null, 2)}</pre>
         <Header />
         <main>
           <Title />
@@ -16,7 +19,7 @@ class Home extends Component {
         </main>
       </div>
     );
-  }
+  
 }
 
 export default Home;

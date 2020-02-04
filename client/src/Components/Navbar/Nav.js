@@ -1,14 +1,14 @@
-import React, { useEffect, useContext } from "react";
-import { NavLink } from "react-router-dom";
-import M from "materialize-css";
-import { ThemeContext } from "../../Context/ThemeContext";
-import { AuthContext } from "../../Context/AuthContext";
-import UserImage from "../../Images/designergirl.png";
+import React, { useEffect, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import M from 'materialize-css';
+import { ThemeContext } from '../../Context/ThemeContext';
+import { AuthContext } from '../../Context/AuthContext';
+import UserImage from '../../Images/designergirl.png';
 
 const Navbar = () => {
   // Initialize SideNav
   useEffect(() => {
-    let elements = document.querySelectorAll(".sidenav");
+    let elements = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elements);
   });
 
@@ -35,7 +35,7 @@ const Navbar = () => {
             <div
               className='navbar-fixed'
               style={{
-                backgroundColor: "#5558aa"
+                backgroundColor: '#5558aa'
               }}
             >
               <div className='nav-wrapper'>
@@ -101,7 +101,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <NavLink
-                        to='/newmeasure'
+                        to='/clients'
                         className='hoverable'
                         style={{ color: theme.ui, backgroundColor: theme.bgc }}
                       >
