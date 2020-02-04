@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React, {  useContext } from "react";
 import "./Dashboard.css";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { NavLink } from "react-router-dom";
 
-class Dashboard extends Component {
-  state = {
-    username: "Julia"
-  };
 
-  static contextType = ThemeContext;
-  render() {
-    const { isLightTheme, light, dark } = this.context;
-    const theme = isLightTheme ? light : dark;
+function Dashboard (props) {
+
+  const {isLightTheme, light, dark} =  useContext(ThemeContext)
+  const theme = isLightTheme ? light : dark;
 
     return (
       <div className='container'>
@@ -26,7 +22,7 @@ class Dashboard extends Component {
           >
             <div className='row'>
               <div className='col s12'>
-                <h1 className='center'>Welcome {this.state.username}</h1>
+                <h1 className='center'>Welcome {props.user.firstName}</h1>
               </div>
             </div>
             <div className='row'>
@@ -166,6 +162,6 @@ class Dashboard extends Component {
       </div>
     );
   }
-}
+
 
 export default Dashboard;

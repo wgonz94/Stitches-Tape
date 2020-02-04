@@ -1,212 +1,227 @@
-// import React, { Component } from 'react';
-// import { Route, Redirect } from 'react-router-dom';
-// import 'whatwg-fetch';
-// import auth from './../../utils/auth';
-// import { getFromStorage, setInStorage } from './../../utils/storage';
-// import { ThemeContext } from '../../Context/ThemeContext';
-// import './Forms.css';
+import React, { Component, useContext } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import 'whatwg-fetch';
+import auth from './../../utils/auth';
+import { getFromStorage, setInStorage } from './../../utils/storage';
+import { ThemeContext } from '../../Context/ThemeContext';
+import './Forms.css';
+import { isAuthorized, AuthContext } from '../../Context/AuthContext'
+import { UserGenerate } from '../../Context/UserContext';
+import Dashboard from '../Dashboard/Dashboard';
+import { Sidenav } from 'materialize-css';
 
-// export default class SignIn extends Component {
-// 	constructor(props) {
-// 		super(props);
 
-// 		this.state = {
-// 			isLoading: true,
-// 			isLoggedIn: '',
-// 			signInError: '',
-// 			signInUsername: '',
-// 			signInPassword: ''
-// 		};
-// 		this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this);
-// 		this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
 
-// 		this.onSignIn = this.onSignIn.bind(this);
-// 	}
+export default class SignIn extends Component {
+	constructor(props) {
+		super(props);
 
-// 	componentDidMount() {
-// 		const obj = getFromStorage('the_main_app');
-// 		if (obj && obj.token) {
-// 			const { token } = obj;
-// 			//verify token
-// 			fetch('/api/account/verify?token' + token)
-// 				.then(res => res.json())
-// 				.then(json => {
-// 					if (json.success) {
-// 						this.setState({
-// 							token,
-// 							isLoading: false
-// 						});
-// 					} else {
-// 						this.setState({
-// 							isLoading: false
-// 						});
-// 					}
-// 				});
-// 		} else {
-// 			this.setState({
-// 				isLoading: false
-// 			});
-// 		}
-// 	}
+		this.state = {
+			isLoading: true,
+			isLoggedIn: '',
+			signInError: '',
+			signInUsername: '',
+            signInPassword: '',
+            data: '',
+            user: ''
+		};
+		this.onChangeSignInUsername = this.onChangeSignInUsername.bind(this);
+		this.onChangeSignInPassword = this.onChangeSignInPassword.bind(this);
 
-// 	onChangeSignInUsername(event) {
-// 		this.setState({
-// 			signInUsername: event.target.value
-// 		});
-// 	}
-// 	onChangeSignInPassword(event) {
-// 		this.setState({
-// 			signInPassword: event.target.value
-// 		});
-// 	}
+        this.onSignIn = this.onSignIn.bind(this);
+       
+	}
 
-// 	onSignIn() {
-// 		//Grab State
-// 		const { signInUsername, signInPassword, user } = this.state;
+	componentDidMount() {
+		const obj = getFromStorage('the_main_app');
+		if (obj && obj.token) {
+			const { token } = obj;
+			//verify token
+			fetch('/api/account/verify?token' + token)
+				.then(res => res.json())
+				.then(json => {
+					if (json.success) {
+						this.setState({
+							token,
+							isLoading: false
+						});
+					} else {
+						this.setState({
+							isLoading: false
+						});
+					}
+				});
+		} else {
+			this.setState({
+				isLoading: false
+			});
+		}
+	}
 
-// 		this.setState({
-// 			isLoading: true
-// 		});
-// 		console.log(signInUsername);
-// 		console.log(signInPassword);
+	onChangeSignInUsername(event) {
+		this.setState({
+			signInUsername: event.target.value
+		});
+	}
+	onChangeSignInPassword(event) {
+		this.setState({
+			signInPassword: event.target.value
+		});
+    }
+    // user(data){
+    //     const {getUser} = useContext(UserGenerate)
+    //     getUser(data)
+    // }
+    
+	onSignIn() {
+        
+		//Grab State
+		const { signInUsername, signInPassword,  } = this.state;
 
-// 		//Post request to backend
-// 		fetch('/api/account/login', {
-// 			method: 'POST',
-// 			headers: {
-// 				'Content-Type': 'application/json',
-// 				'Accept': 'application/json'
-// 			},
-// 			body: JSON.stringify({
-// 				username: signInUsername,
-// 				password: signInPassword
-// 			})
-// 		})
-// 			.then(res => res.json(user))
-// 			.then(json => {
-// 				if (json) {
-// 					auth.signedIn();
-// 					console.log('Grabbing a token');
-// 					setInStorage('the_main_app', { token: json.token });
-// 					this.setState({
-// 						signInError: json.message,
-// 						isLoading: false,
-// 						signInUsername: '',
-// 						signInPassword: '',
-// 						token: json.token
-// 					});
-// 				} else {
-// 					this.setState({
-// 						isLoading: false
-// 					});
-// 				}
-// 			});
-// 	}
+		this.setState({
+			isLoading: true
+		});
+		console.log(signInUsername);
+		console.log(signInPassword);
 
-// 	validateForm() {
-// 		return (
-// 			this.state.signInUsername.length > 0 &&
-// 			this.state.signInPassword.length > 0
-// 		);
-// 	}
+		//Post request to backend
+		fetch('/api/users/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				username: signInUsername,
+				password: signInPassword
+			})
+		})
+			.then(res => res.json())
+			.then(json => {
+				if (json) {
+					console.log('Grabbing a token');
+					setInStorage('the_main_app', { token: json.token });
+					this.setState({
+						signInError: json.message,
+						isLoading: false,
+						signInUsername: '',
+						signInPassword: '',
+                        token: json.token,
+                        data: json.data
+                    });
+				} else {
+					this.setState({
+						isLoading: false
+					});
+				}
+			});
+    }
+    handleUser = () => {
+        const user = this.state.data
+        this.setState({user: user})
+        console.log(user)
+    }
 
-// 	handleChange = event => {
-// 		this.setState({
-// 			[event.target.id]: event.target.value
-// 		});
-// 	};
+	validateForm() {
+		return (
+			this.state.signInUsername.length > 0 &&
+			this.state.signInPassword.length > 0
+		);
+	}
 
-// 	handleSubmit = event => {
-// 		event.preventDefault();
-// 	};
-// 	static contextType = ThemeContext;
-// 	render() {
-// 		const { isLightTheme, light, dark } = this.context;
-// 		const theme = isLightTheme ? light : dark;
+	handleChange = event => {
+		this.setState({
+			[event.target.id]: event.target.value
+		});
+	};
+    static contextType = AuthContext
+	handleSubmit = event => {
+        event.preventDefault();
+      const {isAuthorized} = this.state
+      this.setState({isAuthorized: true})
+	};
+	static contextType = ThemeContext;
+	render() {
+		const { isLightTheme, light, dark } = this.context;
+		const theme = isLightTheme ? light : dark;
 
-// 		const {
-// 			isLoading,
-// 			token,
-// 			signInError,
-// 		} = this.state;
+		const {
+			isLoading,
+			token,
+            signInError
+		} = this.state;
 
-// 		if (isLoading) {
-// 			return (
-// 				<div>
-// 					<p>Loading...</p>
-// 				</div>
-// 			);
-// 		}
+		if (isLoading) {
+			return (
+				<div>
+					<p>Loading...</p>
+				</div>
+			);
+        }
+        
 
-// 		if (!token) {
-// 			return (
-// 				<div className='container'>
-// 					<div style={{ color: theme.ui }}>
-// 						{signInError ? <p>{signInError}</p> : null}
-// 						<div className='container'>
-// 							<h2 className='center form-header'>Sign In</h2>
-// 							<form
-// 								onClick={this.handleSubmit}
-// 								className='border'
-// 								style={{ backgroundColor: theme.bgc }}
-// 							>
-// 								<ul className='login-form center'>
-// 									<div>
-// 										<li>
-// 											<input
-// 												type='text'
-// 												id='username'
-// 												placeholder='Username'
-// 												name='username'
-// 												value={this.signInUsername}
-// 												required
-// 												onChange={
-// 													this.onChangeSignInUsername
-// 												}
-// 											/>
-// 											<input
-// 												type='password'
-// 												placeholder='Password'
-// 												name='password'
-// 												value={this.signInPassword}
-// 												onChange={
-// 													this.onChangeSignInPassword
-// 												}
-// 											/>
-// 										</li>
-// 										<br />
-// 										{/* <h4>I forgot my Password!</h4> */}
-// 										<input
-// 											className='btn'
-// 											type='submit'
-// 											onClick={this.onSignIn}
-// 											defaultValue='Login'
-// 											style={{
-// 												backgroundColor: '#5558aa'
-// 											}}
-// 										/>
-// 									</div>
-// 								</ul>
-// 							</form>
-// 						</div>
-// 					</div>	
-// 				</div>
-// 			);
-// 		}
+		if (!token) {
+			return (
+				<div className='container'>
+					<div style={{ color: theme.ui }}>
+						{signInError ? <p>{signInError}</p> : null}
+						<div className='container'>
+							<h2 className='center form-header'>Sign In</h2>
+							<form
+								onClick={this.handleSubmit}
+								className='border'
+								style={{ backgroundColor: theme.bgc }}
+							>
+								<ul className='login-form center'>
+									<div>
+										<li>
+											<input
+												type='text'
+												id='username'
+												placeholder='Username'
+												name='username'
+												value={this.signInUsername}
+												required
+												onChange={
+													this.onChangeSignInUsername
+												}
+											/>
+											<input
+												type='password'
+												placeholder='Password'
+												name='password'
+												value={this.signInPassword}
+												onChange={
+													this.onChangeSignInPassword
+												}
+											/>
+										</li>
+										<br />
+										{/* <h4>I forgot my Password!</h4> */}
+										<input
+											className='btn'
+											type='submit'
+											onClick={this.onSignIn}
+											defaultValue='Login'
+											style={{
+												backgroundColor: '#5558aa'
+											}}
+										/>
+									</div>
+								</ul>
+							</form>
+						</div>
+					</div>	
+				</div>
+			);
+		}
 		
-// 		return (
-// 			<div>
-// 				Welcome!
-// 				<Redirect
-// 				to={{
-// 					pathname: '/dashboard',
-// 					state: {
-// 						from: this.props.location
-// 					}
-// 				}}
-// 			/>
-// 			</div>
+		return (
+			<div>
+				
+                <Dashboard user = {this.state.data}/>
+                
+			</div>
 			
-// 		);
-// 	}
-// }
+		);
+	}
+}

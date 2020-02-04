@@ -11,8 +11,8 @@ export default {
             'Accept': 'application/json'
         },
         body: JSON.stringify({
-            username: {username},
-            password: {password}
+            username: username,
+            password: password
         })
     })
   }

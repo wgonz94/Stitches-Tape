@@ -21,7 +21,7 @@ const UserSchema = new Schema({
 //  Schema Methods
 //  //  Generates a Hash based on the password passed in
 UserSchema.methods.generateHash = function(password) {
-	return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 };
 //  //  Checks to see if given password is valid
 UserSchema.methods.validPassword = function(password) {
