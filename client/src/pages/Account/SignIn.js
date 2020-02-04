@@ -1,14 +1,12 @@
 import React, { Component, useContext } from 'react';
-import { Route, Redirect } from 'react-router-dom';
 import 'whatwg-fetch';
-import auth from './../../utils/auth';
+import Auth from './../../utils/auth';
 import { getFromStorage, setInStorage } from './../../utils/storage';
 import { ThemeContext } from '../../Context/ThemeContext';
 import './Forms.css';
-import { isAuthorized, AuthContext } from '../../Context/AuthContext'
-import { UserGenerate } from '../../Context/UserContext';
 import Dashboard from '../Dashboard/Dashboard';
-import { Sidenav } from 'materialize-css';
+import AuthContextProvider, {toggleAuth, AuthContext} from '../../Context/AuthContext';
+
 
 
 
@@ -18,7 +16,7 @@ export default class SignIn extends Component {
 
 		this.state = {
 			isLoading: true,
-			isLoggedIn: '',
+			isAuthorized: false,
 			signInError: '',
 			signInUsername: '',
             signInPassword: '',
@@ -73,7 +71,7 @@ export default class SignIn extends Component {
     //     getUser(data)
     // }
     
-	onSignIn() {
+	onSignIn(props) {
         
 		//Grab State
 		const { signInUsername, signInPassword,  } = this.state;
@@ -136,8 +134,10 @@ export default class SignIn extends Component {
     static contextType = AuthContext
 	handleSubmit = event => {
         event.preventDefault();
-      const {isAuthorized} = this.state
-      this.setState({isAuthorized: true})
+        const {isAuthorized} = this.state
+        console.log(isAuthorized)
+        this.setState({isAuthorized: true})    
+    
 	};
 	static contextType = ThemeContext;
 	render() {
@@ -217,9 +217,7 @@ export default class SignIn extends Component {
 		
 		return (
 			<div>
-				
                 <Dashboard user = {this.state.data}/>
-                
 			</div>
 			
 		);

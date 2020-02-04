@@ -1,11 +1,10 @@
-import React, { Component, useState, useMemo } from 'react';
+import React, { Component, createContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 import Navbar from './Components/Navbar/Nav';
 import Home from './pages/Home';
 import SignUp from './pages/Account/SignUp';
-
 import LogOut from './pages/Account/LogOut';
 import Contact from './pages/Contact/Contact';
 import MeasureWrapper from './pages/MeasureWrapper';
@@ -18,12 +17,15 @@ import ThemeContextProvider from './Context/ThemeContext';
 import AuthContextProvider from './Context/AuthContext';
 import { UserGenerate } from './Context/UserContext';
 import SignIn from './pages/Account/SignIn';
+import Auth from './utils/auth';
 
-function App() {
-  //starts out null because no users are present (initally)
-  const [user, setUser] = useState(null);
-  const userInfo = useMemo(() => ({ user, setUser }), [user, setUser]);
+ class App extends Component {
+  state = {
+    user: []
+  }
 
+
+render() {
   return (
     <div className='main-container'>
       <div className='App screen'>
@@ -32,20 +34,19 @@ function App() {
         </header>
         <main>
           <Switch>
-            <UserGenerate.Provider value={{ userInfo }}>
+            
               <Route exact path='/' component={Home} />
               <Route
                 path='/signup'
-                render={() => <SignUp signUp={this.signUp} />}
+                render={() => <SignUp  />}
               />
-
               <Route
                 path='/signin'
-                render={props => <SignIn signIn={() => setUser()} />}
+                render={() => <SignIn />}
               />
               <Route
                 path='/logout'
-                render={() => <LogOut logout={this.logout} />}
+                render={() => <LogOut />}
               />
               <Route exact path='/newmeasure' component={MeasureWrapper} />
               <Route path='/contact' component={Contact} />
@@ -60,7 +61,6 @@ function App() {
                   />
                 )}
               />
-            </UserGenerate.Provider>
           </Switch>
         </main>
 
@@ -71,5 +71,6 @@ function App() {
     </div>
   );
 }
+ }
 
 export default App;
