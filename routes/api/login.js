@@ -92,7 +92,6 @@ router.post('/api/signup', (req, res, next) => {
 			newUser.firstName = firstName;
 			newUser.lastName = lastName;
 			newUser.username = username;
-			newUser.wantsUpdates = wantsUpdates;
 			newUser.password = newUser.generateHash(password);
 			newUser.save((err, user) => {
 				if (err) {
