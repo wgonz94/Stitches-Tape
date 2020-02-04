@@ -4,6 +4,7 @@ import M from 'materialize-css';
 import { ThemeContext } from '../../Context/ThemeContext';
 import { AuthContext } from '../../Context/AuthContext';
 import UserImage from '../../Images/designergirl.png';
+import Auth from '../../utils/auth'
 
 const Navbar = () => {
   // Initialize SideNav
@@ -129,7 +130,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <NavLink
-                        to='/'
+                        to='/logout'
                         id='logout'
                         className='logged-in hoverable'
                         onClick={toggleAuth}
@@ -188,7 +189,7 @@ const Navbar = () => {
                   </li>
                   <li>
                     <NavLink
-                      to='/'
+                      to='/logout'
                       id='logout'
                       className='logged-in hoverable'
                       onClick={toggleAuth}
@@ -270,13 +271,13 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to='/dashboard'
+                    to='/logout'
                     id='logout'
                     className='logged-in hoverable'
                     onClick={toggleAuth}
                     style={{ color: theme.uitext }}
                   >
-                    Log In
+                    Log Out
                   </NavLink>
                 </li>
               </ul>
