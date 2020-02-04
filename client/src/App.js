@@ -4,8 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Nav";
 import Home from "./pages/Home";
 import SignUp from "./pages/Account/SignUp";
-import signIn from "./pages/Account/SignIn";
-import Login from "./pages/Account/LogIn"
+
 import LogOut from "./pages/Account/LogOut";
 import Contact from "./pages/Contact/Contact";
 import MeasureWrapper from "./pages/MeasureWrapper";
@@ -40,8 +39,8 @@ function App (){
               />
               
               <Route
-                path='/login'
-                render={props => <Login logIn={() => setUser()} />}
+                path='/signin'
+                render={props => <SignIn signIn={() => setUser()} />}
               />
               <Route
                 path='/logout'
