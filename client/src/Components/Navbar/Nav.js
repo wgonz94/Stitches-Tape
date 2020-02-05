@@ -74,7 +74,7 @@ const Navbar = () => {
                     <div className='divider'></div>
                     <li>
                       <NavLink
-                        to='/newmeasure'
+                        to='/display/newmeasure'
                         className='hoverable'
                         style={{ color: theme.ui, backgroundColor: theme.bgc }}
                       >
@@ -83,7 +83,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <NavLink
-                        to='/measurements'
+                        to='/display/measurements'
                         className='hoverable center'
                         style={{ color: theme.ui, backgroundColor: theme.bgc }}
                       >
@@ -213,13 +213,7 @@ const Navbar = () => {
               >
                 Stitches &amp; Tape
               </NavLink>
-              <NavLink
-                to='/'
-                className='brand-logo center hide-on-med-and-up flow-text'
-                style={{ color: theme.uitext }}
-              >
-                Stitches &amp; Tape
-              </NavLink>
+
               <NavLink
                 to='#'
                 className='sidenav-trigger'
@@ -239,24 +233,24 @@ const Navbar = () => {
                 </li> */}
 
                 <li>
-                  <NavLink
-                    to='/signup'
-                    id='signup'
+                  <a
+                    href='#signup'
+                    id='signupLink'
                     className='logged-out hoverable'
                     style={{ color: theme.uitext }}
                   >
                     Sign Up
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink
-                    to='/signin'
-                    id='signin'
+                  <a
+                    href='#signin'
+                    id='signinLink'
                     className='logged-out hoverable'
                     style={{ color: theme.uitext }}
                   >
                     Sign In
-                  </NavLink>
+                  </a>
                 </li>
 
                 <li>
@@ -270,7 +264,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to='/dashboard'
+                    to='/display/dashboard'
                     id='logout'
                     className='logged-in hoverable'
                     onClick={toggleAuth}
@@ -285,16 +279,6 @@ const Navbar = () => {
             {/* Mobile Nav Bar */}
             <ul className='sidenav grey lighten-2' id='mobile-menu'>
               <li>
-                <NavLink to='/measure' className='logged-in'>
-                  View Measurements
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to='/newmeasure' className='logged-in'>
-                  New Measurements
-                </NavLink>
-              </li>
-              <li>
                 <NavLink to='/signup' className='logged-out'>
                   Sign Up
                 </NavLink>
@@ -304,11 +288,7 @@ const Navbar = () => {
                   Sign In
                 </NavLink>
               </li>
-              <li>
-                <NavLink to='/logout' className='logged-in'>
-                  Log Out
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to='/contact'>Contact</NavLink>
               </li>

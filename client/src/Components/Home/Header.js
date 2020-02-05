@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import "./Header.css";
-// import Title from "../../Images/Title.png";
-// import DarkModeTitle from "../../Images/DarkModeTitle.png";
 import { ThemeContext } from "../../Context/ThemeContext";
 
 const Header = () => {

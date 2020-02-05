@@ -12,29 +12,48 @@
 
 .measurements {
   padding-left: 10vw;
-  overflow: auto;
+  /* overflow: auto; */
   color: #5558aa;
 }
 
-.measurements::hover,
+/* .measurements::hover,
 .measurements::focus {
   overflow-y: scroll;
-}
-
-label {
-  color: #5558aa;
-}
-
-input {
-  color: #5558aa;
-  font: 25em;
-}
+} */
 
 .models {
-  height: 100vh;
+  height: 100%;
   border: 2px solid #132b52;
-  margin-left: 15vw;
+  /* margin-left: 15vw; */
   max-height: 900px;
+}
+
+/* label color */
+.input-field label {
+  color: red;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label {
+  color: #000;
+}
+/* label underline focus color */
+.input-field input[type="text"]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type="text"].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type="text"].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
 }
 
 @media only screen and (max-width: 1000px) {

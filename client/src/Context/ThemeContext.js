@@ -11,18 +11,16 @@ class ThemeContextProvider extends Component {
       text: "black",
       uitext: "white",
       ui: "black",
-      bgc: "white",
+      bgc: "#f5f5f5",
       title: images("./Title.png"),
-      bgImage: images("./bodybg.png"),
       name: "Dark Mode"
     },
     dark: {
-      text: "#667",
+      text: "#DDD",
       uitext: "black",
       ui: "white",
       bgc: "#000",
       title: images("./DarkModeTitle.png"),
-      bgImage: images("./bodybg.png"),
       name: "Light Mode"
     }
   };

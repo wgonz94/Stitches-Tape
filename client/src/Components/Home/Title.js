@@ -11,26 +11,34 @@ const Title = () => {
   return (
     <div>
       <section
-        className='container section'
+        className='section'
         style={{
           color: theme.text
         }}
       >
-        <div className='row hide-on-small-and-down'>
-          <div className='col s12 hide-on-small-and-down'>
-            <h1
+        <div className='row'>
+          <div className='col s12'>
+            <h2
               className=' center title'
-              style={{ backgroundColor: "#5558aa", color: theme.uitext }}
+              style={{
+                backgroundColor: "#5558aa",
+                padding: "2vh",
+                color: theme.uitext
+              }}
             >
-              The only measurement tracking tool you’ll ever need!
-            </h1>
+              THE ONLY MEASUREMENT TRACKING TOOL YOU WILL EVER NEED!
+            </h2>
           </div>
         </div>
 
-        <div className='row' id='about'>
+        <div className='row container' id='about'>
           <p
-            className='flow-text col s12 m8 left z-depth-3'
-            style={{ background: theme.bgc, border: "5px solid #5558aa" }}
+            className='flow-text col s12 m8 right z-depth-3'
+            style={{
+              padding: "5vh",
+              background: theme.bgc,
+              border: "5px solid #5558aa"
+            }}
           >
             The Stitches and Tape (S&T) measurement tracker is a simplified, yet
             dynamic, tracking tool. It allows you, the Clothier, to store and
@@ -40,14 +48,23 @@ const Title = () => {
             gowns, you'll have the needed measurements at the click of a button
             instead of wading through folders of measurement sheets.
           </p>
-          <img src={jeans} className='col s12 l4 right responsive-img' alt='' />
+          <img
+            src={jeans}
+            className='col s12 m4 left responsive-img'
+            alt=''
+            style={{ paddingTop: "7vh" }}
+          />
         </div>
-        <div className='row'>
-          <img src={suit} className='col s12 l4 left responsive-img' alt='' />
+        <div className='row container'>
+          <img src={suit} className='col s12 l4 right responsive-img' style={{ paddingTop: "10vh" }} alt='' />
 
           <p
-            className='flow-text col s12 m8 right z-depth-3'
-            style={{ background: theme.bgc, border: "5px solid #5558aa" }}
+            className='flow-text col s12 m8 left z-depth-3'
+            style={{
+              padding: "5vh",
+              background: theme.bgc,
+              border: "5px solid #5558aa"
+            }}
           >
             Whether you're a novice designer or an experienced Clothier, S&T is
             the perfect tool. Unlike most measurement tracking tools on the

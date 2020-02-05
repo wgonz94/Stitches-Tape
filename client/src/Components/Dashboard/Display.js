@@ -1,18 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import MeasureWrapper from "../../pages/MeasureWrapper";
 import Measurements from "../Measurements/Measurement";
-import { ThemeContext } from "../../Context/ThemeContext";
-import "./display.css";
-
+import Dashboard from "../../pages/Dashboard/Dashboard";
+import ErrorPage from "../Error/ErrorPage";
 
 const Display = () => {
-  const { isLightTheme, light, dark } = useContext(ThemeContext);
-  const theme = isLightTheme ? light : dark;
   return (
-    <div
-      className='display'
-      style={{ color: theme.text, backgroundColor: theme.bgc }}
-    ></div>
+    <div className='row'>
+      <div className='col s3'></div>
+      <div className='col s12 m9'>
+        <Switch>
+          <Route exact path='/display/newmeasure' component={MeasureWrapper} />
+
+          <Route path='/display/measurements' component={Measurements} />
+          <Route path='/display/dashboard' component={Dashboard} />
+          <Route path='/display/errorpage' component={ErrorPage} />
+        </Switch>
+      </div>
+    </div>
   );
 };
-
 export default Display;

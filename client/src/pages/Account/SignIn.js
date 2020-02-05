@@ -1,3 +1,4 @@
+
 import React, { Component, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import 'whatwg-fetch';
@@ -13,8 +14,8 @@ import { Sidenav } from 'materialize-css';
 
 
 export default class SignIn extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
 		this.state = {
 			isLoading: true,
@@ -32,31 +33,31 @@ export default class SignIn extends Component {
        
 	}
 
-	componentDidMount() {
-		const obj = getFromStorage('the_main_app');
-		if (obj && obj.token) {
-			const { token } = obj;
-			//verify token
-			fetch('/api/account/verify?token' + token)
-				.then(res => res.json())
-				.then(json => {
-					if (json.success) {
-						this.setState({
-							token,
-							isLoading: false
-						});
-					} else {
-						this.setState({
-							isLoading: false
-						});
-					}
-				});
-		} else {
-			this.setState({
-				isLoading: false
-			});
-		}
-	}
+  componentDidMount() {
+    const obj = getFromStorage("the_main_app");
+    if (obj && obj.token) {
+      const { token } = obj;
+      //verify token
+      fetch("/api/account/verify?token" + token)
+        .then(res => res.json())
+        .then(json => {
+          if (json.success) {
+            this.setState({
+              token,
+              isLoading: false
+            });
+          } else {
+            this.setState({
+              isLoading: false
+            });
+          }
+        });
+    } else {
+      this.setState({
+        isLoading: false
+      });
+    }
+  }
 
 	onChangeSignInUsername(event) {
 		this.setState({
@@ -78,11 +79,11 @@ export default class SignIn extends Component {
 		//Grab State
 		const { signInUsername, signInPassword,  } = this.state;
 
-		this.setState({
-			isLoading: true
-		});
-		console.log(signInUsername);
-		console.log(signInPassword);
+    this.setState({
+      isLoading: true
+    });
+    console.log(signInUsername);
+    console.log(signInPassword);
 
 		//Post request to backend
 		fetch('/api/users/login', {
@@ -121,12 +122,12 @@ export default class SignIn extends Component {
         console.log(user)
     }
 
-	validateForm() {
-		return (
-			this.state.signInUsername.length > 0 &&
-			this.state.signInPassword.length > 0
-		);
-	}
+  validateForm() {
+    return (
+      this.state.signInUsername.length > 0 &&
+      this.state.signInPassword.length > 0
+    );
+  }
 
 	handleChange = event => {
 		this.setState({

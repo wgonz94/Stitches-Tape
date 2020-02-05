@@ -191,7 +191,11 @@ export default class SignUp extends Component {
 
     if (!token) {
       return (
-        <div className='container'>
+        <div
+          className='signup'
+          id='signup'
+          style={{ borderLeft: "2px solid gray" }}
+        >
           <div className='center' style={{ color: theme.ui }}>
             {signUpError ? <p>{signUpError}</p> : null}
             <div className='container'>

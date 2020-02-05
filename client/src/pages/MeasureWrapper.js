@@ -11,7 +11,7 @@ const MeasureWrapper = () => {
   return (
     <div
       style={{
-        color: "#5558aa",
+        color: theme.text,
         background: theme.bgc
       }}
     >
@@ -20,6 +20,7 @@ const MeasureWrapper = () => {
         <div className='col s12 l6'>
           <MeasureImg />
         </div>
+
         <div className='col s12 l6'>
           <NewMeasurement />
         </div>

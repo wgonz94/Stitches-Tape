@@ -8,25 +8,26 @@ const UserStory = () => {
   const theme = isLightTheme ? light : dark;
   return (
     <div
-      className='container'
       style={{
         color: theme.text
       }}
       id='about'
     >
-      <div className='container'>
-        <h3
+      <div className='row' style={{ padding: "10vh" }}>
+        <h1
           className='center user-header'
           style={{ backgroundColor: "#ABADE0", color: theme.uitext }}
         >
-          "I will never again be without this tool!"
-        </h3>
+          "I WILL NEVER AGAIN BE WITHOUT THIS TOOL!"
+        </h1>
       </div>
-      <div className='row'>
-        <div className='col s12 l8'>
+      <div className='row container'>
+        <div className='col m12 l8'>
           <blockquote
             className='flow-text z-depth-5 left'
             style={{
+              fontStyle: "italic",
+              padding: "5vh",
               borderLeft: "5px solid #ABADE0",
               backgroundColor: theme.bgc
             }}
@@ -40,13 +41,13 @@ const UserStory = () => {
             measurements which was disappointing to all. It added unnecessary
             extra work and hastle. Needless to say, the bride wasn't pleased. A
             friend later told me about S&T. This would have been my lifesaver
-            had I had this tool at that time.
+            had I had this tool at that time. -Vanessa B.
           </blockquote>
         </div>
-        <div className='col s12 l4 right'>
+        <div className='col m12 l4 right'>
           <img
             src={dress}
-            className='z-depth-5'
+            className='z-depth-5 responsive-img'
             alt='wedding dress'
             style={{ border: "5px solid #ABADE0" }}
           />
