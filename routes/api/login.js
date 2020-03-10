@@ -6,7 +6,7 @@ const UserSession = require('../../models/UserSession');
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const auth = require('../middleware/auth');
+const auth = require('../../middleware/auth');
 
 
 // @route       GET api/auth
@@ -24,7 +24,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
 	const { body } = req;
 	const {
 		firstName,
@@ -126,7 +126,7 @@ router.post('/signup', (req, res, next) => {
 
 
 
-router.post('/login', auth, ( req, res, next) => {
+router.post('/login', auth, async ( req, res, next) => {
 	const { body } = req;
 	const { password } = body
 	let { username } = body

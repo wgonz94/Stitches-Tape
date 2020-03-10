@@ -111,7 +111,7 @@ export default class SignUp extends Component {
     console.log(signUpPassword);
 
     //Post request to backend
-    fetch("/api/signup", {
+    fetch("/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

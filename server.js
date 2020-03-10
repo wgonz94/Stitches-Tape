@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
+require('dotenv').config()
 
 //  Package Dependent Variable Declarations
 const app = express();
@@ -10,11 +11,9 @@ const app = express();
 //  Global Variable Declarations
 const PORT = process.env.PORT || 5000;
 
-//  File Import Variable Declarations
-//  //  API Routes For Login Info
-const loginRoutes = require('./routes/api/login');
+
 //  //  Configuration for MongoDB
-const db = require('./config/keys').mongoURI;
+const db = require('./config/database').mongoURI;
 
 //  Middleware Method Calls
 //  //  Configures the use of .env files
@@ -32,8 +31,6 @@ const configOptions = {
 };
 
 //  Routes
-//  //  All Routes for Users APIs
-app.use('/api/users', require('./routes/api/user'));
 //  //  All Routes for Measurements APIs
 app.use('/api/measurements', require('./routes/api/measurement'));
 //  //  All Routes For Login APIs

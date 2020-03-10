@@ -17,16 +17,18 @@ import ThemeContextProvider from './Context/ThemeContext';
 import AuthContextProvider from './Context/AuthContext';
 import { UserGenerate } from './Context/UserContext';
 import SignIn from './pages/Account/SignIn';
-import Auth from './utils/auth';
-
- class App extends Component {
-  state = {
-    user: []
-  }
 
 
-render() {
+// saving the users token to local storage
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+} 
+ function App(){
+  
+
   return (
+    <UserState>
+      <MessageState>
     <div className='main-container'>
       <div className='App screen'>
         <header>
@@ -69,8 +71,9 @@ render() {
         </footer>
       </div>
     </div>
+    </MessageState>
+    </UserState>
   );
 }
- }
 
 export default App;

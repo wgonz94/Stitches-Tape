@@ -83,7 +83,7 @@ export default class SignIn extends Component {
 		console.log(signInPassword);
 
 		//Post request to backend
-		fetch('/api/users/login', {
+		fetch('/api/auth/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
