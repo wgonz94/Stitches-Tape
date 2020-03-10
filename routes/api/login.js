@@ -4,20 +4,27 @@
 const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
 const router = require('express').Router();
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const auth = require('../middleware/auth');
 
-//  Sign up
-//  //  @route   POST api/signup
-//  //  @desc    Post New User Registration
-//  //  @access  Public
 
-router.get('/api/users/verify/user', (req, res) => {
-	// console.log(`username: ${req.params.username}`);
-	User.findOne({ username: req.params.username })
-		.then(user => res.json(user))
-		.catch(err => res.status(404).json(`User Not Found`));
+// @route       GET api/auth
+// @desc        Get logged in user
+// @access      Private (so we need verification middleware)
+
+router.get('/', auth, async (req, res) => {
+    // bring in auth (middleware) to fire off on this route (protected)
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json(user);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
 });
 
-router.post('/api/signup', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
 	const { body } = req;
 	const {
 		firstName,
@@ -65,26 +72,15 @@ router.post('/api/signup', (req, res, next) => {
 	}
 
 	//	//	Verify that the value given for email exists in Database
-	User.find(
-		{
-			username: username
-		},
-		(err, pastUser) => {
-			if (err) {
-				//	//	//	Return General Error Message
-				return res.send({
-					success: false,
-					message: 'Error: Server Error.'
-				});
-			} else if (pastUser.length > 0) {
-				//	//	//	Return Account Exists Error
-				return res.send({
-					success: false,
-					message: 'Error: Account already exists.'
-				});
-			}
+	try {
+		// find the user with the username
+		let user = await User.findOne({ username }); 
 
-			//	//	Create newUser to send to the Database
+		//if username found, user already exists
+		if (user) {
+			return res.status(400).json({ msg: 'User already exists' }); 
+		}
+			//	Create newUser to send to the Database
 			const newUser = new User();
 
 			//	//	Populate newUser to create a new account
@@ -105,19 +101,32 @@ router.post('/api/signup', (req, res, next) => {
 					message: 'Account Created.'
 				});
 			});
-		}
-	);
+		
+		jwt.sign(
+			payload,
+			config.get('jwtSecret'),
+			{
+				expiresIn: 360000
+			},
+			(err, token) => {
+				if (err) throw err;
+				res.json({ token });
+			}
+		);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server error');
+	}
 });
 
 //  Login
-//  //  @route   POST api/account/login
+//  //  @route   POST api/auth/login
 //  //  @desc    Login
 //  //  @access  Public
 
-//////UPDATE: 1-30-2020
-////////Take this route out, but take and insert "bcrypt.compare" to compare encrypted password to password inputed on frontend
-////////towards the route of 'api/users/verify/:username'
-router.post('/api/users/login', ( req, res, next) => {
+
+
+router.post('/login', auth, ( req, res, next) => {
 	const { body } = req;
 	const { password } = body
 	let { username } = body
@@ -138,50 +147,46 @@ router.post('/api/users/login', ( req, res, next) => {
 	  }
 	  username = username.trim();
 	  
-	User.find(
-		{
-			username: username
-		},
-		(err, users) => {
-			if (err) {
-				return res.send({
-					success: false,
-					message: 'Error: Server error'
-				});
-			}
-			if (users.length != 1) {
-				return res.send({
-				  success: false,
-				  message: 'Error: Invalid'
-				});
-			  }
-			  const user = users[0];
-			if (!user.validPassword(password)) {
-				return res.send({
-					success: false,
-					message: 'Error: Invalid Password'
-				});
-			}
-	// 		//Otherwise correct user
-			const userSession = new UserSession();
-			userSession.userId = user._id;
-			userSession.save((err, doc) => {
-				if (err) {
-					console.log(err)
-					return res.send({
-						success: false,
-						message: 'Error: Server error'
-					});
-				}
-				return res.send({
-					success: true,
-					message: 'Valid sign in!',
-					token: doc._id,
-					data: user
-				});
-			});
+	
+	  try {
+		  // find the user that has the email inputted
+		let user = await User.findOne({ username }); 
+
+		if (!user) {
+			// if there is NOT a user 
+			return res.status(400).json({ msg: 'Invalid User' });
 		}
-	);
+
+		// checking if the password they inputted matches the one in database
+		const isMatch = await bcrypt.compare(password, user.password); 
+
+		if (!isMatch) {
+			// if it DOES NOT match, respond with msg
+			return res.status(400).json({ msg: 'Invalid Password' });
+		}
+
+		// payload is the object to send to user when logged in
+		const payload = {
+			user: {
+				id: user.id
+			}
+		};
+
+		jwt.sign(
+			payload,
+			config.get('jwtSecret'),
+			{
+				expiresIn: 360000
+			},
+			(err, token) => {
+				if (err) throw err;
+				res.json({ token });
+			}
+		);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
 });
 
 //	Verify User

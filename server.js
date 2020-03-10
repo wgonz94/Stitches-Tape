@@ -37,7 +37,7 @@ app.use('/api/users', require('./routes/api/user'));
 //  //  All Routes for Measurements APIs
 app.use('/api/measurements', require('./routes/api/measurement'));
 //  //  All Routes For Login APIs
-app.use(loginRoutes);
+app.use('/api/auth', require('./routes/api/login'));
 
 //  Production Only Assets
 //  //  Serve static assets if app is in production

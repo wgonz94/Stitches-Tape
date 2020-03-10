@@ -1,5 +1,6 @@
 //  Exports
 //  //  Exports the information relevant to our production environment
 module.exports = {
-	mongoURI: process.env.MONGO_URI
+	mongoURI: process.env.MONGO_URI,
+	jwtSecret: superSecret
 };
